@@ -1,3 +1,5 @@
+#import "etc/utils.typ"
+
 // styling
 #set text(font: "Libertinus Serif", size: 12pt, lang: "de")
 #set page(paper: "a4", margin: auto, numbering: "1", number-align: right)
@@ -8,6 +10,9 @@
   #block(smallcaps(value))
   #v(2%)
 ]
+
+// TODOs outline, remove this when finished
+#utils.todo_outline
 
 // adding cover page
 #include "etc/cover_page.typ"
@@ -40,4 +45,4 @@
 #pagebreak()
 
 // adding bibliography
-#bibliography("etc/references.bib")
+#bibliography("etc/references.bib", style: "ieee", title: "Literaturverzeichnis")

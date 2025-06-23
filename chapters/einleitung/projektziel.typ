@@ -8,7 +8,7 @@ Dazu soll es außerdem möglich sein, nach Abschluss einer Visual Novel diese ab
 
 Das erstellte Framework soll in einem beispielhaften Projekt verwendet werden, um eine mobile Cross-Plattform Anwendung zu erstellen, die sich an KITE II orientiert, und somit als _Proof of Concept_ fungiert. Der Prototyp soll sich einerseits strukturell an KITE II orientieren und somit die Kernfunktionalitäten dieser Anwendung bieten, und andererseits auch vorhandene Darstellungselemente verwenden, um die Visual Novels möglichst nach dem Original-Vorbild darstellen zu können.
 
-Als Kernfunktionalitäten von KITE II sind auf Grundlage von #ref(<ausgangslage>) folgende Punkte identifiziert:
+Als Kernfunktionalitäten von KITE II sind auf Grundlage von @ausgangslage folgende Punkte identifiziert:
 - Darstellung und Ausführung von Visual Novels
 - Speichern der gespielten Visual Novels
 - Auswertung von gespielten Visual Novels durch ein LLM
