@@ -46,4 +46,4 @@
 #pagebreak()
 
 // adding bibliography
-#bibliography("etc/references.bib", style: "ieee", title: "Literaturverzeichnis")
+#bibliography("resources/references.bib", style: "ieee", title: "Literaturverzeichnis")

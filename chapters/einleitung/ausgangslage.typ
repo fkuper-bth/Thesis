@@ -11,10 +11,10 @@ Die Kernfunktionalität der vorhandenen Anwendung besteht darin, verschiedene Ge
 #figure(
   grid(
     columns: 4,
-    image("../../resources/kite-screenshot-start-screen.png", width: 80%),
-    image("../../resources/kite-screenshot-novel-list.png", width: 80%),
-    image("../../resources/kite-screenshot-pre-dialog-info.png", width: 80%),
-    image("../../resources/kite-screenshot-dialogue.png", width: 80%),
+    image("../../resources/images/kite/kite-screenshot-start-screen.png", width: 80%),
+    image("../../resources/images/kite/kite-screenshot-novel-list.png", width: 80%),
+    image("../../resources/images/kite/kite-screenshot-pre-dialog-info.png", width: 80%),
+    image("../../resources/images/kite/kite-screenshot-dialogue.png", width: 80%),
   ),
   caption: [
     Screenshots der KITE II Anwendung.

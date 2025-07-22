@@ -6,7 +6,7 @@
 #let contentSize = 11pt
 
 #align(top + right)[
-  #image("/resources/logo_hhn.png", width: 30%)
+  #image("/resources/images/logo_hhn.png", width: 30%)
 ]
 
 #align(horizon)[
