@@ -1,4 +1,4 @@
-#import "etc/utils.typ"
+#import "/etc/utils.typ"
 
 // styling
 #set text(font: "Libertinus Serif", size: 12pt, lang: "de")
@@ -12,7 +12,6 @@
 ]
 
 // TODOs outline, remove this when finished
-#utils.todo([Glossar für Abkürzungen und Begriffserklärungen anlegen.])
 #utils.todo_outline
 
 // adding cover page
@@ -31,6 +30,9 @@
 #outline()
 #pagebreak()
 
+// adding glossary
+#include "etc/glossary.typ"
+
 // adding chapters
 #include "chapters/einleitung/einleitung.typ"
 #pagebreak()
@@ -44,6 +46,7 @@
 #pagebreak()
 #include "chapters/fazit.typ"
 #pagebreak()
+
 
 // adding bibliography
 #bibliography("resources/references.bib", style: "ieee", title: "Literaturverzeichnis")

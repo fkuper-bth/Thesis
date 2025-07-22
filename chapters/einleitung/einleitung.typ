@@ -1,6 +1,8 @@
+#import "/etc/utils.typ"
+
 = Einleitung <einleitung>
 
-Für Organisationen aller Art, die eine Zielgruppe über bestimmte Themen auf eine interaktive und spielerische Art und Weise schulen möchten, soll im Rahmen dieses Projektes ein Framework entworfen und umgesetzt werden, um eine Cross-Plattform Anwendung zu schaffen, die Nutzer*innen mit Hilfe von Visual Novels informiert und gezieltes Feedback zum Spielverlauf über die Verwendung von Large Language Models geben soll.
+Für Organisationen aller Art, die eine Zielgruppe über bestimmte Themen auf eine interaktive und spielerische Art und Weise schulen möchten, soll im Rahmen dieses Projektes ein Framework entworfen und umgesetzt werden, um eine #utils.gls("cross_platform") Anwendung zu schaffen, die Nutzer*innen mit Hilfe von #utils.glspl("visual_novel") informiert und gezieltes Feedback zum Spielverlauf über die Verwendung von Large Language Models geben soll.
 
 Orientiert wird sich hierbei an einem laufenden Projekt, anhand dessen eine beispielhafte Umsetzung einer solchen Anwendung erfolgen soll. Zu diesem Zwecke soll ein Framework entstehen, welches es auf einfache Art und Weise ermöglicht, interaktive Geschichten, die zuvor mit dem Tool Twine @interactive_fiction_technology_foundation_twine_2025
 erstellt wurden, auf verschiedenen Plattformen zu verwenden.
