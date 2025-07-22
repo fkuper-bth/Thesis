@@ -5,6 +5,4 @@
 
 = Zusammenfassung <zusammenfassung>
 
-#utils.todo([
-  Abstract schreiben
-])
+#utils.todo([Abstract schreiben])
