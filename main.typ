@@ -12,6 +12,7 @@
 ]
 
 // TODOs outline, remove this when finished
+#utils.todo([Glossar für Abkürzungen und Begriffserklärungen anlegen.])
 #utils.todo_outline
 
 // adding cover page
