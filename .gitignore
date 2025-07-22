@@ -3,3 +3,6 @@
 
 # macOS specific files
 *DS_Store
+
+# build files
+*.pdf
