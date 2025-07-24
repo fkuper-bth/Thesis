@@ -9,7 +9,12 @@ erstellt wurden, auf verschiedenen Plattformen zu verwenden.
 
 Im Rahmen dieser Arbeit wird also einerseits eine #utils.gls-short("library") konzipiert und umgesetzt, die die Verwendung von Twine Geschichten in Anwendungen auf verschiedenen Plattformen ermöglicht, und andererseits eine solche Anwendung beispielhaft erstellt, die diese #utils.gls-short("library") verwendet, um die Anwendung der #utils.gls-short("library") zu demonstrieren. Diese Anwendung soll sich an der #utils.gls("kite2") @hochschule_heilbronn_kite_2023 Anwendung orientieren, die sich zum Zeitpunkt der Verfassung dieser Arbeit noch in Entwicklung befindet.
 
+#pagebreak()
+
 #include "ausgangslage.typ"
+#pagebreak()
+
+#include "problemstellung.typ"
 #pagebreak()
 
 #include "projektziel.typ"
