@@ -17,7 +17,7 @@ Im Rahmen dieser Arbeit wird also einerseits eine #utils.gls-short("library") ko
 #include "problemstellung.typ"
 #pagebreak()
 
-#include "projektziel.typ"
+#include "zielsetzung.typ"
 #pagebreak()
 
 #include "planung.typ"

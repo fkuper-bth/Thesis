@@ -62,6 +62,18 @@
     short: "KITE II",
     description: "Projekt zur Entwicklung einer KI-gestützten, gamifizierten Anwendung, die Gründerinnen dabei unterstützen soll, resilienter im Umgang mit diskriminierenden Erfahrungen im Gründungsprozess zu werden.",
   ),
+  (
+    key: "llm",
+    short: "LLM",
+    long: "Large Language Model",
+    plural: "LLMs",
+    description: "Ein großes Sprachmodell, das auf maschinellem Lernen basiert und in der Lage ist, menschenähnliche Texte zu generieren und zu verstehen.",
+  ),
+  (
+    key: "twine",
+    short: "Twine",
+    description: "Ein Open-Source-Werkzeug zur Erstellung interaktiver Geschichten.",
+  ),
 )
 #utils.register-glossary(glossary-entry-list)
 
