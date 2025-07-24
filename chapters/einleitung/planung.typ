@@ -1,4 +1,4 @@
-#import "../../etc/utils.typ"
+#import "/etc/utils.typ"
 
 == Planung <planung>
 
@@ -12,10 +12,7 @@ Geplanter Beginn der Arbeit ist der 30. April 2025 wobei der geplante Abgabeterm
   columns: 2,
   inset: 10pt,
   align: horizon,
-  table.header(
-    [*Arbeitspaket*],
-    [*Bearbeitungszeit*],
-  ),
+  table.header([*Arbeitspaket*], [*Bearbeitungszeit*]),
 
   [Analyse und Definitionen der Anforderungen an das geplante Framework sowie den Prototypen der mobilen Anwendung],
   [1 Woche],

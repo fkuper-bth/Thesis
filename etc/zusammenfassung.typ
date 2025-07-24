@@ -1,4 +1,4 @@
-#import "utils.typ"
+#import "/etc/utils.typ"
 
 #set page(numbering: none)
 #set heading(numbering: none, outlined: false)

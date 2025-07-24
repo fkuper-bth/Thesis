@@ -1,4 +1,4 @@
-#import "../etc/utils.typ"
+#import "/etc/utils.typ"
 
 = Beschreibung des Lösungsansatzes <beschreibung_loesungsansatz>
 
