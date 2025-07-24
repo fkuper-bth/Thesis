@@ -21,4 +21,10 @@ Die Kernfunktionalität der vorhandenen Anwendung besteht darin, verschiedene #u
   ],
 ) <kite-ii-screenshots>
 
-In @kite-ii-screenshots sind einige Screenshots aus der #utils.gls-short("kite2") Anwendung zu sehen. Dabei sieht man einmal den Start-Screen, der einerseits den Nutzer*innen graphisch aufbereitet die verschiedenen Novels zur Auswahl anbietet, diese andererseits aber auch in Form einer einfach Liste anbietet. Navigation zwischen den einzelnen Screens im Start-Screen erfolgt über eine Navigation Bar, wie man sie aus graphischen Oberflächen in mobilen Geräten kennt @google_navigation_2025.
+In @kite-ii-screenshots sind einige Screenshots aus der #utils.gls-short("kite2") Anwendung zu sehen, wie diese zum Zeitpunkt des Beginns an dieser Thesis vorliegt. Von rechts nach links betrachtet ist zu sehen:
+
+- Der Start-Bildschirm, der den Nutzer*innen die verschiedenen #utils.gls-plural("visual_novel") graphisch aufbereitet zur Auswahl anbietet.
+- Die Liste der verfügbaren #utils.gls-plural("visual_novel"), die in der Anwendung gespielt werden können.
+  - Die Navigation zwischen den einzelnen Bildschirmen im Hauptmenü erfolgt über eine Navigation Bar, wie man sie aus graphischen Oberflächen in mobilen Geräten kennt @google_navigation_2025.
+- Der Bildschirm, der vor dem Start einer #utils.gls-short("visual_novel") erscheint und den Nutzer*innen Informationen zur jeweiligen Geschichte bietet.
+- Der Bildschirm, der während des Spielens einer #utils.gls-short("visual_novel") erscheint und die Interaktion mit der Geschichte ermöglicht.
