@@ -29,7 +29,7 @@ Im Zuge der originalen Konzeption von KITE II wurde eine größere Bandbreite vo
 
 Im Laufe der Entwicklung haben sich jedoch die Anforderungen an KITE II geändert, sodass die ursprünglich konzeptionierte navigierbare Spielwelt nicht mehr benötigt wurde. Dadurch, dass sich durch die initialen Annahmen für Unity entschieden wurde und die Entwicklung bereits weit fortgeschritten war, war ein Wechsel auf eine andere eventuell besser an die aktuellen Anforderungen geeignete Technologie nicht mehr wirtschaftlich.
 
-Doch haben sich durch die Wahl von Unity im frühen Stadium des Projektes später einige Probleme ergeben, die die Entwicklung der Anwendung erschwert haben und außerdem einige qualitative Aspekte der Anwendung negativ beeinflusst haben. Des Weiteren haben sich im Laufe der Entwicklung andere technische Schwierigkeiten herausgestellt.
+Doch haben sich durch die Wahl von Unity im frühen Stadium des Projektes später einige Probleme ergeben, die die Entwicklung der Anwendung erschwert haben und außerdem einige qualitative Aspekte der Anwendung negativ beeinflusst haben. Des Weiteren haben sich im Laufe der Entwicklung andere technische Schwierigkeiten ergeben.
 
 === Schmerzpunkte in der Entwicklung von KITE II <schmerzpunkte>
 
