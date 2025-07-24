@@ -15,7 +15,7 @@
   ]
 
   #text(weight: "bold", size: titleSize)[
-    Konzeption und Umsetzung eines Cross-Plattform Frameworks zur Darstellung von interaktiven Visual Novels
+    Konzeption und Umsetzung einer Cross-Plattform Bibliothek zur Darstellung von interaktiven Visual Novels
   ]
 
   #text(weight: "light", size: courseSize)[
