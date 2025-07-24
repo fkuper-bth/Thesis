@@ -7,7 +7,7 @@ Das Projekt beinhaltet:
 - Analyse von Twine.
 - Analyse und Vergleich verschiedener mobiler Cross-Plattform Technologien im Bezug auf Eignung an die Anforderungen.
 - Entwurf und Umsetzung eines Frameworks zur Darstellung und Verwendung von Twine-Stories auf mobilen Endgeräten.
-- Entwurf und Umsetzung eines Prototypen, welcher sich inhaltlich und visuell an KITE II orientiert und die Kernfunktionalitäten abbildet, wie sie in @projektziel definiert sind.
+- Entwurf und Umsetzung eines Prototypen, welcher sich inhaltlich und visuell an KITE II orientiert und die Kernfunktionalitäten abbildet, wie sie in @zielsetzung definiert sind.
   - Der Prototyp soll sämtliche für KITE II erstellte Visual Novels spielbar machen.
 
 === Abgrenzung der Projektinhalte <abgrenzung-projektinhalte>
