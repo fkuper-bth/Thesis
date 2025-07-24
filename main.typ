@@ -49,6 +49,9 @@
 #include "chapters/fazit.typ"
 #pagebreak()
 
-
-// adding bibliography
+// adding appendices
 #bibliography("resources/references.bib", style: "ieee", title: "Literaturverzeichnis")
+#pagebreak()
+#outline(title: "Abbildungsverzeichnis", target: figure.where(kind: image))
+#pagebreak()
+#outline(title: "Tabellenverzeichnis", target: figure.where(kind: table))
