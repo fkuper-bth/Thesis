@@ -10,7 +10,7 @@
   #block(smallcaps(value))
   #v(2%)
 ]
-#show link: set text(fill: blue.darken(50%))
+#show link: set text(fill: utils.colorScheme.hhnBlue)
 
 // TODOs outline, remove this when finished
 #utils.todo_outline
