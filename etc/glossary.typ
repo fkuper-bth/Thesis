@@ -74,6 +74,17 @@
     short: "Twine",
     description: "Ein Open-Source-Werkzeug zur Erstellung interaktiver Geschichten.",
   ),
+  (
+    key: "serious_game",
+    short: "Serious Game",
+    plural: "Serious Games",
+    description: "Ein Spiel, das nicht primär zur Unterhaltung, sondern zur Vermittlung von Wissen oder Fähigkeiten entwickelt wurde.",
+  ),
+  (
+    key: "gamification",
+    short: "Gamification",
+    description: "Die Anwendung spieltypischer Elemente in einem nicht-spielerischen Kontext, um die Nutzererfahrung zu verbessern und das Engagement zu erhöhen.",
+  ),
 )
 #utils.register-glossary(glossary-entry-list)
 
