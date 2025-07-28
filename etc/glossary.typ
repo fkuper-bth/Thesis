@@ -10,7 +10,21 @@
     short: "VN",
     long: "Visual Novel",
     plural: "VNs",
-    description: "Eine interaktive Geschichte mit audio-visuellen Elementen.",
+    description: "Eine Form von Interactive Fiction, welches zusätzlich audio-visuelle Elemente wie beispielsweise animierte Illustrationen verwendet.",
+  ),
+  (
+    key: "interaktive_erzählung",
+    short: "IE",
+    long: "Interaktive Erzählung",
+    plural: "IEs",
+    description: "Eine Form von Erzählung, bei der der Handlungsverlauf nicht vorbestimmt ist. Nutzer*innen können je nach ihren Entscheidungen einen unterschiedlichen Handlungsverlauf erfahren.",
+  ),
+  (
+    key: "interactive_fiction",
+    short: "IF",
+    long: "Interactive Fiction",
+    plural: "IFs",
+    description: "Ein textbasiertes Videospielgenre, bei dem Spieler*innen Einfluss auf die Handlung nehmen können.",
   ),
   (
     key: "cross_platform",
@@ -84,6 +98,22 @@
     key: "gamification",
     short: "Gamification",
     description: "Die Anwendung spieltypischer Elemente in einem nicht-spielerischen Kontext, um die Nutzererfahrung zu verbessern und das Engagement zu erhöhen.",
+  ),
+  (
+    key: "prompt_engineering",
+    short: "Prompt Engineering",
+    description: "Prozess der Strukturierung einer Anfrage an ein generatives KI-Modell mit dem Ziel der Optimierung der Ausgabequalität.",
+  ),
+  (
+    key: "bias",
+    short: "Bias",
+    plural: "Biases",
+    description: "Im Fachbereich der Psychologie (auch kognitive Verzerrung oder kognitiver Fehler genannt): Eine systematische Abweichung von Normen oder Rationalität im Urteil. Biases können zu Wahrnehmungsverzerrung, ungenaue Beurteilung oder Irrationalität führen.",
+  ),
+  (
+    key: "immersion",
+    short: "Immersion",
+    description: "Im Fachbereich der Videospiele: die Wahrnehmung physisch präsent in einer nicht-physischen Welt zu sein.",
   ),
 )
 #utils.register-glossary(glossary-entry-list)

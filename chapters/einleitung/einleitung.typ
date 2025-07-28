@@ -26,21 +26,15 @@ Insgesamt scheinen #utils.gls-plural("serious_game") einen nachweislich positive
 
 Abgesehen von der Modalität der Lernmittel besteht die Frage, welche Art von Spiel besonders effektiv im Lernprozess sein kann. In der Gestaltung eines #utils.gls-short("serious_game") sind viele verschiedene Faktoren zu berücksichtigen, wie die Lernziele, Zielgruppe, der Nutzungskontext, die Bewertungskriterien der Lernerfahrung oder das Budget.
 
-Eine besonders kosteneffektive Art von Videospiel bezogen auf Produktionskosten können dabei #utils.glspl("visual_novel") sein. Bei dieser Art Spiel können Spielende eine interaktive Geschichte mit audio-visuellen Elementen erleben, die je nach ihren Entscheidungen einen anderen Verlauf nehmen kann.
+Eine besonders kosteneffektive Art von Videospiel bezogen auf Produktionskosten können dabei #utils.glspl("visual_novel") sein. Bei dieser Art Spiel können Spielende eine #utils.gls("interaktive_erzählung") mit audio-visuellen Elementen erleben, die je nach ihren Entscheidungen einen anderen Verlauf nehmen kann.
 
 Außerdem können #utils.gls-plural("visual_novel") großes Potenzial bergen, den Spieler*innen Lerninhalte effektiv zu präsentieren. Hierbei sei es sehr wichtig, dass die Charaktere und Geschichte gut entwickelt sind und den Spieler*innen eine Projektionsfläche bieten, sich hiermit zu identifizieren. Abgesehen von der Gestaltung der Geschichte und des Lernprozesses sei es außerdem wichtig, dass es eine klare Strategie zur Bewertung der Lernerfahrung gebe @oygardslia_educational_2020.
 
 Die vorliegende Arbeit stellt einen Versuch dar, diese Potenziale mit Hilfe der Ergebnisse für Entwickler*innen leichter verfügbar zu machen, indem es die Produktion einer #utils.gls-long("visual_novel") unter Berücksichtigung der Anforderungen an diese Art Spiel im Bereich der #utils.gls-plural("serious_game") vereinfacht.
 
-== Leitgedanke der vorliegenden Arbeit <leitgedanke>
+#pagebreak()
 
-Für Organisationen aller Art, die eine Zielgruppe über bestimmte Themen auf eine interaktive und spielerische Art und Weise schulen möchten, soll im Rahmen dieses Projektes eine #utils.gls("library") entworfen und umgesetzt werden, um eine #utils.gls("cross_platform") Anwendung zu schaffen, die Nutzer*innen mit Hilfe von #utils.gls-plural("visual_novel") informiert und gezieltes Feedback zum Spielverlauf über die Verwendung von Large Language Models geben soll.
-
-Orientiert wird sich hierbei an einem laufenden Projekt, anhand dessen eine beispielhafte Umsetzung einer solchen Anwendung erfolgen soll. Zu diesem Zwecke soll eine #utils.gls-short("library") entstehen, welche es auf einfache Art und Weise ermöglicht, interaktive Geschichten, die zuvor mit dem Tool zum Erstellen von interaktiven Geschichten #utils.gls("twine") @interactive_fiction_technology_foundation_twine_2025
-erstellt wurden, auf verschiedenen Plattformen zu verwenden.
-
-Im Rahmen dieser Arbeit wird also einerseits eine #utils.gls-short("library") konzipiert und umgesetzt, die die Verwendung von #utils.gls-short("twine") Geschichten in Anwendungen auf verschiedenen Plattformen ermöglicht, und andererseits eine solche Anwendung beispielhaft erstellt, die diese #utils.gls-short("library") verwendet, um die Anwendung der #utils.gls-short("library") zu demonstrieren. Diese Anwendung soll sich an der #utils.gls("kite2") @hochschule_heilbronn_kite_2023 Anwendung orientieren, die sich zum Zeitpunkt der Verfassung dieser Arbeit noch in Entwicklung befindet.
-
+#include "leitgedanke.typ"
 #pagebreak()
 
 #include "ausgangslage.typ"
