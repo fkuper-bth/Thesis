@@ -1,5 +1,5 @@
 #import "/etc/utils.typ"
 
-= Fazit <fazit>
+= Diskussion <diskussion>
 
 #utils.todo([Kapitel schreiben!])

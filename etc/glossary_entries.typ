@@ -1,10 +1,7 @@
 #import "/etc/utils.typ"
 
-#set heading(numbering: none)
-#show: utils.make-glossary
-
 // Define glossary entry list
-#let glossary-entry-list = (
+#let list = (
   (
     key: "visual_novel",
     short: "VN",
@@ -123,8 +120,3 @@
     description: "Eine Art von Benutzerschnittstelle, die es Nutzer*innen ermöglicht, mit Computern über visuelle Elemente zu interagieren.",
   ),
 )
-#utils.register-glossary(glossary-entry-list)
-
-= Glossar <glossary>
-
-#utils.print-glossary(glossary-entry-list, show-all: true)

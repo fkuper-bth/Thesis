@@ -11,10 +11,10 @@ Die Kernfunktionalität der vorhandenen Anwendung besteht darin, verschiedene #u
 #figure(
   grid(
     columns: 4,
-    image("../../resources/images/kite/kite-screenshot-start-screen.png", width: 80%),
-    image("../../resources/images/kite/kite-screenshot-novel-list.png", width: 80%),
-    image("../../resources/images/kite/kite-screenshot-pre-dialog-info.png", width: 80%),
-    image("../../resources/images/kite/kite-screenshot-dialogue.png", width: 80%),
+    image("/resources/images/kite/kite-screenshot-start-screen.png", width: 80%),
+    image("/resources/images/kite/kite-screenshot-novel-list.png", width: 80%),
+    image("/resources/images/kite/kite-screenshot-pre-dialog-info.png", width: 80%),
+    image("/resources/images/kite/kite-screenshot-dialogue.png", width: 80%),
   ),
   caption: [
     Screenshots der #utils.gls-short("kite2") Anwendung.
@@ -58,6 +58,6 @@ Das Paper _Navigating Bias: Using LLMs to Analyze Discrimination in Entrepreneur
   caption: [Struktur des Prompts zum Erstellen des Feedbacks in #utils.gls-short("kite2"), übernommen und übersetzt aus @marsden_navigating_2025.],
 ) <tabelle_kiteII_prompt_struktur>
 
-Neben den eigentlichen Inhalten der #utils.gls-plural("visual_novel"), die Nutzer*innen erfahren können stellt dieser Feedback Mechanismus hier eine zweite essentielle Funktionalität dar: Die Bewertung, Analyse und kritische Einordnung der Spielerfahrung und Inhalte. Dadurch erhalten die Spieler*innen eine für die Effektivität von #utils.gls-plural("serious_game") als Lern-Werkzeuge entscheidene Rückmeldung, wie es in @einleitung beschrieben ist.
+Neben den eigentlichen Inhalten der #utils.gls-plural("visual_novel"), die Nutzer*innen erfahren können stellt dieser Feedback Mechanismus hier eine zweite essentielle Funktionalität dar: Die Bewertung, Analyse und kritische Einordnung der Spielerfahrung und Inhalte. Dadurch erhalten die Spieler*innen eine für die Effektivität von #utils.gls-plural("serious_game") als Lern-Werkzeuge entscheidene Rückmeldung, wie es in @einleitung ist.
 
 Die im Rahmen dieser Thesis zu erstellende #utils.gls-short("library") soll also unter Berücksichtigung dieser Elemente konzipiert und implementiert werden. In @problemstellung werden im Zuge dessen Probleme identifiziert und erläutert, die während der Entwicklung von #utils.gls-short("kite2") aufgetreten sind.

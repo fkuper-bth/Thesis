@@ -33,17 +33,4 @@ Außerdem können #utils.gls-plural("visual_novel") großes Potenzial bergen, de
 Die vorliegende Arbeit stellt einen Versuch dar, diese Potenziale mit Hilfe der Ergebnisse für Entwickler*innen leichter verfügbar zu machen, indem es die Produktion einer #utils.gls-long("visual_novel") unter Berücksichtigung der Anforderungen an diese Art Spiel im Bereich der #utils.gls-plural("serious_game") vereinfacht.
 
 #pagebreak()
-
-#include "leitgedanke.typ"
-#pagebreak()
-
-#include "ausgangslage.typ"
-#pagebreak()
-
-#include "problemstellung.typ"
-#pagebreak()
-
-#include "zielsetzung.typ"
-#pagebreak()
-
-#include "planung.typ"
+#include "01_leitgedanke.typ"
