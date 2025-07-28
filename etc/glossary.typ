@@ -62,7 +62,6 @@
     key: "framework",
     short: "Framework",
     plural: "Frameworks",
-    long: "Software-Framework",
     description: "Ein Software-Framework ist ein Programmiergerüst, innerhalb dessen eine Anwendung erstellt werden kann. Dieses gibt in der Regel eine Anwendungsarchitektur vor und unterscheidet sich von einer Bibliothek durch Inversion of Control (deutsch Steuerungsumkehr).",
   ),
   (
@@ -115,9 +114,16 @@
     short: "Immersion",
     description: "Im Fachbereich der Videospiele: die Wahrnehmung physisch präsent in einer nicht-physischen Welt zu sein.",
   ),
+  (
+    key: "gui",
+    short: "GUI",
+    plural: "GUIs",
+    long: "Grafische Benutzeroberfläche",
+    longplural: "Grafische Benutzeroberflächen",
+    description: "Eine Art von Benutzerschnittstelle, die es Nutzer*innen ermöglicht, mit Computern über visuelle Elemente zu interagieren.",
+  ),
 )
 #utils.register-glossary(glossary-entry-list)
-
 
 = Glossar <glossary>
 

@@ -47,7 +47,3 @@ Die vorliegende Arbeit stellt einen Versuch dar, diese Potenziale mit Hilfe der 
 #pagebreak()
 
 #include "planung.typ"
-#pagebreak()
-
-#include "projektinhalt.typ"
-#pagebreak()

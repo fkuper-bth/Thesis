@@ -14,7 +14,7 @@ In Zusammenarbeit mit den Betreuenden der Thesis wurden eine Reihe von Anforderu
     - _Animierbarkeit_ der einzelnen Darstellungselemente.
     - _Interaktion_ mit den #utils.gls-plural("visual_novel") durch den Nutzer, um Entscheidungen zu treffen und den Verlauf der Geschichte zu beeinflussen.
 - _Exportieren_ von Spieldurchgängen in ein Format, welches für die Weiterverarbeitung durch eine andere Anwendung geeignet ist.
-  - Dies soll es ermöglichen, Spieldurchgänge zu speichern oder anderweitig auszuwerten.
+  - Dies soll es ermöglichen, Spieldurchgänge zu speichern oder anderweitig auszuwerten, wie zum Beispiel zur Analyse durch ein #utils.gls-short("llm").
 - _#utils.gls-short("cross_platform")-Fähigkeit_, um die #utils.gls-plural("visual_novel") auf verschiedenen Plattformen lauffähig zu machen.
   - als primäre Zielplattformen gelten Android, iOS und das Web.
 
