@@ -119,4 +119,16 @@
     longplural: "Grafische Benutzeroberflächen",
     description: "Eine Art von Benutzerschnittstelle, die es Nutzer*innen ermöglicht, mit Computern über visuelle Elemente zu interagieren.",
   ),
+  (
+    key: "bga",
+    short: "BGA",
+    long: "Bundesweite Gründerinnenagentur",
+    description: "Ein deutschlandweites Kompetenz- und Servicezentrum zur unternehmerischen Selbstständigkeit von Frauen.",
+  ),
+  (
+    key: "kite",
+    short: "KITE",
+    long: "KI Thinktank female Entrepreneurship",
+    description: "Projekt der BGA zur Diskriminierungs-Bekämpfung für Gründerinnen durch gezielten Kompetenzaufbau beim Erkennen und Bewältigen von Diskriminierungsmustern.",
+  ),
 )

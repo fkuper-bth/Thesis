@@ -1,12 +1,30 @@
 #import "/etc/utils.typ"
 
-== Ausgangslage <ausgangslage>
+== Ausgangslage: Das Projekt KITE <ausgangslage>
 
-In Kooperation mit der Bundesweiten Gründerinnenagentur @bga_bundesweite_2025 verfolgt die Hochschule Heilbronn mit #utils.gls-short("kite2") ein Projekt, welches auf spielerische Art in Form einer interaktiven Visual Novel Nutzer*innen über bestimmte Inhalte aufklären und beraten möchte. Dazu wird außerdem von Anbindungen an Large Language Models (LLMs) Gebrauch gemacht, um Nutzern konkretes Feedback zu Entscheidungen zu geben, die diese getroffen haben.
+#let fig = figure(
+  image("/resources/images/kite/kite-Icon.png", width: 60%),
+  caption: [Logo des #utils.gls-short("kite") Projektes @noauthor_kite_nodate.],
+)
+#let body = [
+  In Kooperation mit der #utils.gls("bga", display: "Bundesweiten Gründerinnenagentur (BGA)") @bga_bundesweite_2025 verfolgt die Hochschule Heilbronn mit #utils.gls-short("kite2") ein Projekt, welches auf spielerische Art in Form einer interaktiven Visual Novel Nutzer*innen über bestimmte Inhalte aufklären und beraten möchte. Dazu wird außerdem von gezielten Anfragen an #utils.glspl("llm") Gebrauch gemacht, um Nutzern konkretes Feedback zu Entscheidungen und zum Spielverlauf zu geben.
+]
+#utils.wrap-content(
+  fig,
+  body,
+  align: top + right,
+  column-gutter: 2em,
+)
 
-Konkret geht es bei #utils.gls-short("kite2") darum, über diskriminierende Erfahrungen im Gründungsprozess bei Frauen aufzuklären, um Gründerinnen darin zu unterstützen, solche Erfahrungen zu bewältigen. Untersuchungen dieser Anwendung haben bereits gezeigt, dass der gewählte Ansatz effektiv darin sein kann, Nutzer*innen klares, relevantes und angemessen ausgedrücktes Feedback zu geben @reichert_empowering_2024.
+Auf der Projektseite der Hochschule Heilbronn wird dieses folgendermaßen beschrieben: "In KITE II wird eine KI-gestützte, gamifizierte Anwendung entwickelt, die Gründerinnen dabei unterstützen soll, resilienter im Umgang mit diskriminierenden Erfahrungen im Gründungsprozess zu werden." @hochschule_heilbronn_kite_2023. Der Durchführungszeitraum des Projektes beläuft sich vom 01.01.2023 bis zum 31.12.2025 und ist daher zum Zeitpunkt der Verfassung dieser Thesis noch nicht abgeschlossen.
 
-Die Kernfunktionalität der vorhandenen Anwendung besteht darin, verschiedene #utils.gls-plural("visual_novel") auszuwählen, diese zu spielen und dann ein Feedback zu erhalten. Diese bereiten jeweils unterschiedliche Situation aus dem Alltag und der Arbeit auf, die Gründerinnen im Prozess der Gründung eines Unternehmens erleben könnten, um Nutzer*innen somit mit verschiedenen Herausforderungen zu konfrontieren, die in diesem Kontext existieren können.
+Wie der Projektname impliziert, baut dieses auf einem Pilotprojekt namens #utils.gls("kite", long: false) auf, welches von 2020 bis 2021 lief. Das Kürzel steht für _#utils.gls-long("kite")_. Im Projekt wurde gemeinsam mit Gründerinnen daran gearbeitet, Ausgrenzungsmuster zu identifizieren und Strategien zu entwickeln, wie andere Gründerinnen ähnliche Situationen bewältigen können und dadurch ihre Resilienz erhöhen können @noauthor_pilotprojekt_nodate.
+
+Auf den Erkenntnissen des Pilotprojektes aufbauend erhebt #utils.gls-short("kite2") den Anspruch, Gründerinnen mit Hilfe einer spielerischen Anwendung aufzuklären und in ihren Ambitionen zu unterstützen. Dabei soll insbesondere auf #utils.gls-plural("bias") und Ausgrenzungsmuster hingewiesen werden, die Gründerinnen erfahren können, damit Nutzer*innen hiervon Lernen und neue Herangehensweisen entwickeln können (@bundesweite_grunderinnenagentur_bga_was_2024, Minute 2:23).
+
+Untersuchungen der Anwendung haben bereits gezeigt, dass die gezielte Analyse durch ein #utils.gls-short("llm"), effektiv darin sein kann, Nutzer*innen klares, relevantes und angemessen ausgedrücktes Feedback zu geben @reichert_empowering_2024.
+
+Der Kern von #utils.gls-short("kite2") besteht also darin, verschiedene #utils.gls-plural("visual_novel") anzubieten, welche von Nutzer*innen gespielt werden können und hierzu jeweils Feedback zu geben. Diese bereiten jeweils unterschiedliche Situation aus dem Alltag und der Arbeit auf, die Gründerinnen im Prozess der Gründung eines Unternehmens erleben könnten, um Nutzer*innen somit mit verschiedenen Herausforderungen zu konfrontieren, die in diesem Kontext existieren können.
 
 #figure(
   grid(
@@ -16,12 +34,10 @@ Die Kernfunktionalität der vorhandenen Anwendung besteht darin, verschiedene #u
     image("/resources/images/kite/kite-screenshot-pre-dialog-info.png", width: 80%),
     image("/resources/images/kite/kite-screenshot-dialogue.png", width: 80%),
   ),
-  caption: [
-    Screenshots der #utils.gls-short("kite2") Anwendung.
-  ],
+  caption: [Screenshots der #utils.gls-short("kite2") Anwendung auf der Plattform iOS.],
 ) <kite-ii-screenshots>
 
-In @kite-ii-screenshots sind einige Screenshots aus der #utils.gls-short("kite2") Anwendung zu sehen, wie diese zum Zeitpunkt des Beginns an dieser Thesis vorliegt, um eine Vorstellung vom Referenz-Projekt dieser Arbeit zu schaffen. Von rechts nach links betrachtet ist zu sehen:
+In @kite-ii-screenshots sind einige Screenshots aus der #utils.gls-short("kite2") Anwendung zu sehen, wie diese zum Zeitpunkt des Beginns dieser Thesis vorliegt, um eine Vorstellung vom Referenz-Projekt dieser Arbeit zu schaffen. Von rechts nach links betrachtet ist zu sehen:
 
 - Der Start-Bildschirm, der den Nutzer*innen die verschiedenen #utils.gls-plural("visual_novel") graphisch aufbereitet zur Auswahl anbietet.
 - Die Liste der verfügbaren #utils.gls-plural("visual_novel"), die in der Anwendung gespielt werden können.
@@ -58,6 +74,8 @@ Das Paper _Navigating Bias: Using LLMs to Analyze Discrimination in Entrepreneur
   caption: [Struktur des Prompts zum Erstellen des Feedbacks in #utils.gls-short("kite2"), übernommen und übersetzt aus @marsden_navigating_2025.],
 ) <tabelle_kiteII_prompt_struktur>
 
-Neben den eigentlichen Inhalten der #utils.gls-plural("visual_novel"), die Nutzer*innen erfahren können stellt dieser Feedback Mechanismus hier eine zweite essentielle Funktionalität dar: Die Bewertung, Analyse und kritische Einordnung der Spielerfahrung und Inhalte. Dadurch erhalten die Spieler*innen eine für die Effektivität von #utils.gls-plural("serious_game") als Lern-Werkzeuge entscheidene Rückmeldung, wie es in @einleitung ist.
+Neben den eigentlichen Inhalten der #utils.gls-plural("visual_novel"), die Nutzer*innen erfahren können, stellt dieser Feedback Mechanismus hier eine zweite essentielle Funktionalität dar: Die Bewertung, Analyse und kritische Einordnung der Spielerfahrungen und Inhalte. Dadurch erhalten die Spieler*innen eine für die Effektivität von #utils.gls-plural("serious_game") als Lern-Werkzeuge entscheidende Rückmeldung, wie es in @einleitung beschrieben ist.
+
+Außerdem soll die Anwendung plattformübergreifend (also _#utils.gls-short("cross_platform")_) verfügbar gemacht werden, wobei hier als Ziel-Plattformen Android, iOS, PC und das Web genannt werden (@bundesweite_grunderinnenagentur_bga_was_2024, Minute 5:22).
 
 Die im Rahmen dieser Thesis zu erstellende #utils.gls-short("library") soll also unter Berücksichtigung dieser Elemente konzipiert und implementiert werden. In @problemstellung werden im Zuge dessen Probleme identifiziert und erläutert, die während der Entwicklung von #utils.gls-short("kite2") aufgetreten sind.

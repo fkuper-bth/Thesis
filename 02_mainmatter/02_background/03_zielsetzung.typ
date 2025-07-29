@@ -25,7 +25,7 @@ Diese Anwendung soll als _Proof of Concept_ fungieren und somit die Funktionalit
 - _Lauffähigkeit_ auf Android, iOS und im Web.
 - Verwendung der im Rahmen dieser Thesis geschaffenen _#utils.gls-short("library")_ zur Darstellung und Ausführung von #utils.gls-plural("visual_novel").
 - Wiederverwendung der für #utils.gls-short("kite2") geschriebenen Geschichten.
-- Möglichkeit der _Auswertung_ von Spieldurchgängen durch ein #utils.gls("llm").
+- Möglichkeit der _Auswertung_ von Spieldurchgängen durch ein #utils.gls-short("llm").
 - _Speichern_ von Spieldurchgängen, um diese später fortsetzen zu können.
 
 Das Arbeitsergebnis dieser Thesis setzt sich somit aus verschiedenen Komponenten zusammen:

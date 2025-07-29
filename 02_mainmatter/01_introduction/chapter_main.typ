@@ -7,12 +7,9 @@ Interaktive Formen der Inhaltsvermittlung in der Bildung genießen in der heutig
 
 Das öffentliche Interesse an diesen Methoden der Inhaltsvermittlung ist seit Anfang der 2010er Jahre bis heute wachsend, wie auch am in @gamification-google-trends-since-2010 dargestellten Suchinteresse am Begriff _#utils.gls-short("gamification")_ zu erkennen ist. Obwohl das Interesse von 2016 bis 2020 zu stagnieren schien, kam 2021 ein erneuter Schub an öffentlichen Interesse, wobei dieses in den letzten 3 Jahren auf einem historischen Hoch liegt.
 
-#figure(
-  plots.createGamificationInterestPlot(),
-  caption: [
-    Relatives weltweites Interesse am Suchbegriff _#utils.gls-short("gamification")_ im zeitlichen Verlauf seit 2010, Datenquelle: Google Trends @noauthor_google_nodate.
-  ],
-) <gamification-google-trends-since-2010>
+#let plot = plots.createGamificationInterestPlot()
+#let caption = [Relatives weltweites Interesse am Suchbegriff _#utils.gls-short("gamification")_ im zeitlichen Verlauf seit 2010, Datenquelle: Google Trends @noauthor_google_nodate.]
+#figure(plot, caption: caption) <gamification-google-trends-since-2010>
 
 Diese Renaissance kann vermutlich mit der globalen COVID-19 Pandemie in Verbindung gebracht werden, welche Bildungsinstitutionen weltweit dazu zwang, einen größeren Fokus auf digitale Angebote in der Lehre zu legen. Resultierend hieraus hat sich die Akzeptanz für Bildungsmethoden im Internet unter Schülern und Studenten erhöht, wenn auch traditionelle Bildung von Angesicht zu Angesicht noch immer bevorzugt würde @csorba_impact_2024. Mit einem besseren Verständnis der Chancen und Risiken dieser Methoden scheint es also erneut großes Interesse an der Entwicklung und Erforschung dieser zu geben.
 
