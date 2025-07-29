@@ -2,12 +2,17 @@
 
 = Implementierung <implementierung>
 
-#utils.todo([Kapitel schreiben!])
+Um die in @zielsetzung gesteckte Zielsetzung umzusetzen wurden in @planung verschiedene Arbeitspakete definiert, deren Umsetzung in diesem Kapitel ausgeführt werden.
 
-#include "01_technik_stand.typ"
+#utils.todo("Kapitel: Implementierung - Zusammenfassung schreiben.")
+
+#include "01_anforderungsanalyse.typ"
 #pagebreak()
 
-#include "02_beschreibung_loesungsansatz.typ"
+#include "02_technik_stand.typ"
 #pagebreak()
 
 #include "03_evaluierung_loesungsansaetze.typ"
+#pagebreak()
+
+#include "04_beschreibung_loesungsansatz.typ"
