@@ -12,6 +12,18 @@
   #v(2%)
 ]
 #show link: set text(fill: utils.colorScheme.hhnBlue)
+#let frame(stroke) = (x, y) => (
+  left: if x > 0 { 0pt } else { stroke },
+  right: stroke,
+  top: if y < 2 { stroke } else { 0pt },
+  bottom: stroke,
+)
+#set table(
+  fill: (utils.colorScheme.hhnBlueLight.lighten(95%), none),
+  stroke: frame(utils.colorScheme.hhnBlueLight),
+  align: left,
+  inset: 8pt,
+)
 
 // TODOs outline, remove this when finished
 #utils.todo_outline

@@ -52,8 +52,6 @@ Das Paper _Navigating Bias: Using LLMs to Analyze Discrimination in Entrepreneur
 #figure(
   table(
     columns: 2,
-    inset: 8pt,
-    align: left,
     table.header([*Sektion*], [*Beispiel*]),
 
     [Rolle], ["Du bist Gender Researcher."],
