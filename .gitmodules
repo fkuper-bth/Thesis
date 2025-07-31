@@ -1,0 +1,3 @@
+[submodule "etc/structurizr"]
+	path = etc/structurizr
+	url = git@github.com:fkuper-bth/Structurizr.git
