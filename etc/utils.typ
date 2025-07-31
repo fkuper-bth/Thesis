@@ -7,4 +7,19 @@
   hhnBlue: color.rgb("222A78"),
   hhnBlueLight: color.rgb("222A78").lighten(25%),
   hhnWhite: color.rgb("FFFFFF"),
+  background: luma(240),
+)
+
+#let listing(content) = block(
+  fill: colorScheme.background,
+  inset: 8pt,
+  radius: 4pt,
+  content,
+)
+
+#let tableFrame(stroke) = (x, y) => (
+  left: if x > 0 { 0pt } else { stroke },
+  right: stroke,
+  top: if y < 2 { stroke } else { 0pt },
+  bottom: stroke,
 )

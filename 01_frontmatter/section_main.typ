@@ -8,7 +8,7 @@
 #include "02_eidesstattliche_erklaerung.typ"
 #pagebreak()
 
-// reset page number to exlude cover page and statuary declaration from counting
+// reset page number to exclude cover page and statuary declaration from counting
 #counter(page).update(1)
 
 #include "03_abstract.typ"
@@ -24,3 +24,7 @@
 
 = Abbildungsverzeichnis <abbildungsverzeichnis>
 #outline(title: none, target: figure.where(kind: image))
+#pagebreak()
+
+= Listings <listings>
+#outline(title: none, target: figure.where(kind: raw))

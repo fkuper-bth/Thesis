@@ -6,24 +6,18 @@
 #set page(paper: "a4", margin: auto, numbering: "1", number-align: right)
 #set par(justify: true, leading: 0.6em, first-line-indent: 12pt)
 #set heading(numbering: "1.")
+#set table(
+  fill: (utils.colorScheme.hhnBlueLight.lighten(95%), none),
+  stroke: utils.tableFrame(utils.colorScheme.hhnBlueLight),
+  align: left,
+  inset: 8pt,
+)
 #show heading: value => [
   #set text(weight: "regular")
   #block(smallcaps(value))
   #v(2%)
 ]
 #show link: set text(fill: utils.colorScheme.hhnBlue)
-#let frame(stroke) = (x, y) => (
-  left: if x > 0 { 0pt } else { stroke },
-  right: stroke,
-  top: if y < 2 { stroke } else { 0pt },
-  bottom: stroke,
-)
-#set table(
-  fill: (utils.colorScheme.hhnBlueLight.lighten(95%), none),
-  stroke: frame(utils.colorScheme.hhnBlueLight),
-  align: left,
-  inset: 8pt,
-)
 
 // TODOs outline, remove this when finished
 #utils.todo_outline
