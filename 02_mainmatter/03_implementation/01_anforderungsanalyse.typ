@@ -197,7 +197,7 @@ Neben den gelisteten soll es außerdem möglich sein, eigene Schlüsselwörter z
 )
 #figure(
   specTable,
-  caption: "Einige Schlüsselwörter, die Teil der Story-Spezifikation sind.",
+  caption: "Einige Schlüsselwörter, die Teil der KITE II Story-Spezifikation sind.",
 ) <tabelle-story-spezifikation>
 
 Wie eine Passage in einer Geschichte definiert werden kann, ist in @beispiel-story-passagen dargestellt. Diese Passage enthält verschiedene Schlüsselwörter, die in der Story-Spezifikation festgelegt sind. Einerseits beschreiben diese die Interaktion zwischen den Charakteren und dem / der Spieler*in und andererseits bieten sie die Möglichkeit, Biases zu definieren, die in der Geschichte vorkommen. Diese Information wird in der Auswertung eines Spieldurchlaufs verwendet, um Spieler*innen Feedback zu geben und ihre Entscheidungen zu reflektieren.
@@ -242,4 +242,45 @@ Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelt
 
 ==== Audio-visuelle Darstellung <audio-visuelle-darstellung>
 
-// TODO
+Neben der Datenstruktur der Geschichten, die in @story-spezifikation beschrieben ist, ist auch die audio-visuelle Darstellung der Geschichten ein wichtiger Aspekt der #utils.gls-short("kite2") Anwendung. Die wichtigsten Aspekte dieser sind bereits in @zielsetzung beschrieben. In diesem Abschnitt wird auf einige technische Details eingegangen, die durch die Bestandsanalyse identifiziert worden sind und für die Umsetzung der #utils.gls-short("library") und des Prototypen von Relevanz sind.
+
+Im Anbetracht auf die Konzeption und Umsetzung der #utils.gls-short("library") wurde zunächst analysiert, wie die Geschichten in #utils.gls-short("kite2") visuell gestaltet sind.
+
+Die Unity Engine bedient sich in ihrer Terminologie teilweise aus der Theater und Filmwelt. So werden #utils.glspl("scene") als Metapher verwendet, um einen Spiele-Abschnitt zu beschreiben, der aus verschiedenen #utils.glspl("asset") zusammengesetzt wird, um einen Teil der Handlung darzustellen.
+
+In #utils.gls-short("kite2") ist die visuelle Darstellung der Szenen folgendermaßen strukturiert:
+
+- _Hintergrund_: Wird hauptsächlich verwendet, um die Umgebung darzustellen, in der sich die Geschichte abspielt.
+- _Mittelgrund_: Wird hauptsächlich für die Darstellung von Charakteren verwendet.
+- _Vordergrund_: Kann dazu verwendet werden, um vor Mittel- und Hintergrund #utils.glspl("sprite") zu platzieren, um beispielsweise einen Eindruck von Tiefe zu schaffen.
+
+In den beschriebenen Ebenen können verschiedene Assets beliebig platziert werden, die dann in der Szene dargestellt werden. Separat von diesen existieren noch die UI-Elemente, die für die Darstellung der Gespräche in der Geschichte und Benutzerinteraktion zuständig sind.
+
+#figure(
+  grid(
+    columns: 6,
+    gutter: 4pt,
+    stroke: 1pt + utils.colorScheme.hhnBlue,
+    align: bottom + center,
+    image("/resources/images/kite/kite-screenshot-dialogue.png"),
+    image("/resources/images/kite/bank_environment.png"),
+    image("/resources/images/kite/plant.png", width: 45%),
+    image("/resources/images/kite/bank_character_cropped.png", width: 90%),
+    image("/resources/images/kite/bank_foreground.png"),
+    image("/resources/images/kite/glass.png", width: 20%),
+  ),
+  caption: "Die Darstellung einer Szene in KITE II und ihre Bestandteile.",
+) <kite2-scene-components>
+
+Anhand von @kite2-scene-components lässt sich erkennen, wie sich eine komplette Szene, aus verschiedenen Assets zusammensetzt. Von links nach rechts betrachtet sieht man:
+
+1. Die Szene, die aus den verschiedenen Assets komponiert wird.
+2. Ein Sprite, welches die Umgebung dargestellt und in der Hintergrund-Ebene platziert ist.
+3. Ein Sprite, welches eine Pflanze darstellt und ebenfalls in der Hintergrund-Ebene platziert ist.
+4. Das Charakter-Sprite, welches in der Mittelgrund-Ebene platziert ist.
+5. Ein Sprite, welches in der Vordergrund-Ebene platziert ist, um der Szene den Eindruck von Tiefe zu verleihen.
+6. Ein Sprite, welches ein Glas Wasser darstellt und ebenfalls im Vordergrund platziert ist.
+
+Während die beschriebenen Assets von Entwickler*innen zur Compile-Zeit, dass, bevor das Programm ausgeführt wird, in der Szene platziert werden, werden UI-Elemente wie die Textboxen zur Darstellung der Gespräche während der Laufzeit generiert je nach Verlauf der Geschichte basierend auf den Entscheidungen der Spieler*innen.
+
+// TODO: Animationen von Assets und Sounds / Sound-Effekte

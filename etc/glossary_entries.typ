@@ -131,4 +131,22 @@
     long: "KI Thinktank female Entrepreneurship",
     description: "Projekt der BGA zur Diskriminierungs-Bekämpfung für Gründerinnen durch gezielten Kompetenzaufbau beim Erkennen und Bewältigen von Diskriminierungsmustern.",
   ),
+  (
+    key: "scene",
+    short: "Szene",
+    plural: "Szenen",
+    description: "In der Spiele-Entwicklung: Ein Bereich oder Abschnitt eines Spiels, der eine bestimmte Handlung oder Umgebung darstellt. Szenen können verschiedene Assets wie Charaktere, Objekte und Hintergründe enthalten.",
+  ),
+  (
+    key: "asset",
+    short: "Asset",
+    plural: "Assets",
+    description: "In der Spiele-Entwicklung: Eine Datei, die in einer Anwendung verwendet wird, wie zum Beispiel Bilder, Audio-Dateien, 3D-Modelle, Texturen oder Skripte.",
+  ),
+  (
+    key: "sprite",
+    short: "Sprite",
+    plural: "Sprites",
+    description: "In der Spiele-Entwicklung: Eine zweidimensionale Bitmap, die Teil einer größeren Szene ist. Meist in Verbindung mit zweidimensionalen Spielen verwendet.",
+  ),
 )
