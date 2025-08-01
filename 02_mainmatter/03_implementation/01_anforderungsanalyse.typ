@@ -123,9 +123,22 @@ Wie bereits im @kite2-systemarchitektur festgestellt, hat es zum Zeitpunkt der A
 
 Diese orientiert sich an einem vorhandenen Story-Format für Twine namens _Harlowe_ @noauthor_harlowe_nodate und erweitert dieses um zusätzliche Features, die speziell für die Anwendung der Geschichten in #utils.gls-plural("visual_novel") mit Unterstützung für Nutzer-Feedback zum Spieldurchlauf gedacht sind.
 
-// TODO: hier kurz den Aufbau einer twine story beschreiben
+Eine Geschichte in Twine kann aus einer beliebigen Anzahl von _Passagen_ bestehen, die jeweils einen Teil der Geschichte beschreiben. Diese Passagen können beliebig miteinander verknüpft werden, um den Spielfluss zu steuern. So entsteht ein _gerichteter Graph_, der die Struktur der Geschichte beschreibt.
 
-Diese Zusatzfunktionalitäten werden in der Spezifikation als Schlüsselwörter festgelegt, die in den Geschichten verwendet werden können, um bestimmte Funktionen zu erfüllen. Ein paar dieser Schlüsselwörter sind beispielhaft in @tabelle-story-spezifikation dargestellt.
+In @twine-story-graph ist ein solcher Graph zu sehen, wie er in der #utils.gls-short("gui") des Twine-Editors dargestellt wird. In diesem Falle ist der Graph einer Geschichte abgebildet, die für #utils.gls-short("kite2") erstellt wurde. Die _Knoten_ des Graphen repräsentieren die Passagen der Geschichte, während die _Kanten_ die Verknüpfungen zwischen den Passagen darstellen. Jede Kante repräsentiert eine Auswahlmöglichkeit, die Spieler*innen treffen können, um von einer Passage zur nächsten zu gelangen.
+
+Da es sich um einen gerichteten Graphen handelt, können die Knoten eine beliebige Anzahl von Kanten haben, die optional auch bidirektional sein können. Das bedeutet, dass ein zwei Knoten in beiden Richtungen miteinander verknüpft sein können. Passagen können von mehreren anderen Passagen aus erreichbar sein und umgekehrt. Dies ermöglicht es, komplexe Geschichten mit vielen Verzweigungen und Entscheidungspunkten abzubilden.
+
+Zusätzlich wird ein Knoten speziell als _Start-Passage_ markiert, die den Einstiegspunkt in die Geschichte darstellt. Diese ist auf @twine-story-graph mit einem grünen Punkt markiert. Wenn eine Passage keinerlei Verbindungen zu anderen Passagen hat, bildet sie ein mögliches Ende der Geschichte ab.
+
+#figure(
+  image("/resources/images/twine_story_graph.png"),
+  caption: [Graph einer Twine Geschichte, die für #utils.gls-short("kite2") erstellt wurde.],
+) <twine-story-graph>
+
+Neben der eben beschriebenen Struktur der Geschichten, erweitert die #utils.gls-short("kite2") Story-Spezifikation die Möglichkeiten der Geschichten um zusätzliche Funktionalitäten, die für die Anwendung in #utils.gls-plural("visual_novel") gedacht sind. Diese werden in der Spezifikation als Schlüsselwörter festgelegt, die in den Passagen-Definitionen verwendet werden können, um bestimmte Funktionen zu erfüllen. Ein paar dieser Schlüsselwörter sind beispielhaft in @tabelle-story-spezifikation dargestellt.
+
+Neben den gelisteten soll es außerdem möglich sein, eigene Schlüsselwörter zu definieren, um diese dann später auswerten zu können. Dadurch soll eine große Bandbreite an Anwendungsmöglichkeiten für die Geschichten ermöglicht werden, die über die Standard-Funktionalitäten hinausgehen.
 
 #let specTable = table(
   columns: (15%, 35%, 50%),
@@ -187,9 +200,9 @@ Diese Zusatzfunktionalitäten werden in der Spezifikation als Schlüsselwörter 
   caption: "Einige Schlüsselwörter, die Teil der Story-Spezifikation sind.",
 ) <tabelle-story-spezifikation>
 
-Wie eine Passage in einer Geschichte aussehen kann, ist in @beispiel-story-passagen dargestellt. Diese Passage enthält verschiedene Schlüsselwörter, die in der Story-Spezifikation definiert sind und einerseits die Interaktion zwischen den Charakteren und dem / der Spieler*in beschreiben und andererseits die Möglichkeit bieten, Biases zu definieren, die in der Geschichte vorkommen. Diese Information wird in der Auswertung eines Spieldurchlaufs verwendet, um Spieler*innen Feedback zu geben und ihre Entscheidungen zu reflektieren.
+Wie eine Passage in einer Geschichte definiert werden kann, ist in @beispiel-story-passagen dargestellt. Diese Passage enthält verschiedene Schlüsselwörter, die in der Story-Spezifikation festgelegt sind. Einerseits beschreiben diese die Interaktion zwischen den Charakteren und dem / der Spieler*in und andererseits bieten sie die Möglichkeit, Biases zu definieren, die in der Geschichte vorkommen. Diese Information wird in der Auswertung eines Spieldurchlaufs verwendet, um Spieler*innen Feedback zu geben und ihre Entscheidungen zu reflektieren.
 
-Nach der Definition des Bias in @beispiel-story-passagen finden sich drei mögliche Auswahlmöglichkeiten, die Spieler*innen in diesem Punkt der Geschichte treffen können. Diese verweisen jeweils auf eine andere Passage in der Geschichte und machen es somit möglich je nach Auswahl der Spieler*innen unterschiedliche Pfade in der Geschichte zu beschreiten. Diese Auswahlmöglichkeiten sind Teil der _Harlowe_ Spezifikation @noauthor_harlowe_nodate-1, auf welcher die #utils.gls-short("kite2") Story-Spezifikation basiert.
+Nach der Definition des Bias in @beispiel-story-passagen finden sich drei Verbindungen zu anderen Passagen, die Spieler*innen in diesem Punkt der Geschichte auswählen können. Diese bilden somit die Kanten zwischen den Knoten im Graphen ab, wie in @twine-story-graph zu sehen ist und bestehen jeweils aus einem Anzeigetext und einem Verweis auf einen anderen Knoten. Die verwendete Syntax ist Teil der _Harlowe_ Spezifikation @noauthor_harlowe_nodate-1, auf welcher die #utils.gls-short("kite2") Story-Spezifikation basiert.
 
 #let storyPassageContent = [
   ```
@@ -223,7 +236,7 @@ An dieser Stelle ist es wichtig zu verstehen, dass die in Twine geschriebenen Ge
 
 Unterschiedliche Story-Formate bieten unterschiedliche Features, wie zum Beispiel Makros an, die in den Geschichten verwendet werden können, um benutzerdefinierte Funktionen zu implementieren. Verschiedene Formate unterscheiden sich in der Art, welche Makros sie unterstützen, wie stark anpassbar sie sind und in der Gestaltung ihrer Ausgabe @noauthor_twine_nodate-1.
 
-Auf technischer Ebene übersetzen die Story-Formate die Story-Daten in eine HTML Datei @noauthor_twine_nodate. Der Aufbau eine Story-Formates ist Teil der Twine-Spezifikation, wodurch es Dritten ermöglicht wird, eigene Story-Formate zu erstellen und diese in Twine zu verwenden.
+Auf technischer Ebene übersetzen die Story-Formate die Story-Daten in eine HTML Datei @noauthor_twine_nodate. Der Aufbau eines Story-Formates ist durch Twine spezifiziert. Dadurch wird es Drittparteien ermöglicht, eigene Story-Formate zu entwickeln, welche dann wiederum in Twine verwendet werden können.
 
 Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in #utils.todo("Abschnitt Umsetzung Story Format referenzieren.") beschrieben.
 
