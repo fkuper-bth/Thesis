@@ -17,7 +17,7 @@
     description: "Eine Form von Erzählung, bei der der Handlungsverlauf nicht vorbestimmt ist. Nutzer*innen können je nach ihren Entscheidungen einen unterschiedlichen Handlungsverlauf erfahren.",
   ),
   (
-    key: "interactive_fiction",
+    key: "if",
     short: "IF",
     long: "Interactive Fiction",
     plural: "IFs",
