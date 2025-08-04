@@ -149,4 +149,9 @@
     plural: "Sprites",
     description: "In der Spiele-Entwicklung: Eine zweidimensionale Bitmap, die Teil einer größeren Szene ist. Meist in Verbindung mit zweidimensionalen Spielen verwendet.",
   ),
+  (
+    key: "ea",
+    short: "endlicher Automat",
+    description: "Modelliert ein Verhalten mit einer endlichen Menge von Zuständen und Zustandsübergängen.",
+  ),
 )

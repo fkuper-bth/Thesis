@@ -281,6 +281,95 @@ Anhand von @kite2-scene-components lässt sich erkennen, wie sich eine komplette
 5. Ein Sprite, welches in der Vordergrund-Ebene platziert ist, um der Szene den Eindruck von Tiefe zu verleihen.
 6. Ein Sprite, welches ein Glas Wasser darstellt und ebenfalls im Vordergrund platziert ist.
 
-Während die beschriebenen Assets von Entwickler*innen zur Compile-Zeit, dass, bevor das Programm ausgeführt wird, in der Szene platziert werden, werden UI-Elemente wie die Textboxen zur Darstellung der Gespräche während der Laufzeit generiert je nach Verlauf der Geschichte basierend auf den Entscheidungen der Spieler*innen.
+Während die beschriebenen Assets von Entwickler*innen zur Compile-Zeit, dass, bevor das Programm ausgeführt wird, in der Szene platziert werden, werden UI-Elemente wie die Textboxen zur Darstellung der Gespräche während der Laufzeit generiert.
 
-// TODO: Animationen von Assets und Sounds / Sound-Effekte
+Neben der einfachen Darstellung von Sprites und anderen Assets, sind auch Animationen und Sounds wichtige Bestandteile einer #utils.gls-short("visual_novel"). Im Falle von #utils.gls-short("kite2") werden Animationen von Sprites und anderen Assets in der Unity Engine implementiert. Diese können dann in den Szenen verwendet werden, um die Darstellung der Charaktere und der Umgebung zu verbessern.
+
+Unity bietet ein robustes System zum Erstellung und Kontrollieren von Animationen. Dieses kann über die #utils.gls-short("gui") von Unity bedient werden. So können hier beispielsweise sogenannte _Animation Clips_ erstellt, werden, welche beschreiben, wie sich beispielsweise ein Charakter über Zeit hinweg verändert. Dabei können Änderungen in sämtlichen Eigenschaften wie Position, Rotation, Skalierung und andere vorgenommen werden. Diese Clips können wiederum in einem _Animation Controller_ arrangiert werden, welcher als #utils.gls("ea") agiert, der die zu spielenden Clips als Zustände beinhaltet und bedingte Übergänge zwischen diesen definiert @technologies_unity_nodate.
+
+#figure(
+  image("/resources/images/MecanimHowItFitsTogether.jpg"),
+  caption: [Übersicht über die Komponenten des Mecanim Animations-Systems in Unity und wie diese miteinander in Beziehung stehen @technologies_unity_nodate.],
+) <unity-mecanim-overview>
+
+In @unity-mecanim-overview anhand eines Beispiels zu sehen, wie die verschiedenen Komponenten des Animations-Systems in Unity miteinander in Beziehung stehen:
+
+1. Zeigt verschiedene _Animation Clips_, der die Animation eines Charakters beschreibt.
+2. Zeigt einen _Animation Controller_, der die verschiedenen Animation Clips als Zustände beinhaltet und Übergänge zwischen diesen definiert.
+3. Zeigt ein fertiges _Charakter-Modell_, welches animiert werden soll.
+4. Zeigt, wie der _Animation Controller_ auf das _Charakter-Modell_ angewendet wird, um die Animationen zu steuern.
+
+Ein solches System ermöglicht es, komplexe Animationen zu erstellen und diese zu steuern. In #utils.gls-short("kite2") wird dieses System ebenfalls verwendet, wenn auch sich hier die Animationen auf #utils.gls-plural("sprite") beschränken. Folglich bewegen sich diese Animationen im zweidimensionalem Raum, was die Komplexität der Animationen im Vergleich zu dreidimensionalen Animationen reduziert.
+
+In Anbetracht an den für diese Arbeit angesetzten Zeitrahmen (siehe @planung), wird der Fokus darauf, gesetzt, grundlegende Animationen zu unterstützen und ein System zu schaffen, welches erweiterbar ist und in Zukunft auch komplexere Animationen unterstützen kann. Mehr zu diesem Thema ist in #utils.todo("Abschnitt Implementation Animationssystem referenzieren.") beschrieben.
+
+Die Animationen der Charaktere spielen hierbei in #utils.gls-plural("visual_novel") eine zentrale Rolle, da sie dazu beitragen, die Emotionen und Reaktionen der Charaktere auf die Entscheidungen der Spieler*innen darzustellen.
+
+In #utils.gls-short("kite2") sind für Charakter-Animationen eine Menge von Animation Clips definiert, die verschiedene Emotionen und Reaktionen der Charaktere definieren, welche dann wiederum in den Szenen verwendet werden können. Diese folgen einer Namenskonvention, welche projekt-intern definiert ist, wodurch die Animationen in den Szenen referenziert werden können. Die Liste möglicher Animationen sieht dann beispielsweise wie folgt aus:
+
+#let animationList = (
+  "Neutral",
+  "Smiling",
+  "Sad",
+  "Angry",
+)
+#let animationTable = table(
+  columns: 2,
+  table.header([*Animation*], [*Referenzierung in Geschichte*]),
+  ..for value in animationList {
+    (
+      [#value],
+      raw(">>Character[Index]|" + value + "<<"),
+    )
+  },
+)
+#figure(
+  animationTable,
+  caption: "Beispielhafte Liste möglicher Charakter-Animationen und wie diese in Geschichten referenziert werden können.",
+) <kite2-character-animations>
+
+Diese Animationen werden dann über die Story-Spezifikation in den Geschichten referenziert, wie in @kite2-character-animations zu sehen ist. Dadurch können Autor*innen die Emotionen und Reaktionen der Charaktere direkt in den Geschichten definieren und diese dann in den Szenen verwenden. Das Abspielen erfolgt dann über einen Animation-Controller, der diese Animationen als Zustände enthält und dann über einen Funktionsaufruf abspielen kann. Über einen Index können die Charaktere referenziert werden, sodass diese Animationen dann auf den entsprechenden Charakter angewendet werden können.
+
+Neben den _explizit_ referenzierten Charakter-Animationen, die in den Geschichten niedergeschrieben und dadurch abgespielt werden können, gibt es auch Animationen, die _implizit_ in den Szenen verwendet werden, wie beispielsweise Gesprächsanimationen, wie die Mundbewegungen eines Charakters oder das Blinzeln der Augen.
+
+Obwohl diese also nicht von Autor*innen in den Geschichten aufgerufen werden können, sind diese dennoch ein wichtiger Bestandteil der Darstellung und tragen zur Immersion der Spieler*innen bei. Daher sollten diese ebenfalls in der #utils.gls-short("library") unterstützt werden, um eine vollständige audio-visuelle Darstellung der Geschichten zu ermöglichen.
+
+Eine weitere Komponente, die Autor*innen in den Geschichten verwenden können, sind _Sound-Effekte_. Diese werden in #utils.gls-short("kite2") ebenfalls über die Story-Spezifikation referenziert und können dann in den Szenen verwendet werden. Ähnlich wie bei den Charakter-Animationen, werden diese über einen Funktionsaufruf abgespielt und können dann in den Szenen verwendet werden.
+
+#let soundList = (
+  "TelephoneCall",
+  "Paper",
+  "WaterPouring",
+)
+#let soundTable = table(
+  columns: 2,
+  table.header([*Sound-Effekt*], [*Referenzierung in Geschichte*]),
+  ..for value in soundList {
+    (
+      [#value],
+      raw(">>Sound|" + value + "<<"),
+    )
+  },
+)
+#figure(
+  soundTable,
+  caption: "Beispielhafte Liste möglicher Sound-Effekte und wie diese in Geschichten referenziert werden können.",
+) <kite2-sound-effects>
+
+In @kite2-sound-effects ist zu sehen, dass diese dem gleichen Prinzip wie Charakter-Animationen folgen. Ebenso wie bei Animationen, gibt es auch Sound-Effekte, die _implizit_ in den Szenen abgespielt werden. Im Hinblick auf den Zeitrahmen dieser Arbeit wird diese Funktionalität zunächst geringer priorisiert. Dabei soll die #utils.gls-short("library") so gestaltet werden, dass diese Funktionalität in Zukunft erweitert werden kann.
+
+==== Generieren von Feedback zum Spieldurchlauf in #utils.gls-short("kite2") <spieler-feedback>
+
+Ein zentrales Ziel der #utils.gls-short("kite2") Anwendung ist es, Spieler*innen Feedback zu ihren Entscheidungen im Spieldurchlauf zu geben. Dieses Feedback soll dazu beitragen, dass Spieler*innen ihre Entscheidungen reflektieren und daraus lernen können. Um dieses Feedback zu generieren, werden #utils.gls-plural("llm") und #utils.gls-short("prompt_engineering") Techniken verwendet.
+
+Eine genaue Beschreibung des Prompts ist bereits in @ausgangslage erfolgt, weshalb in diesem Abschnitt lediglich auf die technische Umsetzung eingegangen wird.
+
+Um Zuge der in @tabelle_kiteII_prompt_struktur beschriebenen Datenstruktur, die für die Generierung des Feedbacks verwendet wird, werden verschiedene Informationen aus dem Spieldurchlauf gesammelt und in einem Prompt zusammengefasst. Dazu gehören neben dem Spielverlauf, also den dem Gesprächsverlauf, vor allem auch Informationen wie in diesem Fall die Biases, die in der Geschichte vorkommen, die eine besondere Relevanz für das Feedback haben. Diese werden in der Story-Spezifikation definiert und können dann in den Geschichten verwendet werden, um die Biases zu kennzeichnen, die in der Geschichte vorkommen, wie beispielhaft in @beispiel-story-passagen zu sehen ist.
+
+In #utils.gls-short("kite2") wird die Datenstruktur des Prompts in einer speziell hierfür entwickelten Klasse namens _PromptManager_ implementiert. Dieser definiert die Struktur des Prompts und stellt Methoden zur Verfügung, um für eine bestimmte Geschichte einen Prompt zu generieren, welcher dann an ein #utils.gls-short("llm") übergeben werden kann, um das Feedback zu generieren.
+
+Während des Spieldurchlaufs werden die relevanten Informationen wie den Gesprächsverlauf und die Biases, die hierbei auftreten protokolliert und an den Prompt angehängt.
+
+Die Anfrage an das #utils.gls-short("llm") erfolgt über einen Web-Service, welcher ebenfalls Teil des #utils.gls-short("kite2") Projekts ist. Dieser Web-Service bietet eine REST-API, die es ermöglicht, Anfragen an ein #utils.gls-short("llm") zu stellen und die Antworten zu empfangen. Die Kommunikation mit dem Web-Service erfolgt über HTTP und die Antworten werden im JSON-Format zurückgegeben.
+
+Die zu erstellende #utils.gls-short("library") muss also alle relevanten Informationen zum Spieldurchlauf protokollieren und über eine Schnittstelle bereitstellen, um den konsumierenden Anwendungen zu erlauben, einen solchen Prompt zu generieren. Die konkrete Anbindung einer solchen Anwendung an einen #utils.gls-short("llm") Web-Service ist für diese Arbeit nicht relevant und wird daher nicht weiter behandelt.
