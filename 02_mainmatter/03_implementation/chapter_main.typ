@@ -12,7 +12,7 @@ Um die in @zielsetzung gesteckte Zielsetzung umzusetzen wurden in @planung versc
 #include "02_technik_stand.typ"
 #pagebreak()
 
-#include "03_evaluierung_loesungsansaetze.typ"
+#include "03_implementierung_vn_lib.typ"
 #pagebreak()
 
 #include "04_beschreibung_loesungsansatz.typ"

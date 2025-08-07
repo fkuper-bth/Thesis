@@ -7,7 +7,7 @@ In diesem Kapitel wird eine Übersicht über verschiedene Technologien gegeben w
 
 Neben diesen Domänen-spezifischen Technologien werden auch verschiedene #utils.gls-short("cross_platform") Technologien betrachtet, die für die Implementierung dieser Arbeit in Frage kommen können.
 
-=== Vorhandene Technologien zur Erstellung von interaktiven Geschichten <vorhandene-technologien>
+=== Vergleich verschiedener Technologien zur Erstellung von interaktiven Geschichten <interactive-fiction-technologien>
 
 Zunächst ist zu erwähnen, dass zwischen Tools zur Erstellung von #utils.gls("if"), wie das bereits im Rahmen von @story-spezifikation behandelte Tool #utils.gls-short("twine") und Tools zur Erstellung von #utils.gls-plural("visual_novel") unterschieden werden muss.
 
@@ -239,10 +239,316 @@ Die Gründe hierfür sind vielfältig. Einige der meist genannten Gründe aus ei
 - Verfügbarkeit von _Templates_ zum schnellen Einstieg in der Entwicklung eines neuen Projektes
 - Python als Skript-Sprache ist _einfach zu Erlernen_ und _weit verbreitet_
 
-Für die Konzeption der #utils.gls-short("library") in dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in #utils.todo("Bibliothek Konzept und Impl Kapitel referenzieren.").
+Für die Konzeption der #utils.gls-short("library") in dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in @implementierung-visual-novel-library.
 
-Neben Ren'Py ist auch _Twine_ ein weit verbreitetes Tool zur Erstellung von #utils.gls-plural("if") und wird auch in der #utils.gls-short("kite2") verwendet. Im Anbetracht der Stärken und Schwächen von Twine, die in @if-tools-pros-cons diskutiert wurden wie beispielsweise der besonderen Eignung von Twine für Autor*innen ohne Programmierkenntnisse und der Erweiterbarkeit durch Story-Formate, ist es sinnvoll, Twine als Grundlage für die #utils.gls-short("library") zu wählen. Somit können nicht nur die für #utils.gls-short("kite2") bereits geschrieben Geschichten wiederverwendet werden, sondern auch die Stärken von Twine in Bezug auf die Erstellung von #utils.gls-plural("if") genutzt werden. Mehr zu diesem Thema finder sich ebenfalls in #utils.todo("Bibliothek Konzept und Impl Kapitel referenzieren.").
+Neben Ren'Py ist auch _Twine_ ein weit verbreitetes Tool zur Erstellung von #utils.gls-plural("if") und wird auch in der #utils.gls-short("kite2") verwendet. Im Anbetracht der Stärken und Schwächen von Twine, die in @if-tools-pros-cons diskutiert wurden wie beispielsweise der besonderen Eignung von Twine für Autor*innen ohne Programmierkenntnisse und der Erweiterbarkeit durch Story-Formate, ist es sinnvoll, Twine als Grundlage für die #utils.gls-short("library") zu wählen. Somit können nicht nur die für #utils.gls-short("kite2") bereits geschrieben Geschichten wiederverwendet werden, sondern auch die Stärken von Twine in Bezug auf die Erstellung von #utils.gls-plural("if") genutzt werden. Mehr zu diesem Thema finder sich ebenfalls in @implementierung-visual-novel-library.
 
-=== Cross-Platform Technologien <cross-platform-technologien>
+=== Vergleich verschiedener Cross-Platform Technologien <cross-platform-technologien>
 
 Neben den zuvor diskutierten Technologien, die speziell für die Erstellung von interaktiven Geschichten und #utils.gls-short("visual_novel") entwickelt wurden, gibt es auch eine Vielzahl von #utils.gls-short("cross_platform") Technologien, die für die Entwicklung von interaktiven Anwendungen verwendet werden können. In diesem Abschnitt werden einige der populärsten #utils.gls-short("cross_platform") Technologien vorgestellt, die für die Entwicklung der #utils.gls-short("library") zur Erstellung von #utils.gls-plural("visual_novel") in Frage kommen könnten.
+
+Entscheidend ist hierbei, dass diese einerseits alle angestrebten Zielplattformen unterstützen, also Android, iOS, Web und Desktop, und andererseits dafür geeignet sind, die in @zielsetzung beschriebenen Anforderungen zu erfüllen.
+
+In @cp-frameworks-overview wird ein Überblick über einige der #utils.gls-short("cross_platform") Frameworks gegeben, die für die Entwicklung der #utils.gls-short("library") in Frage kommen könnten. Dabei werden wichtige Eckdaten zu den Frameworks zusammengefasst, wie die unterstützten Plattformen, die verwendete Programmiersprache und die Lizenzierung.
+
+#let frameWorkTitleCell(title, imagePath, imageSourceReference) = {
+  align(center)[
+    #grid(
+      rows: 2,
+      gutter: 8pt,
+      title,
+      grid(
+        rows: 2,
+        gutter: 5pt,
+        image(imagePath, height: 20pt),
+        text(imageSourceReference, size: 10pt),
+      ),
+    )
+  ]
+}
+
+#let cpFrameworksOverviewTable = table(
+  columns: 4,
+  table.header([*Framework*], [*Sprache*], [*Plattformen*], [*Lizenz*]),
+
+  [
+    #frameWorkTitleCell(
+      [*Flutter*],
+      "/resources/images/flutter-logo.svg",
+      [@raddp_flutter_nodate],
+    )
+  ],
+  [
+    - Dart
+  ],
+  [
+    - Android
+    - iOS
+    - Web
+    - Desktop
+  ],
+  [
+    - Kostenlos
+    - Open Source (BSD)
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [
+        *Compose*
+
+        *Multiplatform*
+      ],
+      "/resources/images/compose-logo.svg",
+      [@noauthor_compose_nodate],
+    )
+  ],
+  [
+    - Kotlin
+  ],
+  [
+    - Android
+    - iOS
+    - Web (Experimental)
+    - Desktop
+  ],
+  [
+    - Kostenlos
+    - Open Source (Apache 2.0)
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [*React Native*],
+      "/resources/images/react-logo.svg",
+      [@noauthor_react_nodate],
+    )
+  ],
+  [
+    - JavaScript
+    - TypeScript
+  ],
+  [
+    - Android
+    - iOS
+    - Web
+    - Desktop
+  ],
+  [
+    - Kostenlos
+    - Open Source (MIT)
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [*Unity*],
+      "/resources/images/unity-logo.svg",
+      [@unity_technologies_unity_nodate],
+    )
+  ],
+  [
+    - C\#
+  ],
+  [
+    - Desktop
+    - Mobile
+    - Web
+    - Konsolen
+    - VR / AR Plattformen
+  ],
+  [
+    - Proprietär
+    - kostenlose für nicht-kommerzielle Nutzung
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [*Godot*],
+      "/resources/images/godot-logo.svg",
+      [@andrea_calabro_godot_nodate],
+    )
+  ],
+  [
+    - GDScript
+    - C\#
+  ],
+  [
+    - Desktop
+    - Mobile
+    - Web
+    - Konsolen
+  ],
+  [
+    - Kostenlos
+    - Open Source (MIT)
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [*.NET MAUI*],
+      "/resources/images/dotnet-logo.svg",
+      [@microsoft_net_nodate],
+    )
+  ],
+  [
+    - C\#
+  ],
+  [
+    - Android
+    - iOS,
+    - Windows
+    - macOS
+  ],
+  [
+    - Kostenlos
+    - Open Source (MIT)
+  ],
+)
+
+#figure(
+  cpFrameworksOverviewTable,
+  caption: [Kurzüberblick über populäre #utils.gls-short("cross_platform") Frameworks.],
+) <cp-frameworks-overview>
+
+// compare these frameworks with regards to their suitability for the library
+Um einen besseren Eindruck über die Eignung der verschiedenen #utils.gls-short("cross_platform") Frameworks für die Entwicklung der #utils.gls-short("library") zu bekommen, wurden diese anhand verschiedener Kriterien bewertet. Diese Kriterien sind:
+
+- _Grafik_: Wie gut unterstützt das Framework die Darstellung von Grafiken und Bildern?
+- _Animation_: Wie gut unterstützt das Framework Animationen und Übergänge?
+- _Einordnung_: Erfüllt das Framework die Anforderungen an die Entwicklung der #utils.gls-short("library")?
+
+Die Frameworks sind mitsamt ihrer Bewertung bezüglich der Kriterien in @cp-framework-comparison dargestellt.
+
+#let cpFrameworkComparisonTable = table(
+  columns: (18%, 22%, 22%, 38%),
+  table.header([*Framework*], [*Grafik*], [*Animation*], [*Einordnung*]),
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/flutter-logo.svg",
+      [@raddp_flutter_nodate],
+    )
+  ],
+  [
+    - GPU-beschleunigte 2D Grafiken über Skia.
+  ],
+  [
+    - native Unterstützung
+    - flexibel (implizite und explizite Animationen)
+  ],
+  [
+    - unterstützt alle nötigen Funktionalitäten
+    - Fragezeichen bezüglich langfristiger Unterstützung @elye_is_2024
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/compose-logo.svg",
+      [@noauthor_compose_nodate],
+    )
+  ],
+  [
+    - Compose Grafik API
+  ],
+  [
+    - native Unterstützung
+  ],
+  [
+    - unterstützt alle nötigen Funktionalitäten
+    - Plattformen wie Web und iOS sind noch in früher Entwicklungsphase
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/react-logo.svg",
+      [@noauthor_react_nodate],
+    )
+  ],
+  [
+    - gut für #utils.gls-short("gui") basierte Anwendungen
+    - für komplexe Grafiken muss auf zusätzliche Bibliotheken zurückgegriffen werden
+  ],
+  [
+    - native Unterstützung für einfache Animationen
+    - komplexe Animationen erfordern zusätzliche Bibliotheken
+  ],
+  [
+    - gut für #utils.gls-short("gui") basierte Anwendungen
+    - weniger geeignet für komplexe Grafiken und Animationen
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/unity-logo.svg",
+      [@unity_technologies_unity_nodate],
+    )
+  ],
+  [
+    - GPU-beschleunigte 2D und 3D Grafiken
+  ],
+  [
+    - starke Unterstützung verschiedener Animationsarten
+  ],
+  [
+    - unterstützt alle nötigen Funktionalitäten
+    - bringt viel Komplexität und Funktionalitäten mit sich, die für die #utils.gls-short("library") nicht benötigt werden
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/godot-logo.svg",
+      [@andrea_calabro_godot_nodate],
+    )
+  ],
+  [
+    - ausgereifte 2D Grafik-Engine
+  ],
+  [
+    - umfangreiche, flexible Animations-API
+  ],
+  [
+    - unterstützt alle nötigen Funktionalitäten
+    - gut für Entwicklung 2D-basierter Spiele geeignet
+  ],
+
+  [
+    #frameWorkTitleCell(
+      [],
+      "/resources/images/dotnet-logo.svg",
+      [@microsoft_net_nodate],
+    )
+  ],
+  [
+    - gut für #utils.gls-short("gui") basierte Anwendungen
+    - limitierte Grafik-API
+  ],
+  [
+    - native Unterstützung für einfache Animationen
+  ],
+  [
+    - gut für #utils.gls-short("gui") basierte Anwendungen
+    - weniger geeignet für komplexe Grafiken und Animationen
+  ],
+)
+
+#figure(
+  cpFrameworkComparisonTable,
+  caption: [Vergleich der #utils.gls-short("cross_platform") Frameworks bezüglich ihrer Eignung für die Entwicklung der #utils.gls-short("visual_novel") #utils.gls-short("library").],
+) <cp-framework-comparison>
+
+Die Bewertung der Frameworks zeigt, dass für diese Arbeit eine Vielzahl verschiedener #utils.gls-short("cross_platform") Frameworks geeignet sind. Auszuschließen sind zunächst _.NET MAUI_ und _React Native_, da diese weniger umfangreiche Funktionalitäten im Bereich der von Grafiken und Animationen bieten. Die Spiele-Engines _Unity_ und _Godot_ bieten in diesen Bereichen die umfangreichsten Funktionalitäten. Im Vergleich dazu bieten _Flutter_ und _Compose_ ebenfalls für den vorgeschlagenen Nutzungsfall völlig ausreichende Unterstützung für Grafiken und Animationen.
+
+Die Entscheidung für ein Framework hängt letztlich auch von den persönlichen Vorlieben und Erfahrungen der Entwickler*innen ab.
+
+In dieser Arbeit wird sich für _Compose Multiplatform_ entschieden, da es eine moderne und gut unterstützte Technologie ist, die alle benötigten Funktionalitäten bietet. Kurz- und mittelfristig hängt mit der Entscheidung für _Compose Multiplatform_ auch ein gewisses Risiko zusammen, da diese Technologie noch recht jung ist (die erste Veröffentlichung war im April 2021) und besonders die Zielplattform Web noch im experimentellen Status ist.
+
+Andererseits existieren in der _Flutter_ Community Bedenken bezüglich der langfristigen Unterstützung dieser Technologie durch Google, welche auch durch die zunehmende Popularität von Kotlin und Compose Multiplatform zu Tage gekommen sind @elye_is_2024.
+
+Trotzdem könnten Frameworks wie _Flutter_ oder _Godot_ ebenfalls eine gute oder sogar bessere Wahl sein, je nach individuellen Vorlieben und Erfahrungen der Entwickler*innen.
+
+Mit der Analyse der verschiedenen #utils.gls-short("cross_platform") Frameworks und der Entscheidung für _Compose Multiplatform_ ist die Grundlage für die Entwicklung der #utils.gls-short("library") gelegt. Im folgenden @implementierung-visual-novel-library wird die Umsetzung der #utils.gls-short("library") detailliert beschrieben.
