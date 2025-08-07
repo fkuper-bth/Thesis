@@ -1,4 +1,5 @@
 #import "/etc/utils.typ"
+#import "/etc/plots.typ"
 
 == Stand der Technik <technik_stand>
 
@@ -198,10 +199,50 @@ Die @vn-tools-overview gibt einen groben Überblick über einige der populärste
   caption: [Kurzüberblick über populäre Tools zur Erstellung von #utils.gls-plural("visual_novel")],
 ) <vn-tools-overview>
 
-Die wohl am weitesten verbreitete und am besten unterstützte Engine zur Erstellung von #utils.gls-plural("visual_novel") ist _Ren'Py_ @noauthor_renpy_nodate. Sie ist in Python geschrieben und ermöglicht es, interaktive Geschichten mit einer Vielzahl von Multimedia-Inhalten zu erstellen. Aufgrund ihrer Script-basierten Schnittstelle ist sie vor allem für Programmierer*innen geeignet, die bereits Erfahrung mit Python haben.
+Die wohl am weitesten verbreitete Engine zur Erstellung von #utils.gls-plural("visual_novel") ist _Ren'Py_ @noauthor_renpy_nodate. Sie ist in Python geschrieben und ermöglicht es, interaktive Geschichten mit einer Vielzahl von Multimedia-Inhalten zu Erstellen. Neben Hobby-Projekten wird sie auch für kommerzielle Projekte verwendet und ist das Tool der Wahl für eine Vielzahl von erfolgreichen #utils.gls-plural("visual_novel") @noauthor_itchio_nodate.
 
-Andere Tools dagegen wie _TyranoBuilder_, _Fungus_ oder _Visual Novel Maker_ verfolgen einen No-Code-Ansatz, der es Nutzer*innen ermöglicht, interaktive Geschichten ohne Programmierkenntnisse zu erstellen.
+Die Stärken dieser Engine liegen in ihrer großen Bandbreite an Funktionalitäten, ihrer Flexibilität sowie ihrer großen, aktiven Community von Nutzer*innen und Entwickler*innen, die kontinuierlich zur Verbesserung und Erweiterung der Engine beitragen. Aufgrund ihrer Script-basierten Schnittstelle ist sie vor allem für Programmierer*innen geeignet, die bereits Erfahrung mit Python haben.
 
-// TODO: weitere Differenzierung der Tools
-// Was kann ich auch diesen Tools für meine Bibliothek lernen?
-// Kann ich eines dieser Tools als Basis für meine Arbeit verwenden? (Twine -> Story-Format -> Story-Engine -> VN Engine)
+Andere Tools wie _TyranoBuilder_ @noauthor_tyranobuilder_nodate, _Fungus_ @noauthor_fungus_nodate oder _Visual Novel Maker_ @noauthor_visual_nodate verfolgen dagegen einen No-Code-Ansatz, der es Nutzer*innen ermöglicht, interaktive Geschichten ohne Programmierkenntnisse zu erstellen. Dadurch sind diese Tools besser für Nutzer*innen geeignet, die keine oder geringe Erfahrung in der Spiele-Entwicklung haben und dennoch eine #utils.gls-short("visual_novel") erstellen möchten.
+
+Um eine Idee von der Verbreitung dieser verschiedenen Tools zu bekommen, wurden die Anzahl der #utils.gls-short("visual_novel") Spiele auf der Plattform _itch.io_ @noauthor_itchio_nodate-1 nach den jeweiligen Tool-Tags ausgewertet.
+
+Dazu sei erwähnt, dass es sich bei itch.io zwar um eine weit verbreitete Plattform zur Veröffentlichung von Indie Spielen, also Spiele, die ohne die Unterstützung eines Publishers erstellt und veröffentlicht werden, handelt, jedoch nicht um eine repräsentative Plattform für den gesamten Markt. Außerdem taucht die Technologie _Choicescript_ hier nicht auf, da das Unternehmen hinter dieser Technologie ihre eigene Plattform betreibt @noauthor_choice_nodate. Neben den zuvor diskutierten Technologien sind hier auch populäre Game Engines, wie _Unity_, _Unreal_ und _Godot_ Teil der Analyse.
+
+Dennoch kann sie einen groben Überblick über die Verbreitung der verschiedenen Tools in der Indie-Entwickler-Szene gewähren.
+
+#figure(
+  plots.createVnEnginePopularityOnItchIoPlot(),
+  caption: [Relative Popularität der diskutierten Technologien bei auf itch.io veröffentlichten #utils.gls-plural("visual_novel"), Datenquelle: itch.io @noauthor_itchio_nodate-1.],
+) <vn-engine-popularity-on-itch-io>
+
+@vn-engine-popularity-on-itch-io stellt die Ergebnisse der Datenerhebung vom 05.08.2025 dar, welche hier relativ zueinander abgebildet werden.
+
+Das Bedeutet, dass von allen Tools, die hier diskutiert und im Rahmen der Analyse betrachtet wurden, hiervon mit 58% über die Hälfte Ren'Py verwenden. Gut ein Fünftel der Spiele verwenden Unity, gefolgt von Twine mit 10% und Godot mit 6%. Alle betrachteten Tools, deren Anteil weniger als 5% betrug, wurden in der Kategorie "Andere" zusammengefasst. Diese Kategorie umfasst: _TyranoBuilder_, _Unreal Engine_, _Ink_ und _Visual Novel Maker_ absteigend sortiert nach relativer Popularität.
+
+Die absoluten Zahlen von allen betrachteten Tools sind in @vn-engine-popularity-on-itch-io-column-chart dargestellt.
+
+#figure(
+  plots.createVnEnginePopularityOnItchIoColumnChart(),
+  caption: [Absolute Zahl der #utils.gls-plural("visual_novel") auf itch.io, die mit den jeweiligen Technologien verwenden, Datenquelle: itch.io @noauthor_itchio_nodate-1.],
+) <vn-engine-popularity-on-itch-io-column-chart>
+
+Unter den in diesem Abschnitt betrachteten Technologien scheint Ren'Py also die, zumindest in der Indie-Szene von #utils.gls-short("visual_novel") Entwickler*innen, das Tool der Wahl zu sein, wenn es darum geht, eine #utils.gls-short("visual_novel") zu erstellen.
+
+Die Gründe hierfür sind vielfältig. Einige der meist genannten Gründe aus einer Recherche verschiedener Online Foren und Communities, die sich mit Spiele-Entwicklung und #utils.gls-plural("visual_novel") beschäftigen @noauthor_is_nodate @noauthor_is_nodate-1 @noauthor_any_nodate, sind:
+
+- eine _aktive Community_, die bei Fragen und Problemen hilft
+- eine große Anzahl an _Tutorials_ und _Dokumentation_
+- Ren'Py ist _Open Source_ und kann _kostenlos_ genutzt werden
+- _#utils.gls-short("cross_platform")_ Unterstützung
+- große _Flexibilität_ und _Anpassbarkeit_ der Engine
+- Verfügbarkeit von _Templates_ zum schnellen Einstieg in der Entwicklung eines neuen Projektes
+- Python als Skript-Sprache ist _einfach zu Erlernen_ und _weit verbreitet_
+
+Für die Konzeption der #utils.gls-short("library") in dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in #utils.todo("Bibliothek Konzept und Impl Kapitel referenzieren.").
+
+Neben Ren'Py ist auch _Twine_ ein weit verbreitetes Tool zur Erstellung von #utils.gls-plural("if") und wird auch in der #utils.gls-short("kite2") verwendet. Im Anbetracht der Stärken und Schwächen von Twine, die in @if-tools-pros-cons diskutiert wurden wie beispielsweise der besonderen Eignung von Twine für Autor*innen ohne Programmierkenntnisse und der Erweiterbarkeit durch Story-Formate, ist es sinnvoll, Twine als Grundlage für die #utils.gls-short("library") zu wählen. Somit können nicht nur die für #utils.gls-short("kite2") bereits geschrieben Geschichten wiederverwendet werden, sondern auch die Stärken von Twine in Bezug auf die Erstellung von #utils.gls-plural("if") genutzt werden. Mehr zu diesem Thema finder sich ebenfalls in #utils.todo("Bibliothek Konzept und Impl Kapitel referenzieren.").
+
+=== Cross-Platform Technologien <cross-platform-technologien>
+
+Neben den zuvor diskutierten Technologien, die speziell für die Erstellung von interaktiven Geschichten und #utils.gls-short("visual_novel") entwickelt wurden, gibt es auch eine Vielzahl von #utils.gls-short("cross_platform") Technologien, die für die Entwicklung von interaktiven Anwendungen verwendet werden können. In diesem Abschnitt werden einige der populärsten #utils.gls-short("cross_platform") Technologien vorgestellt, die für die Entwicklung der #utils.gls-short("library") zur Erstellung von #utils.gls-plural("visual_novel") in Frage kommen könnten.
