@@ -15,4 +15,4 @@ Um die in @zielsetzung gesteckte Zielsetzung umzusetzen wurden in @planung versc
 #include "03_implementierung_vn_lib.typ"
 #pagebreak()
 
-#include "04_beschreibung_loesungsansatz.typ"
+#include "04_implementierung_prototyp.typ"
