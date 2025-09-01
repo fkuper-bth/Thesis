@@ -18,6 +18,8 @@
   #v(2%)
 ]
 #show link: set text(fill: utils.colorScheme.hhnBlue)
+#show: utils.codly-init.with()
+#utils.codly(languages: utils.codly-languages, zebra-fill: none)
 
 // TODOs outline, remove this when finished
 #utils.todo_outline

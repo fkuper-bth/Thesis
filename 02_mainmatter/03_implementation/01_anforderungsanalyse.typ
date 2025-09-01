@@ -228,7 +228,7 @@ Nach der Definition des Bias in @beispiel-story-passagen finden sich drei Verbin
   ```
 ]
 #figure(
-  utils.listing(storyPassageContent),
+  storyPassageContent,
   caption: "Beispielhafte Definition einer Passage in einer Geschichte, die der Story-Spezifikation folgt.",
 ) <beispiel-story-passagen>
 

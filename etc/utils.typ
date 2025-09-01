@@ -1,6 +1,8 @@
 #import "@preview/big-todo:0.2.0": *
 #import "@preview/glossarium:0.5.8": *
 #import "@preview/wrap-it:0.1.1": *
+#import "@preview/codly:1.3.0": *
+#import "@preview/codly-languages:0.1.1": *
 
 #let colorScheme = (
   hhnOrange: color.rgb("E86423"),
@@ -8,13 +10,6 @@
   hhnBlueLight: color.rgb("222A78").lighten(25%),
   hhnWhite: color.rgb("FFFFFF"),
   background: luma(240),
-)
-
-#let listing(content) = block(
-  fill: colorScheme.background,
-  inset: 8pt,
-  radius: 4pt,
-  content,
 )
 
 #let tableFrame(stroke) = (x, y) => (

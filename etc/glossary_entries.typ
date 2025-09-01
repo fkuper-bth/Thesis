@@ -154,4 +154,10 @@
     short: "endlicher Automat",
     description: "Modelliert ein Verhalten mit einer endlichen Menge von Zuständen und Zustandsübergängen.",
   ),
+  (
+    key: "json",
+    short: "JSON",
+    long: "JavaScript Object Notation",
+    description: "Ein kompaktes Datenformat in lesbarer Textform für den Datenaustausch zwischen Anwendungen.",
+  ),
 )
