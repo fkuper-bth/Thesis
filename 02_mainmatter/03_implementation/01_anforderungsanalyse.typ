@@ -238,7 +238,7 @@ Unterschiedliche Story-Formate bieten unterschiedliche Features, wie zum Beispie
 
 Auf technischer Ebene übersetzen die Story-Formate die Story-Daten in eine HTML Datei @noauthor_twine_nodate. Der Aufbau eines Story-Formates ist durch Twine spezifiziert. Dadurch wird es Drittparteien ermöglicht, eigene Story-Formate zu entwickeln, welche dann wiederum in Twine verwendet werden können.
 
-Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in #utils.todo("Abschnitt Umsetzung Story Format referenzieren.") beschrieben.
+Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in @implementierung-story-format beschrieben.
 
 ==== Audio-visuelle Darstellung <audio-visuelle-darstellung>
 
