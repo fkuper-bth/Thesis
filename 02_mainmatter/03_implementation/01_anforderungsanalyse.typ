@@ -84,12 +84,12 @@ Die @kite2-container-diagram stellt die Systemarchitektur von #utils.gls-short("
 
 #figure(
   image("/resources/images/diagrams/kite2-container-diagram.png"),
-  caption: "KITE II Überblick über Projekt-Landschaft",
+  caption: "Überblick über die KITE II  Projekt-Landschaft.",
 ) <kite2-container-diagram>
 
 #figure(
   image("/resources/images/diagrams/kite2-container-diagram-legend.png", width: 70%),
-  caption: [Legende zu @kite2-container-diagram],
+  caption: [Legende zu @kite2-container-diagram.],
 ) <kite2-container-diagram-legend>
 
 In @kite2-container-diagram lassen sich verschiedene Interaktions-Punkte mit der Entwicklungslandschaft von #utils.gls-short("kite2") erkennen. Diese können in verschiedene Kategorien eingeteilt werden:

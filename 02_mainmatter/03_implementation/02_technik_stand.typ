@@ -545,10 +545,10 @@ Die Bewertung der Frameworks zeigt, dass für diese Arbeit eine Vielzahl verschi
 
 Die Entscheidung für ein Framework hängt letztlich auch von den persönlichen Vorlieben und Erfahrungen der Entwickler*innen ab.
 
-In dieser Arbeit wird sich für _Compose Multiplatform_ entschieden, da es eine moderne und gut unterstützte Technologie ist, die alle benötigten Funktionalitäten bietet. Kurz- und mittelfristig hängt mit der Entscheidung für _Compose Multiplatform_ auch ein gewisses Risiko zusammen, da diese Technologie noch recht jung ist (die erste Veröffentlichung war im April 2021) und besonders die Zielplattform Web noch im experimentellen Status ist.
+In dieser Arbeit wird sich für _#utils.gls("cmp")_ entschieden, da es eine moderne und gut unterstützte Technologie ist, die alle benötigten Funktionalitäten bietet. Kurz- und mittelfristig hängt mit der Entscheidung für _#utils.gls-short("cmp")_ auch ein gewisses Risiko zusammen, da diese Technologie noch recht jung ist (die erste Veröffentlichung war im April 2021) und besonders die Zielplattform Web noch im experimentellen Status ist.
 
-Andererseits existieren in der _Flutter_ Community Bedenken bezüglich der langfristigen Unterstützung dieser Technologie durch Google, welche auch durch die zunehmende Popularität von Kotlin und Compose Multiplatform zu Tage gekommen sind @elye_is_2024.
+Andererseits existieren in der _Flutter_ Community Bedenken bezüglich der langfristigen Unterstützung dieser Technologie durch Google, welche auch durch die zunehmende Popularität von Kotlin und #utils.gls-short("cmp") zu Tage gekommen sind @elye_is_2024.
 
 Trotzdem könnten Frameworks wie _Flutter_ oder _Godot_ ebenfalls eine gute oder sogar bessere Wahl sein, je nach individuellen Vorlieben und Erfahrungen der Entwickler*innen.
 
-Mit der Analyse der verschiedenen #utils.gls-short("cross_platform") Frameworks und der Entscheidung für _Compose Multiplatform_ ist die Grundlage für die Entwicklung der #utils.gls-short("library") gelegt. Im folgenden @implementierung-visual-novel-library wird die Umsetzung der #utils.gls-short("library") detailliert beschrieben.
+Mit der Analyse der verschiedenen #utils.gls-short("cross_platform") Frameworks und der Entscheidung für _#utils.gls-short("cmp")_ ist die Grundlage für die Entwicklung der #utils.gls-short("library") gelegt. Im folgenden @implementierung-visual-novel-library wird die Umsetzung der #utils.gls-short("library") detailliert beschrieben.

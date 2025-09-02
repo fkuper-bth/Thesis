@@ -38,7 +38,7 @@ Nachdem die _Visual Novel Engine_ implementiert ist, sind sämtliche Entwicklung
 
 === Implementierung des #utils.gls-short("kite2") Story Formates <implementierung-story-format>
 
-Bevor mit der Umsetzung der eigentlichen #utils.gls-short("library") in Compose Multiplatform begonnen werden konnte, musste zunächst, die in @story-spezifikation beschriebene Story-Spezifikation in Form eines _Story-Formates_ für _Twine_ implementiert werden. Eine genauere Beschreibung, was ein Story Format ist, ist ebenfalls in @story-spezifikation erfolgt.
+Bevor mit der Umsetzung der eigentlichen #utils.gls-short("library") in #utils.gls-short("cmp") begonnen werden konnte, musste zunächst, die in @story-spezifikation beschriebene Story-Spezifikation in Form eines _Story-Formates_ für _Twine_ implementiert werden. Eine genauere Beschreibung, was ein Story Format ist, ist ebenfalls in @story-spezifikation erfolgt.
 
 Kurz gesagt ist die Aufgabe eines solchen Formates vergleichbar mit einem _Compiler_. Eine Repräsentation einer interaktiven Geschichte wird in eine andere übersetzt. Die Ausgabe kann dabei beispielsweise zum Zwecke der direkten Interaktion mit Nutzer*innen als HTML-Seite erzeugt werden oder aber auch als eine Zwischenrepräsentation erfolgen, die weiterverarbeitet werden kann.
 
@@ -66,7 +66,7 @@ Der Inhalt des Feldes `source` in Zeile 7 bildet also die Schnittstelle, zwische
 
 Während die meisten etablierten Story Formate eine HTML-Ausgabe generieren, die direkt von Nutzer*innen konsumiert werden kann, soll das im Rahmen dieser Thesis geschaffene Format ein Ausgabe zur späteren Weiterverarbeitung in der #utils.gls-short("library") erstellen.
 
-Hierzu wird als Ausgabeformat das Datenformat #utils.gls("json") gewählt, da für dieses einerseits in den meisten Programmiersprachen in Form von Parsern unterstützt wird (so auch in Kotlin und Kotlin Multiplatform mit Hilfe offizieller Bibliotheken @noauthor_kotlinkotlinxserialization_2025) und andererseits bereits andere Story Formate existieren, die #utils.gls-short("json") als Ausgabe generieren, an denen sich orientiert werden kann.
+Hierzu wird als Ausgabeformat das Datenformat #utils.gls("json") gewählt, da für dieses einerseits in den meisten Programmiersprachen in Form von Parsern unterstützt wird (so auch in Kotlin und #utils.gls("kmp") mit Hilfe offizieller Bibliotheken @noauthor_kotlinkotlinxserialization_2025) und andererseits bereits andere Story Formate existieren, die #utils.gls-short("json") als Ausgabe generieren, an denen sich orientiert werden kann.
 
 Glücklicherweise kann die Entwicklung des Story Formates auf einem vorhandenen Format namens _twine-to-json_ aufgebaut werden, welches quell-offen zur freien Bearbeitung und Verwendung zur Verfügung steht @jtschoonhoven_twine--json_nodate. Dieses erstellt aus in Twine 2 erstellten Geschichten JSON Objekte und unterstützt ebenfalls Geschichten, die auf dem _Harlowe 3_ Format basieren @noauthor_harlowe_nodate, auf welchem ebenfalls die KITE II Story Spezifikation basiert.
 
@@ -121,6 +121,12 @@ Da die Meta-Informationen einer Geschichte durch die KITE II Spezifikation unber
 
 In @parse-passage-element-pseudocode ist der Programmablauf dieser Funktion in Pseudo-Code dargestellt. Diese extrahiert zunächst wie auch schon zuvor auf Story-Ebene einige Meta-Daten über die jeweilige Passage und beginnt dann damit, den Inhalt der Passage zu analysieren, was im Funktionsaufruf in @parse-passage-element-pseudocode:13 geschieht.
 
+#utils.codly(
+  highlights: (
+    (line: 13, start: 26, fill: utils.colorScheme.hhnOrange),
+    (line: 27, start: 23, fill: utils.colorScheme.hhnOrange),
+  ),
+)
 #let parsePassageElementPseudoCode = ```javascript
 function parsePassageElement(passageElement) {
   // extract meta data from passage HTML element
@@ -277,7 +283,7 @@ describe('twineToJSON with multiple input files', () => {
 
 Zur Auslieferung des Story-Formates, sodass dieses in Twine verwendet werden kann, wird dieses durch ein einfaches JavaScript Programm in das in @story-format-content dargestellte Format in eine Datei namens `format.js` geschrieben, welche dann wiederum zur Einbindung in Twine zur Verfügung gestellt werden muss.
 
-Hierfür hatte bereits das _twine-to-json_ Format, auf dem das KITE II Format basiert, eine Lösung implementiert, die GitHub Actions nutzt, um die `format.js` Datei im Internet zu veröffentlichen. Das KITE II Story Format ist ebenfalls auf GitHub gehostet und macht sich dieselbe Funktionalität zu nutze, um das Format zu veröffentlichen @fkuper_twine--json-kite-2_nodate.
+Hierfür hatte bereits das _twine-to-json_ Format, auf dem das KITE II Format basiert, eine Lösung implementiert, die GitHub Actions nutzt, um die `format.js` Datei im Internet zu veröffentlichen. Das KITE II Story Format Projekt ist ebenfalls auf GitHub untergebracht und macht sich dieselbe Funktionalität zu nutze, um das Format zu veröffentlichen @fkuper_twine--json-kite-2_nodate.
 
 Dadurch ist es allen Twine Nutzer*innen möglich, dieses Format zu nutzen und Geschichten zu schreiben, die dem KITE II Format folgen sowie diese so zu exportieren, dass sie in der im Rahmen dieser Arbeit erstellten Bibliothek verwendet werden können.
 

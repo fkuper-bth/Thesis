@@ -160,4 +160,21 @@
     long: "JavaScript Object Notation",
     description: "Ein kompaktes Datenformat in lesbarer Textform für den Datenaustausch zwischen Anwendungen.",
   ),
+  (
+    key: "kmp",
+    short: "KMP",
+    long: "Kotlin Multiplatform",
+    description: "Ein Kotlin Cross-Platform Entwicklungs-Framework, welches von JetBrains entwickelt wird.",
+  ),
+  (
+    key: "cmp",
+    short: "CMP",
+    long: "Compose Multiplatform",
+    description: "Ein deklaratives Cross-Platform UI Framework für Kotlin, welches auf Kotlin Multiplatform und Jetpack Compose basiert und von JetBrains entwickelt wird.",
+  ),
+  (
+    key: "jc",
+    short: "Jetpack Compose",
+    description: "Ein deklaratives UI Framework für Android, welches von Google entwickelt wird.",
+  ),
 )
