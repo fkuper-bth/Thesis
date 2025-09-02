@@ -10,6 +10,32 @@ Der Entwicklungsprozess sämtlicher Implementierungsphasen dieser Arbeit verfolg
 
 Dies bedeutet konkret, dass Entwicklungszyklen möglichst kurz gehalten werden sollen, um regelmäßig Feedback von Stakeholdern zum aktuellen Stand einholen zu können. Dies geschieht in Form von regelmäßigen Meetings, in denen Zwischenergebnisse präsentiert und besprochen werden können. Ein solcher Ansatz erlaubt es, Lösungsansätze laufend an Rückmeldungen und Anforderungen anzupassen und verspricht somit, mit größerer Wahrscheinlichkeit eine Lösung hervorzubringen, die den Anforderungen der Stakeholder gerecht wird.
 
+=== Systemübersicht <system-overview>
+
+Das implementierte System setzt sich aus einer Menge von verschiedenen Modulen zusammen, die jeweils als separate Projekte angelegt und entwickelt wurden.
+
+@thesis-container-diagram bietet eine Übersicht über die verschiedenen Module, aus denen das System zusammengesetzt ist, den Technologien, die diesen zugrunde liegen, externen Systemen, die mit dem Haupt-System interagieren und den verschiedenen Nutzer*innen, wie sie mit dem System in Berührung kommen. Eine Erklärung der verwendeten Symbolik findet sich in @thesis-container-diagram-legend.
+
+Bevor die Visual Novel Anwendung, sprich der Prototyp, erstellt werden kann, müssen die technischen Grundlagen hierfür gelegt werden.
+
+Zu diesem Zwecke wird zunächst auf Basis der ausgearbeiteten KITE II Story Spezifikation (mehr hierzu in @story-spezifikation) ein Twine _Story Format_ entwickelt, welches die interaktiven Geschichten in ein leicht maschinell verarbeitbares Format übersetzt. Eine detaillierte Ausführung zur Implementierung dieses Moduls ist in @implementierung-story-format zu finden.
+
+Auf Basis der Ausgabe dieses Story Formates kann dann das sogenannte _Story Engine_ Modul implementiert werden. Dieses verarbeitet die Daten der jeweiligen Geschichte und stellt Schnittstellen zur Verfügung, um den Spielfluss dieser zu kontrollieren. Die Implementierung dieses Moduls ist in @implementierung-story-engine dokumentiert.
+
+Daraufhin kann eine Bibliothek zur audio-visuellen Aufbereitung dieser Geschichten implementiert werden, hier _Visual Novel Engine_ genannt. Diese stellt sämtliche Funktionalitäten, die mit der Darstellung zu tun haben. Die Implementierung dieser ist der Kerninhalt von @implementierung-story-engine, wobei hier jedoch die Implementierung der Module von unten nach oben erklärt wird, beginnend mit dem _Story Format_ in @implementierung-story-format.
+
+#figure(
+  image("/resources/images/diagrams/thesis-container-diagram.png"),
+  caption: "Systemübersicht über die verschiedenen Komponenten, die im Rahmen dieser Arbeit entwickelt worden sind.",
+) <thesis-container-diagram>
+
+#figure(
+  image("/resources/images/diagrams/thesis-container-diagram-legend.png"),
+  caption: [Legende zu @thesis-container-diagram.],
+) <thesis-container-diagram-legend>
+
+Nachdem die _Visual Novel Engine_ implementiert ist, sind sämtliche Entwicklungs-Tools bereitgestellt, die für die Entwicklung des Prototypen, in @thesis-container-diagram als _Visual Novel Anwendung_ bezeichnet, benötigt werden. Die Implementiert dieser Anwendung wird in @implementierung-prototyp ausgeführt.
+
 === Implementierung des #utils.gls-short("kite2") Story Formates <implementierung-story-format>
 
 Bevor mit der Umsetzung der eigentlichen #utils.gls-short("library") in Compose Multiplatform begonnen werden konnte, musste zunächst, die in @story-spezifikation beschriebene Story-Spezifikation in Form eines _Story-Formates_ für _Twine_ implementiert werden. Eine genauere Beschreibung, was ein Story Format ist, ist ebenfalls in @story-spezifikation erfolgt.
