@@ -8,7 +8,7 @@ Aus der in @zielsetzung definierten Zielsetzung dieser Thesis ergeben sich versc
 
 Der ursprüngliche Durchführungszeitraum der geplanten Arbeitspakete ist vom 30. April 2025 bis zum 30. August 2025 angesetzt. Aufgrund von unerwarteten Verzögerungen bei Umsetzung einiger Arbeitspakete wurde der Zeitraum auf den 30. September 2025 verlängert. Die nachfolgende Zeitplanung bezieht sich auf den ursprünglichen Durchführungszeitraum.
 
-Ausgehend von der in @zielsetzung definierten Zielsetzung wurden für diesen Zeitraum Arbeitspakete definiert, die in @tabelle-terminplanung sequentiell aufgelistet sind und auch in dieser Reihenfolge umgesetzt werden sollen. Diese sind so geplant, dass sie aufeinander aufbauen wobei die zwei größten Arbeitspakete (Entwurf und Umsetzung der #utils.gls-short("library") sowie Entwurf und Umsetzung des Prototypen) in iterativer Art und Weise erarbeitet werden. Eine detaillierte Ausführung zur Vorgehensweise findet sich in #utils.todo("Vorgehensweise Kapitel Referenzieren").
+Ausgehend von der in @zielsetzung definierten Zielsetzung wurden für diesen Zeitraum Arbeitspakete definiert, die in @tabelle-terminplanung sequentiell aufgelistet sind und auch in dieser Reihenfolge umgesetzt werden sollen. Diese sind so geplant, dass sie aufeinander aufbauen wobei die zwei größten Arbeitspakete (Entwurf und Umsetzung der #utils.gls-short("library") sowie Entwurf und Umsetzung des Prototypen) in iterativer Art und Weise erarbeitet werden.
 
 #let tableWorkItems = table(
   columns: 2,
