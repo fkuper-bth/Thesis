@@ -188,4 +188,10 @@
     short: "Singleton",
     description: "Ein Software Entwurfsmuster, bei der von einer gegebenen Klasse nur genau eine Instanz existieren kann.",
   ),
+  (
+    key: "factory",
+    short: "Factory-Methode",
+    plural: "Factory-Methoden",
+    description: "Ein Software Entwurfsmuster, bei der die Konstruktion eines Objektes in eine externe Method ausgelagert wird.",
+  ),
 )
