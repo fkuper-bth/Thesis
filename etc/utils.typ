@@ -18,3 +18,12 @@
   top: if y < 2 { stroke } else { 0pt },
   bottom: stroke,
 )
+
+#let configureCodlyStyle() = {
+  codly-reset()
+  codly(
+    languages: codly-languages,
+    zebra-fill: none,
+    stroke: 1pt + colorScheme.background,
+  )
+}

@@ -177,4 +177,15 @@
     short: "Jetpack Compose",
     description: "Ein deklaratives UI Framework für Android, welches von Google entwickelt wird.",
   ),
+  (
+    key: "di",
+    short: "DI",
+    long: "Dependency Injection",
+    description: "Ein Software Entwurfsmuster, bei dem ein Objekt seine erforderlichen Abhängigkeiten aus einer externen Quelle bezieht, anstatt sie intern zu konstruieren.",
+  ),
+  (
+    key: "singleton",
+    short: "Singleton",
+    description: "Ein Software Entwurfsmuster, bei der von einer gegebenen Klasse nur genau eine Instanz existieren kann.",
+  ),
 )

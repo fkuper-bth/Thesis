@@ -306,4 +306,247 @@ Im nächsten Schritt kann ein Modul entwickelt werden, welches die Ausgabe des e
 
 === Implementierung eines Moduls zur Verarbeitung der Story-Objekte <implementierung-story-engine>
 
-// TODO: implementierung der story engine beschreiben
+Die Bibliothek zur Darstellung der interaktiven Geschichten muss diese natürlich auch auf logischer Ebene verarbeiten können. Dazu gehören sämtliche Funktionalitäten, die mit der Kontrolle der interaktiven Geschichte zu tun haben, wie:
+
+- das Laden einer Geschichte
+- das Abspielen und Ausführen einer Geschichts-Passage
+- das Protokollieren eines Spieldurchgangs
+
+Um diese Funktionalitäten unabhängig von den Aufgaben der Darstellung Entwickeln und Bereitstellen zu können, wurden diese in Form einer #utils.gls-short("cross_platform") Bibliothek realisiert, die später nicht nur von der Visual Novel Bibliothek konsumiert werden kann, sondern theoretisch auch anderen Projekten zur Verfügung gestellt werden kann.
+
+Hierfür wurde auf die Technologie #utils.gls-short("kmp") gesetzt, welche es ermöglicht, Kotlin Bibliotheken für eine Vielzahl an Plattformen zu erstellen. Diese ist zu unterscheiden zur #utils.gls-short("cmp") Technologie, welches ein #utils.gls-short("cross_platform") UI Framework basierend auf #utils.gls-short("kmp") ist. Mehr zu verschiedenen Technologien in diesem Bereich ist in @cross-platform-technologien ausgeführt.
+
+Im ersten Schritt der Implementierung dieses Modul galt es, die Geschichts-Daten, die das Story Format als JSON Objekt zur Verfügung stellt, zu serialisieren, damit diese im weiteren Programmablauf verwendet werden können.
+
+Zur Serialisierung der JSON Objekte wurde eine von Jetbrains entwickelte #utils.gls-short("kmp") Bibliothek verwendet @noauthor_kotlinkotlinxserialization_2025. Diese ermöglicht es durch Annotationen an den Modell-Definitionen JSON Objekte ohne großen Aufwand in Kotlin Objekte zu serialisieren.
+
+Die Definitionen verschiedener Modell Klassen, die ausgehend von den JSON Objekten, die das Story Format ausgibt, erstellt werden können, sind in @model-definitions zu sehen.
+
+Angefangen mit der Top-Level Klasse `Story`, die neben Meta-Informationen eine Menge an Passagen (@model-definitions:12) hat. Die Menge ist in diesem Fall als ```kotlin Map<String, StoryPassage>```, um später einen schnellen Zugriff auf entsprechende Passagen über deren Name zu gewährleisten.
+
+Die Passagen werden wiederum als `StoryPassage` definiert, welche ebenfalls verschiedene Meta-Informationen umfassen und eine Liste von `StoryPassageNovelEvent`. Diese werden später stets sequentiell verarbeitet, weshalb hier die Liste als Datenstruktur gewählt wurde.
+
+Zuletzt werden die Events definiert. Hier fungiert `StoryPassageNovelEvent` als Superklasse, von der jeweils die konkreten Event-Typen erben. Zusätzlich können hier mit Hilfe eines Class-Discriminator Feldes die konkreten Klassen automatisch konstruiert werden und somit von starker Typisierung Gebrauch gemacht werden.
+
+In @model-definitions:27 ist der Name des Feldes definiert, welches den Typ angibt, während in den konkreten Event-Typen über eine weitere Annotation der zugehörige Typ-Name angegeben wird (siehe @model-definitions:32 und @model-definitions:42).
+
+#utils.codly(
+  highlights: (
+    (line: 2, start: 3, end: 16, fill: utils.colorScheme.hhnOrange),
+  ),
+)
+#let novelEventJsonObject = ```javascript
+{
+  "type": "LINK",
+  "linkText": "Wie war es denn gemeint?",
+  "passageName": "Ageism Nachfrage Jung",
+  "original": "[[Wie war es denn gemeint?->Ageism Nachfrage Jung]]"
+}
+```
+#figure(
+  novelEventJsonObject,
+  caption: "Ein NovelEvent als JSON Objekt.",
+) <novel-event-json-object>
+
+In @novel-event-json-object sieht man beispielhaft wie ein Event vom Typ Link in JSON definiert ist. In Zeile 2 ist das Feld, welches hier den Typen angibt anhand dessen später die konkrete Klassen bestimmt werden kann, die konstruiert werden soll.
+
+#utils.codly(
+  skips: (
+    (4, 8),
+    (10, 3),
+    (11, 2),
+    (35, 72),
+  ),
+  highlights: (
+    (line: 12, start: 5, fill: utils.colorScheme.hhnOrange),
+    (line: 21, start: 5, end: 49, fill: utils.colorScheme.hhnOrange),
+    (line: 27, fill: utils.colorScheme.hhnOrange),
+    (line: 32, start: 5, fill: utils.colorScheme.hhnOrange),
+    (line: 42, start: 5, fill: utils.colorScheme.hhnOrange),
+  ),
+)
+#let modelDefinitions = ```kotlin
+@Serializable
+data class Story(
+    val uuid: String,
+    val passages: Map<String, StoryPassage>
+)
+
+@Serializable
+data class StoryPassage(
+    val id: String,
+    val novelEvents: List<StoryPassageNovelEvent>,
+)
+
+@Serializable
+@JsonClassDiscriminator("type")
+sealed class StoryPassageNovelEvent constructor(
+    val identifier: Uuid = Uuid.random()
+) {
+    @Serializable
+    @SerialName("CHARACTER_ACTION")
+    data class CharacterAction(
+        @SerialName("typeValue")
+        val characterName: String,
+        @SerialName("associatedValue")
+        val expression: String,
+        val text: String
+    ) : StoryPassageNovelEvent()
+
+    @Serializable
+    @SerialName("LINK")
+    data class Link(
+        val linkText: String? = null,
+        @SerialName("passageName")
+        val targetPassageName: String
+    ) : StoryPassageNovelEvent()
+}
+```
+#figure(
+  modelDefinitions,
+  caption: "Definition der Modell Klassen, die von JSON serialisiert und deserialisiert werden können.",
+) <model-definitions>
+
+Die Story Engine Bibliothek implementiert und stellt eine Schnittstelle bereit, um die Geschichten in JSON Repräsentation zu laden, um daraufhin mit diesen interagieren zu können. Dazu wird ein Interface namens `StoryImportService` definiert und eine Implementation dieses als #utils.gls("singleton") zur Verfügung gestellt.
+
+#utils.codly(
+  skips: (
+    (2, 2),
+    (20, 15),
+  ),
+)
+#let storyImportListing = ```kotlin
+internal class StoryImportServiceImpl : StoryImportService {
+    override fun importStory(storyJsonContent: String): StoryImportResult {
+        try {
+            val story = json.decodeFromString<Story>(storyJsonContent)
+            return StoryImportResult.Success(story)
+        } catch (e: SerializationException) {
+            return StoryImportResult.Failure(
+                jsonString = storyJsonContent,
+                reason = "Error parsing JSON: ${e.message}",
+                exception = e
+            )
+        } catch (e: Exception) {
+            return StoryImportResult.Failure(
+                jsonString = storyJsonContent,
+                reason = "An unexpected error occurred: ${e.message}",
+                exception = e
+            )
+        }
+    }
+}
+```
+#figure(
+  storyImportListing,
+  caption: [Die `StoryImportService` Implementation und die Funktion zum Import einer Geschichte.],
+) <story-import-listing>
+
+In @story-import-listing ist die Implementation des `StoryImportService` Interface zu sehen sowie die Funktion, die zum Import einer einzelnen Geschichte dient. Als einziger Parameter wird hier ein String erwartet, der die Geschichte als JSON-Objekt repräsentiert.
+
+Die Fehlerbehandlung erfolgt hier sowie in den meisten Fällen in den #utils.gls-short("kmp") und #utils.gls-short("cmp") Modulen dieser Arbeit in Form von sogenannten Result-Types. Bei dieser Konvention werden nicht etwas wie beispielsweise in der Java-Welt üblich Exception-Objekte erstellt und geworfen, sondern ein spezieller Rückgabe-Typ definiert, der sämtliche Informationen über Erfolg der aufgerufenen Operation beinhaltet.
+
+@story-import-result-type-listing zeigt, wie der Result-Type in diesem Fall definiert ist. Hier gibt es zwei mögliche Resultate: Erfolg oder Fehlschlag. Im Falle eines Erfolges wird die importierte Geschichte als Feld in der Klasse `StoryImportResult.Success` mitgegeben während bei einem Misserfolg Informationen mitgegeben werden, die dem Aufrufenden bei der Diagnose helfen könnten.
+
+Die Implementationslogik des Imports ist dadurch sehr einfach gehalten. Zunächst wird versucht, ein Story Objekt aus dem übergebenen String zu konstruieren (@story-import-listing:6). Falls dies aus irgendeinem Grund fehlschlägt, wird ein entsprechender Result-Type konstruiert und zurückgegeben (@story-import-listing:9 und @story-import-listing:15). Bei Erfolg wird ebenfalls ein Result-Type mit dem konstruierten Story Objekt zurückgegeben (@story-import-listing:7).
+
+#let storyImportResultTypeListing = ```kotlin
+sealed interface StoryImportResult {
+    data class Success(
+        val story: Story
+    ) : StoryImportResult
+
+    data class Failure(
+        val jsonString: String,
+        val reason: String,
+        val exception: Throwable? = null
+    ) : StoryImportResult
+}
+```
+#figure(
+  storyImportResultTypeListing,
+  caption: "Definition des Result-Type, welcher bei Import einer Geschichte zurückgegeben wird.",
+) <story-import-result-type-listing>
+
+Neben einem einfachen gibt es ebenfalls eine Schnittstelle zum Importieren mehrerer Geschichten. Die Definition dieser Funktion ist in @import-multiple-stories-listing zu sehen.
+
+#utils.codly(number-format: none, display-icon: false, display-name: false)
+#let importMultipleStoryListing = ```kotlin
+fun importStories(storyJsonContents: List<String>): StoryImportResults
+```
+#figure(
+  importMultipleStoryListing,
+  caption: "Definition der Funktion zum Importieren mehrerer Geschichten.",
+) <import-multiple-stories-listing>
+
+Nachdem die Geschichten, die gespielt werden sollen, erfolgreich importiert sind, kann nun mit diesen interagiert werden. Die zentrale Schnittstelle des Story Engine Moduls, ist über ein Interface namens `StoryEngine` definiert, welches in @story-engine-interface-listing zu sehen ist.
+
+Im Wesentlichen bietet dieses einerseits Zugang zu dem zuvor besprochenen `StoryImportService` Objekt (siehe @story-import-listing) und einer Funktion, um die Interaktion mit einer Geschichte zu starten (`startPlaying`, siehe @story-engine-interface-listing:4).
+
+Die Implementation der `StoryEngine` ist als Singleton realisiert, dessen Instanz über ein statisches Feld namens `instance` abgerufen werden kann (siehe @story-engine-interface-listing:9). Die Instanz wird beim ersten Aufruf einmalig konstruiert.
+
+Des Weiteren ist in @story-engine-interface-listing:12 zu erkennen, wie unter Nutzung des #utils.gls("di") Frameworks _Koin_ @noauthor_koin_nodate die sogenannte `KoinApplication` initialisiert wird und ein `sharedModule` konstruiert wird, welches sämtliche plattformunabhängige Klassendefinitionen und wie diese konstruiert werden sollen enthält (siehe @story-engine-interface-listing:14).
+
+#utils.codly(
+  skips: (
+    (7, 2),
+    (17, 6),
+  ),
+)
+#let storyEngineInterfaceListing = ```kotlin
+interface StoryEngine {
+    val importService: StoryImportService
+
+    fun startPlaying(story: Story): StoryPlayer
+
+    companion object {
+        val instance: StoryEngine by lazy(::getStoryEngine)
+
+        private fun getStoryEngine(): StoryEngine {
+            if (koinApplication == null) {
+                koinApplication = KoinApplication.init().apply {
+                    modules(sharedModule())
+                }
+            }
+            return koinApplication!!.koin.get()
+        }
+    }
+}
+```
+#figure(
+  storyEngineInterfaceListing,
+  caption: [Definition des Interface `StoryEngine`, welches den Einstiegspunkt in die Bibliothek darstellt.],
+) <story-engine-interface-listing>
+
+Durch Nutzung eines #utils.gls-short("di") Frameworks wie Koin ist es einfacher, #utils.gls-short("di") zu implementieren, da die Konstruktion der Objekte von diesem übernommen wird und im Quell-Code lediglich definiert werden muss, welche Abhängigkeiten die jeweilige Klasse hat und wie die einzelnen Objekte konstruiert werden können. Des Weiteren bietet es Komfort-Funktionen zur Erstellung von Beispielsweise Singleton Klassen oder #utils.glspl("factory") zum Konstruieren von Objekten.
+
+In @story-engine-module-listing ist die Definition der Funktion `sharedModule` zu sehen, welche definiert, wie sämtliche Komponenten der Bibliothek konstruiert werden können. Der Name `sharedModule` wurde gewählt, da alle hier niedergeschriebenen Definitionen für alle Zielplattformen der Bibliothek gelten sollen und es theoretisch in einem Cross-Platform Projekt, wie es diese Bibliothek ist, auch plattformspezifische Definitionen geben kann. In diesem Fall gibt es jedoch keine.
+
+Die Implementation der `sharedModule` Methode besteht aus verschiedenen Lambda-Ausdrücken (wie hier `single` oder `factory`), die deklarieren, wie die jeweilige Komponente konstruiert werden kann. Hier geschieht dies steht durch Aufrufen eines Konstruktors, welcher teilweise wiederum andere Abhängigkeiten deklariert. Diese können automatisch von Koin aufgelöst werden, sodass diese Objekte zur Laufzeit konstruiert werden.
+
+#utils.configureCodlyStyle()
+#let storyEngineModuleListing = ```kotlin
+internal fun sharedModule(): Module = module {
+    single<StoryEngine> {
+        StoryEngineImpl(get(), getKoin())
+    }
+    single<StoryRecordManager> {
+        StoryRecordManagerImpl()
+    }
+    factory<StoryImportService> {
+        StoryImportServiceImpl()
+    }
+    factory<StoryPlayer> { (story: Story) ->
+        StoryPlayerImpl(story, get())
+    }
+    factory<StoryPassagePlayer> { (passage: StoryPassage) ->
+        StoryPassagePlayerImpl(passage, get())
+    }
+}
+```
+#figure(
+  storyEngineModuleListing,
+  caption: [Definition des Moduls für die Komponenten der `StoryEngine` Bibliothek, die von sämtlichen Zielplattformen geteilt werden.],
+) <story-engine-module-listing>
+
+// TODO: StoryPlayer erklären (ausgehend von der startPlaying() Methode in der StoryEngine)
