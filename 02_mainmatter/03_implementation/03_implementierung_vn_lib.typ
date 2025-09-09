@@ -641,4 +641,296 @@ Damit ist die Implementierung des _StoryEngine_ Moduls mit ihren wichtigsten Kom
 
 In diesem Kapitel wird die Umsetzung des _VisualNovelEngine_ Moduls beschrieben, welches sich um die audio-visuelle Aufbereitung der Geschichten kümmert.
 
-// TODO: Kapitel ausarbeiten
+Wie in @system-overview beschrieben und in @thesis-container-diagram zu sehen nutzt dieses Modul das zuvor entwickelte und in @implementierung-story-engine beschriebene _StoryEngine_ Modul, um mit die interaktiven Geschichten zu laden und diese zu manipulieren und kümmert sich darum, diese audio-visuell Aufzubereiten.
+
+Das Modul basiert auf der Cross-Platform UI Technologie #utils.gls-short("cmp") und kann die #utils.gls-short("kmp") Bibliothek _StoryEngine_ somit einfach als Abhängigkeit im Gradle Build Skript deklarieren.
+
+In diesem Kapitel werden die wichtigsten Komponenten beschrieben, die im Rahmen dieses Moduls implementiert wurden, wobei davon ausgegangen wird, dass Bibliotheken und Technologien, die in @implementierung-story-engine beschrieben sind, bekannt sind.
+
+Um zunächst einen Überblick über die Nutzungsweise der Bibliothek zu geben, kann am besten die minimale Beispielanwendung betrachtet werden, die im Rahmen des Moduls erstellt wurden, um die Verwendung dieser zu demonstrieren. Zur besseren Übersicht wurde diese auf zwei separate Listings aufgeteilt.
+
+@vn-engine-demo-app-listing-part-one zeigt den ersten Teil der Demo Applikation. Hier wird zunächst eine Funktion deklariert, die eine Instanz von `KoinApplication` erstellt, welches eine Funktion aus dem #utils.gls-short("di") Framework _Koin_ ist, um eine Anwendung mit entsprechenden Koin-Modulen zu starten.
+
+#utils.codly(
+  highlights: (
+    (line: 5, start: 17, end: 29, fill: utils.colorScheme.hhnOrange),
+    (line: 7, start: 9, end: 30, fill: utils.colorScheme.hhnOrange),
+    (line: 13, start: 9, end: 30, fill: utils.colorScheme.hhnOrange),
+    (line: 20, start: 19, end: 46, fill: utils.colorScheme.hhnOrange),
+    (line: 24, start: 3, fill: utils.colorScheme.hhnOrange),
+  ),
+)
+#let vnEngineDemoAppListingPartOne = ```kotlin
+@Preview
+@Composable
+private fun ExampleConsumerApplication() {
+    KoinApplication(application = {
+        modules(exampleModule)
+    }) {
+        ExampleSceneComposable()
+    }
+}
+
+private val exampleModule = module {
+    single<VisualNovelEngine> {
+        VisualNovelEngine.init(
+            applicationScope = CoroutineScope(
+              SupervisorJob() + Dispatchers.Default
+            ),
+            config = Configuration()
+        )
+    }
+    viewModelOf(::ExampleScenePreviewViewModel)
+}
+
+private class ExampleScenePreviewViewModel(
+  val visualNovelEngine: VisualNovelEngine
+) : ViewModel()
+```
+#figure(
+  vnEngineDemoAppListingPartOne,
+  caption: [Minimale Demo Applikation, die das _VisualNovelEngine_ verwendet (Teil 1).],
+) <vn-engine-demo-app-listing-part-one>
+
+// TODO: listing teil 1 erklären
+In @vn-engine-demo-app-listing-part-one:5 wird das Beispiel-Modul übergeben, welches in @vn-engine-demo-app-listing-part-one:11 definiert ist und demonstriert, wie das _VisualNovelEngine_ konstruiert wird (siehe @vn-engine-demo-app-listing-part-one:13).
+
+In @vn-engine-demo-app-listing-part-one:7 wird ein _Composable_ erzeugt. Dies ist die Bezeichnung für eine UI-Komponente innerhalb des #utils.gls-short("cmp") Frameworks.
+
+Außerdem wird hier beispielhaft eine _ViewModel_ Komponente deklariert, die als Abhängigkeit eine Instanz von `VisualNovelEngine` erwartet (siehe @vn-engine-demo-app-listing-part-one:24). Dieses wird auch im Modul definiert, damit _Koin_ dieses konstruieren kann (@vn-engine-demo-app-listing-part-one:20).
+
+Das Beispiel folgt dem #utils.gls("mvvm") Architekturmuster, welches ein weit verarbeitetes Pattern zur Strukturierung von Anwendungssoftware ist.
+
+In @vn-engine-demo-app-listing-part-two wird die zuvor erwähnte _Composable_ Komponente deklariert, die letztendlich die Darstellung der Geschichte übernimmt. Für eine verbesserte Lesbarkeit wurden hier einige Teile ausgeklammert, welche jeweils  mit "`/* ... */`" kommentiert sind.
+
+#let vnEngineDemoAppListingPartTwo = ```kotlin
+@Composable
+private fun ExampleSceneComposable(
+    viewModel: ExampleScenePreviewViewModel = koinInject()
+) {
+    // Arrange required data for playing and showing visual novel
+    val storyPlayer = viewModel.visualNovelEngine.storyPlayer
+    val assets = listOf(/* ... */) // create assets...
+    val story = Story() // load story to play...
+
+    // Perform setup steps when loading composable
+    LaunchedEffect(Unit) {
+        // 1. - load assets
+        viewModel.visualNovelEngine.loadAssets(assets)
+        // 2. - load scene state via asset IDs
+        storyPlayer.loadVisualNovelSceneState(/* ... */)
+        // 3. - start story playback
+        storyPlayer.playStory(story.id)
+    }
+
+    // Construct composable from VisualNovelEngine library
+    VisualNovelStory(
+        storyPlayer,
+        onStoryEnded = {
+            println("Story ended.")
+        },
+        onPlaybackError = {
+            println("Playback error: $it")
+        },
+    )
+}
+```
+#figure(
+  vnEngineDemoAppListingPartTwo,
+  caption: [Minimale Demo Applikation, die das _VisualNovelEngine_ verwendet (Teil 2).],
+) <vn-engine-demo-app-listing-part-two>
+
+Hierzu werden zunächst drei Variablen angelegt:
+
+1. Die `StoryPlayer`-Instanz der _VisualNovelEngine_. Dieser kann zum Abspielen und Steuern der interaktiven Geschichten genutzt werden.
+2. Eine Liste von `Asset`-Objekten. Ein Asset ist hierbei alles, was zur audio-visuellen Aufbereitung der interaktiven Geschichten gehört (wie beispielsweise Bilder, Audio oder Animationen.).
+3. Die Geschichte, die hier beispielhaft abgespielt werden soll. Diese würde in einer echten Anwendung aus JSON-Objekten importiert werden (siehe @implementierung-story-engine).
+
+Dann wird in @vn-engine-demo-app-listing-part-two:11 mit der `LaunchedEffect()` Methode ein Block generiert, der einmalig asynchron zur Komposition ausgeführt wird. Hier werden Konfigurations-Schritte ausgeführt, wie das Laden der erstellten Assets, das Initialisieren des Status der Visual Novel sowie dem Start des Abspielens der Geschichte.
+
+Zum Schluss wird in @vn-engine-demo-app-listing-part-two:21 die _Composable_ Komponente `VisualNovelStory` aus dem _VisualNovelEngine_ Modul verwendet, um die Geschichte darzustellen. Diese erlaubt die Interaktion mit der Geschichte und bietet außerdem Schnittstellen, die bei bestimmten Ereignissen aufgerufen werden, wie zum Beispiel, wenn eine Geschichte ein Ende erreicht hat oder wenn ein Fehler beim Abspielen der Geschichte aufgetreten ist.
+
+Das in @vn-engine-demo-app-listing-part-one:3 deklarierte _Composable_ kann nun dank der Annotation `@Preview` in einer geeigneten Entwicklungsumgebung wie Android Studio oder IntelliJ ausgeführt werden, um eine interaktive Vorschau der Demo-Anwendung zu erhalten.
+
+#let vnEngineDemoAppImage = image(
+  "/resources/images/vnengine-demo-preview.png",
+  width: 60%,
+)
+#let fig = [
+  #figure(
+    vnEngineDemoAppImage,
+    caption: [Screenshot aus der Vorschau der Demo-Applikation, welche die Nutzung des _VisualNovelEngine_ Moduls demonstriert.],
+  ) <vn-engine-demo-app-figure>
+]
+#let body = [
+  @vn-engine-demo-app-figure zeigt einen Screenshot aus der interaktiven Vorschau der Demo-Anwendung.
+
+  Hier werden Assets gebraucht, um jeweils Vorder- und Hintergrund darzustellen, verschiedene Gegenstände zu Platzieren (wie die Pflanze im Hintergrund oder das Glas Wasser im Vordergrund), Charaktere darzustellen und diese zu Animieren.
+
+  Der hier dargestellte Charakter ist transparent aufgrund einer Animation, die eine Änderung der Transparenz beschreibt und darstellt.
+
+  Die Demo-Anwendung soll somit übersichtlich und kurz demonstrieren, wie das _VisualNovelEngine_ Modul in eine andere Anwendung integriert werden kann, um eine Visual Novel zu erstellen. Außerdem kann durch die Interaktive Vorschau auch mit der Anwendung interagiert werden und beispielsweise verschiedene Pfade in der Geschichte ausgewählt werden.
+]
+#utils.wrap-content(
+  fig,
+  body,
+  align: right,
+  column-gutter: 2em,
+)
+
+Nun da die Benutzung und Integration des _VisualNovelEngine_ Moduls in eine Anwendung etwas klarer sein sollte, werden im weiteren Verlauf einige der wichtigsten Komponenten dieses Moduls beleuchtet.
+
+Ähnlich wie beim _StoryEngine_ Modul gibt es auch hier eine Schnittstelle, die als Einstiegspunkt zu den Funktionalitäten des Moduls dient. Diese heißt in diesem Fall `VisualNovelEngine`.
+
+@vn-engine-interface-listing zeigt die öffentlich definierten Schnittstellen dieses Interface.
+
+Neben statischen Methoden zum konstruieren und zerstören der Engine (siehe @vn-engine-interface-listing:10 und @vn-engine-interface-listing:33) wird hier Zugang zu einer Instanz von `VisualNovelStoryPlayer` gewährt, welche es erlaubt, das Abspielen von Geschichten zu Steuern und den Status der Darstellung der Geschichten abzufragen.
+
+Zuletzt ist die `loadAssets()` (siehe @vn-engine-interface-listing:2) Methode zu erwähnen, welche die Übergebenen Assets Modul-intern bereitstellt, damit diese zur audio-visuellen Aufbereitung der Geschichten genutzt werden können.
+
+#utils.codly(
+  skips: (
+    (7, 3),
+    (11, 17),
+    (14, 5),
+    (15, 8),
+  ),
+)
+#let vnEngineInterfaceListing = ```kotlin
+interface VisualNovelEngine {
+    fun loadAssets(assets: List<Asset>)
+
+    val storyPlayer: VisualNovelStoryPlayer
+
+    companion object {
+        fun init(
+            applicationScope: CoroutineScope,
+            config: Configuration = Configuration()
+        ) : VisualNovelEngine {
+        }
+
+        fun dispose() {
+        }
+    }
+}
+```
+#figure(
+  vnEngineInterfaceListing,
+  caption: [Öffentliche Schnittstellen, welche im `VisualNovelEngine` Interface deklariert sind.],
+) <vn-engine-interface-listing>
+
+Das logische Herz des Moduls bildet `VisualNovelStoryPlayer`. Die Definition dieses Interface ist in @listing:vnStoryPlayer zu sehen. Primär bietet es Funktionen zum Steuern der interaktiven Geschichten, wie:
+
+- `playStory()`: Startet das Abspielen einer Geschichte.
+- `loadVisualNovelSceneState()`: Erlaubt es, den Status der visuellen Darstellung zu kontrollieren.
+- `chooseStoryPassage()`: Spielt eine Passage einer Geschichte ab.
+- `reset()`: Setzt den internen Status der `VisualNovelStoryPlayer` Instanz auf den initialen Status zurück.
+
+#let vnStoryPlayerInterfaceListing = ```kotlin
+interface VisualNovelStoryPlayer {
+    fun playStory(storyId: String)
+    fun loadVisualNovelSceneState(state: SceneRenderStateIds)
+    fun chooseStoryPassage(link: StoryPassageNovelEvent.Link)
+    fun reset()
+    val uiState: StateFlow<StoryRenderState>
+    val isBusy: StateFlow<Boolean>
+}
+```
+#figure(
+  vnStoryPlayerInterfaceListing,
+  caption: [Definition des `VisualNovelStoryPlayer` Interface.],
+) <listing:vnStoryPlayer>
+
+Neben den beschriebenen Funktionen existieren außerdem zwei `StateFlow` Felder, die jeweils einen internen Status der Instanz reflektieren:
+
+- `uiState`: Reflektiert den momentanen Status der Benutzeroberfläche, die die Geschichte darstellt.
+- `isBusy`: Ein boolescher Wert, welcher reflektiert, ob die Engine momentan beschäftigt ist, beispielsweise durch Abspielen einer Animation.
+
+Diese beiden Felder werden in der _Composable_ Komponente `VisualNovelStory` dazu verwendet, um je nach Status die korrekte Benutzeroberfläche anzuzeigen.
+
+@listing:vnStoryComposable zeigt einen Ausschnitt aus der Implementation dieser Komponente, anhand dessen die Rendering Logik deutlich wird.
+
+Zunächst werden einige Variablen angelegt, die, wenn geschrieben dazu führen, dass das Composable erneut gerendert wird (siehe @listing:vnStoryComposable:1 bis @listing:vnStoryComposable:3)
+
+Wenn sich beispielsweise der Wert hinter uiState ändert, wird das Composable mit den neuen Wert neu evaluiert. Innerhalb des `Box()`-Composable, welches als ein Container für mehrere Composables verstanden werden kann, wird `uiState` evaluiert und je nach Status entsprechende Werte gesetzt (siehe @listing:vnStoryComposable:6).
+
+Im Status `Rendering` wird zum Beispiel, der Status `loading` auf falsch gesetzt und die Szene, die dargestellt werden soll, ausgelesen.
+
+Dadurch wird wiederum eine erneute Komposition des `VisualNovelStory` Composable ausgeführt und die entsprechende Szene kann angezeigt werden. Hierzu wird ein weiteres Composable namens `VisualNovelScene` verwendet.
+
+Bei anderen Stati von `uiState` wie `Error` werden z.B. Fehlermeldungen angezeigt, um den Nutzer zu informieren, dass es einen Fehler gegeben hat. So können mit einfachen Mitteln komplexe Darstellungslogik umgesetzt werden und alle mögliche Stati in der Benutzeroberfläche berücksichtigt sowie entsprechend behandelt werden.
+
+#let visualNovelStoryComposableListing = ```kotlin
+val uiState by storyPlayer.uiState.collectAsState()
+val sceneToRender = remember { mutableStateOf<SceneRenderState?>(null) }
+val loading = remember { mutableStateOf(false) }
+
+Box(/* ... */) {
+    when (uiState) {
+        StoryRenderState.Initializing,
+        StoryRenderState.Loading -> { /* ... */ }
+
+        is StoryRenderState.Ended -> { /* ... */ }
+
+        is StoryRenderState.Rendering -> {
+            loading.value = false
+            sceneToRender.value = (uiState as StoryRenderState.Rendering).scene
+        }
+
+        is StoryRenderState.Error -> { /* ... */ }
+    }
+    sceneToRender.value?.let { sceneToRender ->
+        // show story scene using VisualNovelScene()...
+    }
+    errorMessage.value?.let {
+        // show error message...
+    }
+    if (loading.value) {
+        // show loading indicator...
+    }
+}
+```
+#figure(
+  visualNovelStoryComposableListing,
+  caption: [Ausschnitt aus `VisualNovelStory` _Composable_, welches die Rendering-Logik demonstriert.],
+) <listing:vnStoryComposable>
+
+Das bereits erwähnte `VisualNovelScene` Composable kümmert sich um die visuelle Darstellung einer Szene und ist in @listing:vnSceneComposable zu sehen.
+
+// TODO: vn scene composable erläutern
+
+#let visualNovelSceneComposableListing = ```kotlin
+@Composable
+internal fun VisualNovelScene(
+    scene: SceneRenderState,
+    onLinkClick: (StoryPassageNovelEvent.Link) -> Unit,
+    aspectRatio: Float,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = /* ... */) {
+        scene.background?.let {
+            BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                val size = IntSize(constraints.maxWidth, constraints.maxHeight)
+                VisualNovelSceneEnvironment(environment = it, containerSize = size)
+            }
+        }
+
+        VisualNovelSceneMainContent(
+            scene = scene,
+            onLinkClick = onLinkClick,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        scene.foreground?.let {
+            BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                val size = IntSize(constraints.maxWidth, constraints.maxHeight)
+                VisualNovelSceneEnvironment(environment = it, containerSize = size)
+            }
+        }
+    }
+}
+```
+#figure(
+  visualNovelSceneComposableListing,
+  caption: [Implementierung des `VisualNovelScene` Composable.],
+) <listing:vnSceneComposable>

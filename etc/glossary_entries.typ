@@ -194,4 +194,10 @@
     plural: "Factory-Methoden",
     description: "Ein Software Entwurfsmuster, bei der die Konstruktion eines Objektes in eine externe Method ausgelagert wird.",
   ),
+  (
+    key: "mvvm",
+    short: "MVVM",
+    long: "Model-View-ViewModel",
+    description: "Ein Architekturmuster, welches eine Anwendung in drei Arten von Komponenten unterteilt: das Model (Daten und Geschäftslogik), die View (Benutzeroberfläche) und das ViewModel (Vermittler zwischen Model und View).",
+  ),
 )
