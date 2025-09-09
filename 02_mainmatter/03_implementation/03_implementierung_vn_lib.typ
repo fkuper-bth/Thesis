@@ -487,6 +487,7 @@ Die Implementation der `StoryEngine` ist als Singleton realisiert, dessen Instan
 
 Des Weiteren ist in @story-engine-interface-listing:12 zu erkennen, wie unter Nutzung des #utils.gls("di") Frameworks _Koin_ @noauthor_koin_nodate die sogenannte `KoinApplication` initialisiert wird und ein `sharedModule` konstruiert wird, welches sämtliche plattformunabhängige Klassendefinitionen und wie diese konstruiert werden sollen enthält (siehe @story-engine-interface-listing:14).
 
+#utils.configureCodlyStyle()
 #utils.codly(
   skips: (
     (7, 2),
@@ -522,9 +523,8 @@ Durch Nutzung eines #utils.gls-short("di") Frameworks wie Koin ist es einfacher,
 
 In @story-engine-module-listing ist die Definition der Funktion `sharedModule` zu sehen, welche definiert, wie sämtliche Komponenten der Bibliothek konstruiert werden können. Der Name `sharedModule` wurde gewählt, da alle hier niedergeschriebenen Definitionen für alle Zielplattformen der Bibliothek gelten sollen und es theoretisch in einem Cross-Platform Projekt, wie es diese Bibliothek ist, auch plattformspezifische Definitionen geben kann. In diesem Fall gibt es jedoch keine.
 
-Die Implementation der `sharedModule` Methode besteht aus verschiedenen Lambda-Ausdrücken (wie hier `single` oder `factory`), die deklarieren, wie die jeweilige Komponente konstruiert werden kann. Hier geschieht dies steht durch Aufrufen eines Konstruktors, welcher teilweise wiederum andere Abhängigkeiten deklariert. Diese können automatisch von Koin aufgelöst werden, sodass diese Objekte zur Laufzeit konstruiert werden.
+Die Implementation der `sharedModule` Methode besteht aus verschiedenen Lambda-Ausdrücken (wie hier `single` in @story-engine-module-listing:2 oder `factory` in @story-engine-module-listing:8), die deklarieren, wie die jeweilige Komponente konstruiert werden kann. Hier geschieht dies steht durch Aufrufen eines Konstruktors, welcher teilweise wiederum andere Abhängigkeiten deklariert. Diese können automatisch von Koin aufgelöst werden, sodass diese Objekte zur Laufzeit konstruiert werden.
 
-#utils.configureCodlyStyle()
 #let storyEngineModuleListing = ```kotlin
 internal fun sharedModule(): Module = module {
     single<StoryEngine> {
@@ -550,3 +550,95 @@ internal fun sharedModule(): Module = module {
 ) <story-engine-module-listing>
 
 // TODO: StoryPlayer erklären (ausgehend von der startPlaying() Methode in der StoryEngine)
+
+Der Einstiegspunkt zur Interaktion mit den importierten interaktiven Geschichten bietet die `startPlaying` Methode der `StoryEngine` Schnittstelle (siehe @story-engine-interface-listing:4). Diese konstruiert ein Objekt vom Typ `StoryPlayer` und gibt dieses als Ergebnis der Funktion zurück.
+
+#let storyPlayerInterfaceListing = ```kotlin
+interface StoryPlayer {
+    val story: Story
+    fun playPassage(link: StoryPassageNovelEvent.Link? = null)
+    fun playPassage(passageName: String)
+    val currentPlayResult: StateFlow<StoryPassagePlayResult?>
+}
+```
+#figure(
+  storyPlayerInterfaceListing,
+  caption: [Definition des Interface `StoryPlayer`.],
+) <story-player-interface-listing>
+
+@story-player-interface-listing zeigt die Definition des `StoryPlayer` Interface. Dieses besteht aus zwei Funktionen, die zur Kontrolle des Spielflusses dienen (`playPassage`), die sich lediglich durch die Art der Parameter unterscheiden, und zwei Feldern.
+
+So kann beispielsweise eine interaktive Geschichte initial über die in @story-player-interface-listing:3 definierte Funktion mit dem Standard Parameter-Wert `null` über ihren in der Datenstruktur definierten Start-Passage gestartet werden. Darauf folgend können bestimmte Passagen über deren Name oder ein `Link` Objekt abgespielt werden. Mit Hilfe des Namens einer Passage können diese auch beliebig abgespielt werden, ohne dass ein `Link` Objekt erfordert wird (@story-player-interface-listing:4).
+
+Das Feld `story` gibt das `Story` Objekt zurück, welches mit dem `StoryPlayer` assoziiert ist und `currentPlayResult` ist ein Objekt vom Typ `StateFlow`, welches den aktuellen Status der interaktiven Geschichte widerspiegelt.
+
+`StateFlow` ist ein Typ, der Teil der `kotlinx.coroutines` Bibliothek ist. Diese wird von JetBrains selbst entwickelt und veröffentlicht wird und verschiedene Lösungen für asynchrone Operationen bereitstellt. `StateFlow` repräsentiert dabei einen Status, der von interessierten Parteien beobachtet werden kann und unabhängig von diesen existiert @jetbrains_stateflow_nodate.
+
+Hier wird dieser Mechanismus dazu genutzt, den momentanen Stand der interaktiven Geschichte mit dem Typen `StoryPassagePlayResult?` zu repräsentieren. Der Wert `null` repräsentiert hierbei, dass noch keine Passage abgespielt wurde.
+
+Nach Abspielen einer Passage nimmt `currentPlayResult` einen Wert vom Typ `StoryPassagePlayResult` an, dessen Definition in @story-passage-play-result-listing zu sehen ist.
+
+#let storyPassagePlayResultListing = ```kotlin
+sealed interface StoryPassagePlayResult {
+    data class DataReady(
+        val passageEvents: List<StoryPassageNovelEvent>,
+        val storyPlaythroughRecord: StoryPlaythroughRecord
+    ) : StoryPassagePlayResult
+
+    data class Error(
+      val type: StoryPassagePlayErrorType,
+      val message: String
+    ) : StoryPassagePlayResult
+}
+```
+#figure(
+  storyPassagePlayResultListing,
+  caption: [Definition des Interface `StoryPassagePlayResult`],
+) <story-passage-play-result-listing>
+
+Bei einem Abspielfehler, da beispielsweise keine Passage mit dem übergebenen Namen existiert, wird ein Fehler-Objekt konstruiert, welches zusätzlich Informationen zum Fehler enthält. Bei erfolgreicher Wiedergabe einer Passage wird das `DataReady` Objekt konstruiert, welches wiederum eine Liste der Events beinhaltet, welche in der Passage enthalten sind sowie ein Objekt vom Typ `StoryPlaythroughRecord`. Dieses repräsentiert den bisherigen Spielverlauf, sodass zu jedem Zeitpunkt der gesamte Geschichtsverlauf bekannt ist.
+
+Zum Verarbeiten einer einzelnen Passage ist mit dem `StoryPassagePlayer` eine weitere, Bibliotheks-interne, Schnittstelle vorhanden, welche lediglich Events innerhalb einer Passage verarbeiten kann.
+
+Außerdem kümmert sich die interne Schnittstelle `StoryRecordManager` darum, den aktuellen Geschichtsverlauf zu speichern und in einem bestimmten Datenformat ausgeben zu können.
+
+Zur automatisierten Validierung und Sicherstellung der hier beschriebenen Funktionalitäten der _StoryEngine_ wurden während der Entwicklung der einzelnen Komponenten jeweils Unit Tests mit verschiedenen Testfällen angelegt, die jeweils verschiedene Eingaben und Abläufe an die zu testenden Schnittstellen liefern und daraufhin die Ausgaben prüfen.
+
+@import-service-unit-test-listing zeigt beispielhaft einen Unit Test mit einer relativ komplexen Eingabe. Die Tests folgen stets dem etablierten Muster zur Strukturierung von Unit Tests:
+
+1. _Arrange_: Aufsetzen der Test-Bedingungen wie z.B. Anlegen der Eingabedaten.
+2. _Act_: Ausführen der zu testenden Methode.
+3. _Assert_: Prüfen des Ergebnisses oder Zustand des zu testenden Objekte nach Ausführen der Methode.
+
+#let importServiceUnitTestListing = ```kotlin
+@Test
+fun `importStories with mixed valid and invalid json strings`() {
+    // Arrange
+    val invalidJsonString = "invalidJsonString"
+    val validJsonString = validStoryJsonContentList
+    val storyJsonStrings = validJsonString.plus(invalidJsonString)
+
+    // Act
+    val result = underTest.importStories(storyJsonStrings)
+
+    // Assert
+    assertNotNull(result)
+    assertTrue(result.hasFailures)
+    assertEquals(invalidJsonString, result.failedImportInfos.first().jsonString)
+    assertEquals(validJsonString.size, result.importedStories.size)
+}
+```
+#figure(
+  importServiceUnitTestListing,
+  caption: [Ein Unit Test zum Prüfen des `StoryImportService` Interface.],
+) <import-service-unit-test-listing>
+
+Beim hier gezeigten wird die `importStories` Methode des `StoryImportService` mit Eingabe-Daten geprüft, die teilweise valide und teilweise invalide sind. Dazu werden neben validen Testdaten, die zur zur besseren Wiederverwendbarkeit separat angelegt sind, ein invalider Testdatensatz angelegt. Diese werden der Methode als Parameter übergeben und das Ergebnis wird mittels verschiedener `assert` Statements geprüft. Diesem beschriebenen Vorgehen folgen ebenso Tests anderer Schnittstellen.
+
+Damit ist die Implementierung des _StoryEngine_ Moduls mit ihren wichtigsten Komponenten beschrieben und im nächsten Schritt kann zur Implementierung des _VisualNovelEngine_ Moduls übergegangen werden, welches dieses Modul um die audio-visuelle Darstellung der Geschichten erweitert.
+
+=== Implementierung des _VisualNovelEngine_ Moduls <implementierung-visual-novel-engine>
+
+In diesem Kapitel wird die Umsetzung des _VisualNovelEngine_ Moduls beschrieben, welches sich um die audio-visuelle Aufbereitung der Geschichten kümmert.
+
+// TODO: Kapitel ausarbeiten
