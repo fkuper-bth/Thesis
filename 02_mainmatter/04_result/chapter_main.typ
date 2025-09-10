@@ -2,4 +2,4 @@
 
 = Ergebnis <ergebnis>
 
-#utils.todo([Kapitel schreiben!])
+#utils.todo([Kapitel Ergebnis schreiben!])

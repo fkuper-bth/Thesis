@@ -701,7 +701,7 @@ Außerdem wird hier beispielhaft eine _ViewModel_ Komponente deklariert, die als
 
 Das Beispiel folgt dem #utils.gls("mvvm") Architekturmuster, welches ein weit verarbeitetes Pattern zur Strukturierung von Anwendungssoftware ist.
 
-In @vn-engine-demo-app-listing-part-two wird die zuvor erwähnte _Composable_ Komponente deklariert, die letztendlich die Darstellung der Geschichte übernimmt. Für eine verbesserte Lesbarkeit wurden hier einige Teile ausgeklammert, welche jeweils  mit "`/* ... */`" kommentiert sind.
+In @vn-engine-demo-app-listing-part-two wird die zuvor erwähnte _Composable_ Komponente deklariert, die letztendlich die Darstellung der Geschichte übernimmt. Für eine verbesserte Lesbarkeit wurden hier einige Teile ausgeklammert, welche jeweils  mit `/* ... */` kommentiert sind.
 
 #let vnEngineDemoAppListingPartTwo = ```kotlin
 @Composable

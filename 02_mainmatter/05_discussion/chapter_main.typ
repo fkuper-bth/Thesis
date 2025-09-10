@@ -2,4 +2,4 @@
 
 = Diskussion <diskussion>
 
-#utils.todo([Kapitel schreiben!])
+#utils.todo([Kapitel Diskussion schreiben!])
