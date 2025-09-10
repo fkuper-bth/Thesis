@@ -858,7 +858,7 @@ Im Status `Rendering` wird zum Beispiel, der Status `loading` auf falsch gesetzt
 
 Dadurch wird wiederum eine erneute Komposition des `VisualNovelStory` Composable ausgeführt und die entsprechende Szene kann angezeigt werden. Hierzu wird ein weiteres Composable namens `VisualNovelScene` verwendet.
 
-Bei anderen Stati von `uiState` wie `Error` werden z.B. Fehlermeldungen angezeigt, um den Nutzer zu informieren, dass es einen Fehler gegeben hat. So können mit einfachen Mitteln komplexe Darstellungslogik umgesetzt werden und alle mögliche Stati in der Benutzeroberfläche berücksichtigt sowie entsprechend behandelt werden.
+Bei anderen Status von `uiState` wie `Error` werden z.B. Fehlermeldungen angezeigt, um den Nutzer zu informieren, dass es einen Fehler gegeben hat. So können mit einfachen Mitteln komplexe Darstellungslogik umgesetzt werden und alle mögliche Status in der Benutzeroberfläche berücksichtigt sowie entsprechend behandelt werden.
 
 #let visualNovelStoryComposableListing = ```kotlin
 val uiState by storyPlayer.uiState.collectAsState()
