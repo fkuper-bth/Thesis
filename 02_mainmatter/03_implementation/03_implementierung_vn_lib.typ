@@ -335,7 +335,7 @@ In @model-definitions:27 ist der Name des Feldes definiert, welches den Typ angi
     (line: 2, start: 3, end: 16, fill: utils.colorScheme.hhnOrange),
   ),
 )
-#let novelEventJsonObject = ```javascript
+#let novelEventJsonObject = ```json
 {
   "type": "LINK",
   "linkText": "Wie war es denn gemeint?",
