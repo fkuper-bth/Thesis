@@ -301,7 +301,7 @@ In @unity-mecanim-overview anhand eines Beispiels zu sehen, wie die verschiedene
 
 Ein solches System ermöglicht es, komplexe Animationen zu erstellen und diese zu steuern. In #utils.gls-short("kite2") wird dieses System ebenfalls verwendet, wenn auch sich hier die Animationen auf #utils.gls-plural("sprite") beschränken. Folglich bewegen sich diese Animationen im zweidimensionalem Raum, was die Komplexität der Animationen im Vergleich zu dreidimensionalen Animationen reduziert.
 
-In Anbetracht an den für diese Arbeit angesetzten Zeitrahmen (siehe @planung), wird der Fokus darauf, gesetzt, grundlegende Animationen zu unterstützen und ein System zu schaffen, welches erweiterbar ist und in Zukunft auch komplexere Animationen unterstützen kann. Mehr zu diesem Thema ist in #utils.todo("Abschnitt Implementation Animationssystem referenzieren.") beschrieben.
+In Anbetracht an den für diese Arbeit angesetzten Zeitrahmen (siehe @planung), wird der Fokus darauf, gesetzt, grundlegende Animationen zu unterstützen und ein System zu schaffen, welches erweiterbar ist und in Zukunft auch komplexere Animationen unterstützen kann. Mehr zu diesem Thema ist in @implementierung-animation-system beschrieben.
 
 Die Animationen der Charaktere spielen hierbei in #utils.gls-plural("visual_novel") eine zentrale Rolle, da sie dazu beitragen, die Emotionen und Reaktionen der Charaktere auf die Entscheidungen der Spieler*innen darzustellen.
 

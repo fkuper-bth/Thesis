@@ -895,10 +895,24 @@ Box(/* ... */) {
   caption: [Ausschnitt aus `VisualNovelStory` _Composable_, welches die Rendering-Logik demonstriert.],
 ) <listing:vnStoryComposable>
 
-Das bereits erwähnte `VisualNovelScene` Composable kümmert sich um die visuelle Darstellung einer Szene und ist in @listing:vnSceneComposable zu sehen.
+Das bereits erwähnte `VisualNovelScene` Composable kümmert sich um die visuelle Darstellung einer Szene und ist in @listing:vnSceneComposable zu sehen. Der aktuelle Status der Darstellung einer Szene wird diesem als ein Objekt des Typs `SceneRenderState` übergeben (siehe @listing:sceneRenderState). Die Darstellung setzt sich hier aus drei möglichen Ebenen zusammen:
 
-// TODO: vn scene composable erläutern
+- _Hintergrund_: Wird mittels dem Composable `VisualNovelSceneEnvironment` dargestellt, falls vorhanden (siehe @listing:vnSceneComposable:9 und @listing:vnSceneComposable:12).
+- _Mittelgrund_: Wird mittels dem Composable `VisualNovelMainContent` dargestellt (siehe @listing:vnSceneComposable:16).
+- _Vordergrund_: Wird mittels dem Composable `VisualNovelSceneEnvironment` dargestellt, falls vorhanden (siehe @listing:vnSceneComposable:22 und @listing:vnSceneComposable:25).
 
+Diese drei Ebenen sind einfach in einem `Box()` Composable eingebettet, welches die in seinem Block definierten Composables übereinander darstellt. Somit kann hiermit eine Szene aus drei Ebenen zusammengesetzt und dargestellt werden.
+
+#utils.codly(
+  highlights: (
+    (line: 3, start: 5, end: 27, fill: utils.colorScheme.hhnOrange),
+    (line: 9, start: 9, end: 29, fill: utils.colorScheme.hhnOrange),
+    (line: 12, start: 17, end: 43, fill: utils.colorScheme.hhnOrange),
+    (line: 16, start: 9, end: 35, fill: utils.colorScheme.hhnOrange),
+    (line: 25, start: 17, end: 43, fill: utils.colorScheme.hhnOrange),
+    (line: 22, start: 9, end: 29, fill: utils.colorScheme.hhnOrange),
+  ),
+)
 #let visualNovelSceneComposableListing = ```kotlin
 @Composable
 internal fun VisualNovelScene(
@@ -934,3 +948,206 @@ internal fun VisualNovelScene(
   visualNovelSceneComposableListing,
   caption: [Implementierung des `VisualNovelScene` Composable.],
 ) <listing:vnSceneComposable>
+
+#let sceneRenderStateListing = ```kotlin
+data class SceneRenderState(
+    val background: Sprite.Environment? = null,
+    val foreground: Sprite.Environment? = null,
+    val characters: List<Sprite.Character> = emptyList(),
+    val activeCharacter: Sprite.Character? = null,
+    val textBoxes: List<Text> = emptyList()
+)
+```
+#figure(
+  sceneRenderStateListing,
+  caption: [Definition des Typs `SceneRenderState`, welcher alle Informationen zur Darstellung einer Szene enthält.],
+) <listing:sceneRenderState>
+
+Während in den Hinter- und Vordergrund Ebenen lediglich verschiedene Darstellungselemente platziert werden können, sind in der Mittelgrund-Ebene neben den Charakteren der Geschichte auch die Text-Elemente angesiedelt, die einerseits die Geschichte erzählen und andererseits auch das Haupt-Element zur Interaktion mit der Geschichte darstellen.
+
+Im Wesentlichen wird hierfür im `VisualNovelSceneMainContent` Composable einerseits die aktuellen Text-Elemente dargestellt und animiert, sowie der aktiv sprechende Charakter, welcher ebenfalls animiert werden kann.
+
+Da das Animations-System einen wesentlichen Anteil der Entwicklungszeit dieses Moduls beansprucht hat und einige Herausforderungen mit sich gebracht hat, wird dessen Umsetzung in @implementierung-animation-system näher erläutert.
+
+==== Umsetzung des Animation-Systems <implementierung-animation-system>
+
+Um die Umsetzung des Animation-Systems der _VisualNovelEngine_ näher zu beleuchten ist es zunächst wichtig, die Klassenhierarchie der Assets zu verstehen. Diese ist in @figure:vnEngineModelClassDiagram dargestellt.
+
+#let vnEngineModelClassDiagram = image("/resources/images/diagrams/vn-engine-model-class-diagram.png")
+#figure(
+  vnEngineModelClassDiagram,
+  caption: [Klassenhierarchie des Typs `Asset` im Modul _VisualNovelEngine_.],
+) <figure:vnEngineModelClassDiagram>
+
+`Asset` selbst ist ein einfaches Interface, welches lediglich eine ID vorschreibt, welche unter allen existierenden Assets einzigartig sein muss. Davon ausgehend gibt wiederum andere Typen von Assets wie `Animation`, `Sprite`, `TextAsset` und `StoryAsset`. Die Namen `TextAsset` und `StoryAsset` wurden lediglich für dieses Diagramm so gewählt um eine Verwechselung zu vermeiden.
+
+Interessant ist hier die das Interface `Animation`, welches eine Reihe von Eigenschaften vorschreibt, welche jede Art von Animation gemein hat. Die konkreten Animations-Typen die hier definiert sind, lauten:
+
+- `Text`: Beschreibt, wie ein Text-Element animiert werden soll.
+- `SpriteSheet`: Beschreibt eine Animation, die aus einer Reihe von Sprites besteht.
+- `SpriteTransition`: Beschreibt eine Animation, die einen Sprite durch einen anderen ersetzt.
+
+Sämtliche werden von einem Modul-internen Dienst gespeichert und verwaltet, der hier als eine Art In-Memory Datenbank agiert, die sämtliche Assets beinhaltet, die zur Darstellung der aktuellen Geschichte genutzt werden können und somit für die Engine die #utils.gls-short("ssot") für sämtliche Assets bildet.
+
+Die Definition dieses Dienstes `AssetStore` ist in @listing:assetStore abgebildet. Neben verschiedenen Methoden zum Hinzufügen, Ändern oder Löschen von Assets ist hier vor allem das `assets` Feld interessant (siehe @listing:assetStore:2).
+
+Dieses stellt über einen `StateFlow` einen Zugriff auf die Assets bereit, die momentan zur Verfügung stehen und stellt sicher, dass sämtliche Konsumenten dieses Flows immer die aktuellste Version der Daten einsehen können.
+
+#utils.codly(
+  highlights: (
+    (line: 2, start: 5, fill: utils.colorScheme.hhnOrange),
+  ),
+)
+#let assetStoreListing = ```kotlin
+internal interface AssetStore {
+    val assets: StateFlow<Map<String, Asset>>
+    fun addOrUpdateAsset(asset: Asset)
+    fun addOrUpdateAsset(assetId: String, asset: Asset)
+    fun addOrUpdateAssets(assets: List<Asset>) = assets.forEach(::addOrUpdateAsset)
+    fun removeAsset(assetId: String)
+}
+```
+#figure(assetStoreListing, caption: [Definition des `AssetStore` Interface.]) <listing:assetStore>
+
+Während also im `AssetStore` sämtliche Assets zu finden sind, wozu auch alle Animationen gehören, die abgespielt werden können, muss auch noch die Aufgabe übernommen werden, Animationen starten, stoppen und verwalten zu können. Zu diesem Zwecke existiert ein separater Dienst, der Schnittstellen für genau diese Funktionen zur Verfügung stellt.
+
+In @listing:animationService ist die Definition des Interface `AnimationService` zu sehen, welches die Schnittstellen des Dienstes beschreibt.
+
+Die Methode `playAnimationBatch()` erlaubt es, eine oder mehrere Animationen zu starten. Sobald alle Animationen verarbeitet sind, wird eine Callback-Funktion aufgerufen, die der aufrufenden Partei erlaubt, eventuell nötige Status Updates nach Abspielen der Animationen zu tätigen. Die Definition dieser Callback-Funktion ist in @listing:animationService:11 zu sehen.
+
+Über `notifyAnimationComplete()` kann dem Dienst signalisiert werden, dass eine Animation fertig abgespielt hat, sodass dieser seinen internen Status aktualisieren kann. Diese Methode wird beispielsweise von Composables verwendet, wenn sie ihre Animation fertig abgespielt haben oder diese zum Beispiel über dem Timeout-Limit hinaus gelaufen ist.
+
+Die Methode `clearAllAnimations()` bricht sämtliche aktiven Animationen ab.
+
+Über das Feld `activeAnimations` können interessierte Parteien immer alle aktuell aktiven Animationen beobachten. Dies wird unter anderem dazu benötigt, in den eigentlichen Composables die Animationen abzuspielen.
+
+#let animationServiceListing = ```kotlin
+internal interface NovelAnimationService {
+    val activeAnimations: StateFlow<List<Animation>>
+    fun playAnimationBatch(
+        animations: List<Animation>,
+        onAllAnimationsComplete: AnimationBatchCompletionHandler
+    )
+    fun notifyAnimationComplete(animation: Animation)
+    fun clearAllAnimations()
+}
+
+internal typealias AnimationBatchCompletionHandler = (
+  playedAnimations: List<Animation>,
+  timedOut: Boolean
+) -> Unit
+```
+#figure(
+  animationServiceListing,
+  caption: [Definition des Dienstes zum Verwalten von Animationen `AnimationService`.],
+) <listing:animationService>
+
+Die Animationen werden beim Verarbeiten der einzelnen Novel Events durch den `VisualNovelStoryPlayer` getriggert.
+
+In @listing:vnStoryPlayerEventProcessing ist ein Ausschnitt aus der Methode zu sehen, die in der Implementation von `VisualNovelStoryPlayer` die einzelnen Novel Events verarbeitet, die jeweils bei einer Passage einer Geschichte auftreten können.
+
+Hier ist lediglich ein Fall dargestellt: die Verarbeitung von Events des Typen `InformationalText`. Diese repräsentieren einen informativen Text, der beispielsweise genutzt werden kann, um mehr Kontext über eine Geschichte zu geben.
+
+In @listing:vnStoryPlayerEventProcessing:9 ist zu sehen, wie ein Animation-Batch über den Dienst gestartet wird. Hierzu wird als Liste der abzuspielenden Animationen in diesem Fall lediglich das `animationProps` Feld vom `Text.Info` Objekt übergeben, welches die Animations-Parameter beinhaltet (siehe @listing:vnStoryPlayerEventProcessing:10).
+
+Nach Vervollständigung der Animationen wird eine Methode aufgerufen, die, falls nötig Status Updates nach beenden der Animationen ausführen kann (siehe @listing:vnStoryPlayerEventProcessing:11).
+
+Erst wenn alle Animationen fertig verarbeitet sind, kann das nächste Novel Event behandelt werden. Dies geschieht deshalb auch in der angesprochenen Methode, indem einfach der Index hochgezählt wird und `processNextEvent()` erneut aufgerufen wird.
+
+#utils.codly(
+  highlights: (
+    (line: 9, start: 13, end: 47, fill: utils.colorScheme.hhnOrange),
+    (line: 10, start: 37, end: 59, fill: utils.colorScheme.hhnOrange),
+    (line: 11, start: 45, fill: utils.colorScheme.hhnOrange),
+  ),
+)
+#let vnStoryPlayerEventProcessingListing = ```kotlin
+private fun processNextEvent() {
+    // ...
+    val currentEvent = currentPassageEvents[currentPassageEventIndex]
+    when (currentEvent) {
+        is StoryPassageNovelEvent.InformationalText -> {
+            _isBusy.value = true
+            val infoText = currentEvent.toText() as Text.Info
+            assetStore.addOrUpdateAsset(infoText)
+            animationService.playAnimationBatch(
+                animations = listOf(infoText.animationProps),
+                onAllAnimationsComplete = ::onAnimationBatchCompleted
+            )
+            storyRenderController.setScene(
+                sceneIds.value.copy(
+                    textBoxIds = sceneIds.value.textBoxIds + infoText.id
+                )
+            )
+        }
+        // process other event types here...
+    }
+    // ...
+}
+```
+#figure(
+  vnStoryPlayerEventProcessingListing,
+  caption: [Ausschnitt aus der Methode zur Verarbeitung von Novel Events in der Implementation von `VisualNovelStoryPlayer`.],
+) <listing:vnStoryPlayerEventProcessing>
+
+So werden die Animationen also auf der Daten-Ebene verwaltet. Nun fehlt noch die eigentliche Umsetzung der jeweiligen Animationen.
+
+Aufgrund von zeitlichen Beschränkungen, die im Rahmen dieser Thesis existieren, wurde sich zunächst auf die Umsetzung einfacher Animations-Typen beschränkt. Dabei ist das implementierte System jedoch erweiterbar und flexibel gestaltet, sodass verschiedene Arten von Animationen wie beispielsweise animierte Sprite Sheets oder animierte GIFs unterstützt werden können.
+
+So kann beispielsweise das in @figure:vnEngineModelClassDiagram beschriebene Klassen-Modell um neue Animations-Typen erweitert werden, die dann in einem Composable entsprechend umgesetzt werden müssten. Das Abrufen und Verwalten der Animationen durch den `AnimationService` würde gleich bleiben.
+
+Implementiert wurden in dieser Arbeit Text Animationen und Sprite-Transition Animationen, welche einen Übergang von einem Sprite zu einem anderen animieren können. In @listing:animatableTextComposable ist die Implementierung einer animierbaren Text Komponente zu sehen.
+
+Dieser werden als Parameter übergeben: das Text-Asset, die Instanz des Animations-Dienstes und ein Composable, mit welchem der Text dargestellt werden soll. Dies erhöht die Wiederverwendbarkeit, da verschiedene Arten von Text-Assets, wie z.B. Info oder Player Text, unterschiedlich dargestellt können werden sollen.
+
+#let animatableTextComposableListing = ```kotlin
+@Composable
+private fun AnimatableTextComposable(
+  textAsset: Text,
+  animService: NovelAnimationService = koinInject(),
+  textComposable: @Composable (displayedText: String) -> Unit,
+) {
+  val activeAnimations by animService.activeAnimations.collectAsState()
+  val isCurrentlyAnimatingThisEvent = activeAnimations.any { animation ->
+    animation.id == textAsset.animationProps.id
+  }
+  if (isCurrentlyAnimatingThisEvent) {
+    var displayedText by remember(textAsset.value, textAsset.animationProps.id) {
+      mutableStateOf("")
+    }
+    LaunchedEffect(textAsset.value, textAsset.animationProps.id) {
+      displayedText = ""
+      if (textAsset.value.isNotEmpty()) {
+        textAsset.value.forEach { char ->
+          displayedText += char
+          delay(textAsset.animationProps.durationMillis.toLong())
+        }
+      }
+      try {
+        animService.notifyAnimationComplete(textAsset.animationProps)
+      } catch (e: IllegalArgumentException) {
+        println("Error trying to notify animation complete: ${e.message}")
+      }
+    }
+    textComposable(displayedText)
+  } else {
+    textComposable(textAsset.value)
+  }
+}
+```
+#figure(
+  animatableTextComposableListing,
+  caption: [Implementierung einer animierbaren Text Komponente.],
+) <listing:animatableTextComposable>
+
+Über den `AnimationService` kann bestimmt werden, ob eine aktive Animation existiert, die das Composable betrifft (siehe @listing:animatableTextComposable:8).
+
+Falls nicht, wird lediglich statischer Text angezeigt (siehe @listing:animatableTextComposable:31).
+
+Falls eine aktive Animation existiert, die das Composable betrifft, wird in diesem Fall der Text dieser Komponente Buchstabe für Buchstabe mit einer in der Animation definierten Verzögerung angezeigt.
+
+Sobald alle Buchstaben angezeigt sind, wird der `AnimationService` benachrichtigt, dass die Animation fertig abgespielt wurde, sodass dieser diese als fertig abgespielt markieren kann. Wenn keine anderen aktiven Animationen mehr existieren, teilt der Dienst dies darauf hin mit, und die nächsten Novel Events können verarbeitet werden.
+
+Das Composable, welches die Sprite-Transition Animation implementiert, `AnimatableVisualNovelSprite`, verfolgt strukturell einen sehr ähnlichen Ansatz, welcher ebenfalls in Zukunft angewandt werden kann, um andere animierbare Komponenten zu implementieren und somit eine größere Bandbreite an Animationen zu unterstützen.
+
+Mit dem implementierten Animations-System ist das _VisualNovelEngine_ Modul bereit, für den Prototypen verwendet zu werden, um die für KITE II geschriebenen interaktiven Geschichten spielbar zu machen und darzustellen. Die Implementierung des Prototypen ist in @implementierung-prototyp beschrieben.

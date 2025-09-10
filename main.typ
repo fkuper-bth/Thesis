@@ -12,6 +12,12 @@
   align: left,
   inset: 8pt,
 )
+#show raw: value => box(
+  outset: 2pt,
+  radius: 2pt,
+  fill: utils.colorScheme.background,
+  text(fill: utils.colorScheme.hhnBlue, value),
+)
 #show heading: value => [
   #set text(weight: "regular")
   #block(smallcaps(value))
