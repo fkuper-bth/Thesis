@@ -7,7 +7,7 @@
     short: "VN",
     long: "Visual Novel",
     plural: "VNs",
-    description: "Eine Form von Interactive Fiction, welches zusätzlich audio-visuelle Elemente wie beispielsweise animierte Illustrationen verwendet.",
+    description: "Eine Form von Interactive Fiction, welches zusätzlich audiovisuelle Elemente wie beispielsweise animierte Illustrationen verwendet.",
   ),
   (
     key: "interaktive_erzählung",

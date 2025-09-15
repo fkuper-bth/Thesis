@@ -113,7 +113,7 @@ Des Weiteren fällt auf, dass die #utils.gls-short("kite2") Anwendung als monoli
 - _Story Compiler_: Dieses Modul wäre dafür zuständig, die Geschichten zum Zeitpunkt der Erstellung auf Konformität zur Story Spezifikation zu überprüfen und Fehler frühzeitig zu identifizieren.
 - _Story Parser_: Dieses Modul wäre dafür zuständig, die Geschichten in ein anwendungsinternes Format zu übersetzen. Dieses Modul könnte dann auch in anderen Projekten verwendet werden, die ähnliche Geschichten verwenden.
 - _Story Player_: Dieses Modul wäre dafür verwendet werden, die Spielfluss-Logik zu implementieren.
-- _Visual Novel Player_: Dieses Modul wäre dafür zuständig, die Geschichten audio-visuell aufzubereiten.
+- _Visual Novel Player_: Dieses Modul wäre dafür zuständig, die Geschichten audiovisuell aufzubereiten.
 
 Durch Analyse der Systemarchitektur von #utils.gls-short("kite2") konnten somit verschiedene Schwachstellen und Verbesserungspotentiale identifiziert werden, die in die Anforderungsanalyse der #utils.gls-short("library") und des Prototypen eingeflossen sind. Im nächsten Schritt werden spezifische Komponenten der #utils.gls-short("kite2") Anwendung analysiert, um genauere Anforderungen für die verschiedenen Systemkomponenten zu ermitteln.
 
@@ -240,9 +240,9 @@ Auf technischer Ebene übersetzen die Story-Formate die Story-Daten in eine HTML
 
 Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in @implementierung-story-format beschrieben.
 
-==== Audio-visuelle Darstellung <audio-visuelle-darstellung>
+==== Audiovisuelle Darstellung <audiovisuelle-darstellung>
 
-Neben der Datenstruktur der Geschichten, die in @story-spezifikation beschrieben ist, ist auch die audio-visuelle Darstellung der Geschichten ein wichtiger Aspekt der #utils.gls-short("kite2") Anwendung. Die wichtigsten Aspekte dieser sind bereits in @zielsetzung beschrieben. In diesem Abschnitt wird auf einige technische Details eingegangen, die durch die Bestandsanalyse identifiziert worden sind und für die Umsetzung der #utils.gls-short("library") und des Prototypen von Relevanz sind.
+Neben der Datenstruktur der Geschichten, die in @story-spezifikation beschrieben ist, ist auch die audiovisuelle Darstellung der Geschichten ein wichtiger Aspekt der #utils.gls-short("kite2") Anwendung. Die wichtigsten Aspekte dieser sind bereits in @zielsetzung beschrieben. In diesem Abschnitt wird auf einige technische Details eingegangen, die durch die Bestandsanalyse identifiziert worden sind und für die Umsetzung der #utils.gls-short("library") und des Prototypen von Relevanz sind.
 
 Im Anbetracht auf die Konzeption und Umsetzung der #utils.gls-short("library") wurde zunächst analysiert, wie die Geschichten in #utils.gls-short("kite2") visuell gestaltet sind.
 
@@ -332,7 +332,7 @@ Diese Animationen werden dann über die Story-Spezifikation in den Geschichten r
 
 Neben den _explizit_ referenzierten Charakter-Animationen, die in den Geschichten niedergeschrieben und dadurch abgespielt werden können, gibt es auch Animationen, die _implizit_ in den Szenen verwendet werden, wie beispielsweise Gesprächsanimationen, wie die Mundbewegungen eines Charakters oder das Blinzeln der Augen.
 
-Obwohl diese also nicht von Autor*innen in den Geschichten aufgerufen werden können, sind diese dennoch ein wichtiger Bestandteil der Darstellung und tragen zur Immersion der Spieler*innen bei. Daher sollten diese ebenfalls in der #utils.gls-short("library") unterstützt werden, um eine vollständige audio-visuelle Darstellung der Geschichten zu ermöglichen.
+Obwohl diese also nicht von Autor*innen in den Geschichten aufgerufen werden können, sind diese dennoch ein wichtiger Bestandteil der Darstellung und tragen zur Immersion der Spieler*innen bei. Daher sollten diese ebenfalls in der #utils.gls-short("library") unterstützt werden, um eine vollständige audiovisuelle Darstellung der Geschichten zu ermöglichen.
 
 Eine weitere Komponente, die Autor*innen in den Geschichten verwenden können, sind _Sound-Effekte_. Diese werden in #utils.gls-short("kite2") ebenfalls über die Story-Spezifikation referenziert und können dann in den Szenen verwendet werden. Ähnlich wie bei den Charakter-Animationen, werden diese über einen Funktionsaufruf abgespielt und können dann in den Szenen verwendet werden.
 

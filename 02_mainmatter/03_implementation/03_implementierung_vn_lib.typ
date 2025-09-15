@@ -22,7 +22,7 @@ Zu diesem Zwecke wird zunächst auf Basis der ausgearbeiteten KITE II Story Spez
 
 Auf Basis der Ausgabe dieses Story Formates kann dann das sogenannte _Story Engine_ Modul implementiert werden. Dieses verarbeitet die Daten der jeweiligen Geschichte und stellt Schnittstellen zur Verfügung, um den Spielfluss dieser zu kontrollieren. Die Implementierung dieses Moduls ist in @implementierung-story-engine dokumentiert.
 
-Daraufhin kann eine Bibliothek zur audio-visuellen Aufbereitung dieser Geschichten implementiert werden, hier _Visual Novel Engine_ genannt. Diese stellt sämtliche Funktionalitäten, die mit der Darstellung zu tun haben. Die Implementierung dieser ist der Kerninhalt von @implementierung-story-engine, wobei hier jedoch die Implementierung der Module von unten nach oben erklärt wird, beginnend mit dem _Story Format_ in @implementierung-story-format.
+Daraufhin kann eine Bibliothek zur audiovisuellen Aufbereitung dieser Geschichten implementiert werden, hier _Visual Novel Engine_ genannt. Diese stellt sämtliche Funktionalitäten, die mit der Darstellung zu tun haben. Die Implementierung dieser ist der Kerninhalt von @implementierung-story-engine, wobei hier jedoch die Implementierung der Module von unten nach oben erklärt wird, beginnend mit dem _Story Format_ in @implementierung-story-format.
 
 #figure(
   image("/resources/images/diagrams/thesis-container-diagram.png"),
@@ -635,13 +635,13 @@ fun `importStories with mixed valid and invalid json strings`() {
 
 Beim hier gezeigten wird die `importStories` Methode des `StoryImportService` mit Eingabe-Daten geprüft, die teilweise valide und teilweise invalide sind. Dazu werden neben validen Testdaten, die zur zur besseren Wiederverwendbarkeit separat angelegt sind, ein invalider Testdatensatz angelegt. Diese werden der Methode als Parameter übergeben und das Ergebnis wird mittels verschiedener `assert` Statements geprüft. Diesem beschriebenen Vorgehen folgen ebenso Tests anderer Schnittstellen.
 
-Damit ist die Implementierung des _StoryEngine_ Moduls mit ihren wichtigsten Komponenten beschrieben und im nächsten Schritt kann zur Implementierung des _VisualNovelEngine_ Moduls übergegangen werden, welches dieses Modul um die audio-visuelle Darstellung der Geschichten erweitert.
+Damit ist die Implementierung des _StoryEngine_ Moduls mit ihren wichtigsten Komponenten beschrieben und im nächsten Schritt kann zur Implementierung des _VisualNovelEngine_ Moduls übergegangen werden, welches dieses Modul um die audiovisuelle Darstellung der Geschichten erweitert.
 
 === Implementierung des _VisualNovelEngine_ Moduls <implementierung-visual-novel-engine>
 
-In diesem Kapitel wird die Umsetzung des _VisualNovelEngine_ Moduls beschrieben, welches sich um die audio-visuelle Aufbereitung der Geschichten kümmert.
+In diesem Kapitel wird die Umsetzung des _VisualNovelEngine_ Moduls beschrieben, welches sich um die audiovisuelle Aufbereitung der Geschichten kümmert.
 
-Wie in @system-overview beschrieben und in @thesis-container-diagram zu sehen nutzt dieses Modul das zuvor entwickelte und in @implementierung-story-engine beschriebene _StoryEngine_ Modul, um mit die interaktiven Geschichten zu laden und diese zu manipulieren und kümmert sich darum, diese audio-visuell Aufzubereiten.
+Wie in @system-overview beschrieben und in @thesis-container-diagram zu sehen nutzt dieses Modul das zuvor entwickelte und in @implementierung-story-engine beschriebene _StoryEngine_ Modul, um mit die interaktiven Geschichten zu laden und diese zu manipulieren und kümmert sich darum, diese audiovisuell Aufzubereiten.
 
 Das Modul basiert auf der Cross-Platform UI Technologie #utils.gls-short("cmp") und kann die #utils.gls-short("kmp") Bibliothek _StoryEngine_ somit einfach als Abhängigkeit im Gradle Build Skript deklarieren.
 
@@ -743,7 +743,7 @@ private fun ExampleSceneComposable(
 Hierzu werden zunächst drei Variablen angelegt:
 
 1. Die `StoryPlayer`-Instanz der _VisualNovelEngine_. Dieser kann zum Abspielen und Steuern der interaktiven Geschichten genutzt werden.
-2. Eine Liste von `Asset`-Objekten. Ein Asset ist hierbei alles, was zur audio-visuellen Aufbereitung der interaktiven Geschichten gehört (wie beispielsweise Bilder, Audio oder Animationen.).
+2. Eine Liste von `Asset`-Objekten. Ein Asset ist hierbei alles, was zur audiovisuellen Aufbereitung der interaktiven Geschichten gehört (wie beispielsweise Bilder, Audio oder Animationen.).
 3. Die Geschichte, die hier beispielhaft abgespielt werden soll. Diese würde in einer echten Anwendung aus JSON-Objekten importiert werden (siehe @implementierung-story-engine).
 
 Dann wird in @vn-engine-demo-app-listing-part-two:11 mit der `LaunchedEffect()` Methode ein Block generiert, der einmalig asynchron zur Komposition ausgeführt wird. Hier werden Konfigurations-Schritte ausgeführt, wie das Laden der erstellten Assets, das Initialisieren des Status der Visual Novel sowie dem Start des Abspielens der Geschichte.
@@ -786,7 +786,7 @@ Nun da die Benutzung und Integration des _VisualNovelEngine_ Moduls in eine Anwe
 
 Neben statischen Methoden zum konstruieren und zerstören der Engine (siehe @vn-engine-interface-listing:10 und @vn-engine-interface-listing:33) wird hier Zugang zu einer Instanz von `VisualNovelStoryPlayer` gewährt, welche es erlaubt, das Abspielen von Geschichten zu Steuern und den Status der Darstellung der Geschichten abzufragen.
 
-Zuletzt ist die `loadAssets()` (siehe @vn-engine-interface-listing:2) Methode zu erwähnen, welche die Übergebenen Assets Modul-intern bereitstellt, damit diese zur audio-visuellen Aufbereitung der Geschichten genutzt werden können.
+Zuletzt ist die `loadAssets()` (siehe @vn-engine-interface-listing:2) Methode zu erwähnen, welche die Übergebenen Assets Modul-intern bereitstellt, damit diese zur audiovisuellen Aufbereitung der Geschichten genutzt werden können.
 
 #utils.codly(
   skips: (

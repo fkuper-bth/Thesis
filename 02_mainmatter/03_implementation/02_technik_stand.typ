@@ -3,7 +3,7 @@
 
 == Stand der Technik <technik_stand>
 
-In diesem Kapitel wird eine Übersicht über verschiedene Technologien gegeben werden, die für die Erstellung von interaktiven Geschichten verwendet werden können. Dabei wird auf verschiedene Aspekte eingegangen, wie die Unterstützung von audio-visuellen Elementen, die Interaktivität der Erzählung, Kompatibilität mit der in @story-spezifikation beschriebenen Story-Spezifikation und die Erweiterbarkeit der Funktionalitäten, um eine große Bandbreite an Anwendungsfällen abbilden zu können.
+In diesem Kapitel wird eine Übersicht über verschiedene Technologien gegeben werden, die für die Erstellung von interaktiven Geschichten verwendet werden können. Dabei wird auf verschiedene Aspekte eingegangen, wie die Unterstützung von audiovisuellen Elementen, die Interaktivität der Erzählung, Kompatibilität mit der in @story-spezifikation beschriebenen Story-Spezifikation und die Erweiterbarkeit der Funktionalitäten, um eine große Bandbreite an Anwendungsfällen abbilden zu können.
 
 Neben diesen Domänen-spezifischen Technologien werden auch verschiedene #utils.gls-short("cross_platform") Technologien betrachtet, die für die Implementierung dieser Arbeit in Frage kommen können.
 
@@ -117,9 +117,9 @@ Einen genaueren Einblick in Stärken und Schwächen dieser Tools gibt @if-tools-
   caption: [Vergleich der Stärken und Schwächen der Tools zur Erstellung von #utils.gls-plural("if")],
 ) <if-tools-pros-cons>
 
-Eine Schwäche der #utils.gls-plural("if") Tools ist die limitierte Unterstützung von Multimedia-Inhalten. Da diese Tools primär auf Text-basierte Geschichten ausgelegt sind, ist für die audio-visuelle Darstellung eine andere Technologie erforderlich, die sich hierum kümmert. Im Falle von #utils.gls-short("kite2") wird zum Beispiel Twine genutzt, um die #utils.gls-plural("if") zu erstellen, und Unity, um die audio-visuelle Darstellung zu realisieren.
+Eine Schwäche der #utils.gls-plural("if") Tools ist die limitierte Unterstützung von Multimedia-Inhalten. Da diese Tools primär auf Text-basierte Geschichten ausgelegt sind, ist für die audiovisuelle Darstellung eine andere Technologie erforderlich, die sich hierum kümmert. Im Falle von #utils.gls-short("kite2") wird zum Beispiel Twine genutzt, um die #utils.gls-plural("if") zu erstellen, und Unity, um die audiovisuelle Darstellung zu realisieren.
 
-Andererseits existieren auch Tools, die es ermöglichen, neben der interaktiven Geschichte auch die audio-visuelle Darstellung zu realisieren und somit eine vollständige Lösung zur Erstellung einer #utils.gls-short("visual_novel") bieten. Diese Tools sind in der Regel komplexer haben eine steilere Lernkurve, erlauben ihren Nutzer*innen dafür aber, eine ganze #utils.gls-short("visual_novel") mit einem Tool zu erstellen und eignen sich daher beispielsweise auch besonders für Projekte, die von einer Person umgesetzt werden.
+Andererseits existieren auch Tools, die es ermöglichen, neben der interaktiven Geschichte auch die audiovisuelle Darstellung zu realisieren und somit eine vollständige Lösung zur Erstellung einer #utils.gls-short("visual_novel") bieten. Diese Tools sind in der Regel komplexer haben eine steilere Lernkurve, erlauben ihren Nutzer*innen dafür aber, eine ganze #utils.gls-short("visual_novel") mit einem Tool zu erstellen und eignen sich daher beispielsweise auch besonders für Projekte, die von einer Person umgesetzt werden.
 
 Die @vn-tools-overview gibt einen groben Überblick über einige der populärsten Tools zur Erstellung von #utils.gls-plural("visual_novel").
 
