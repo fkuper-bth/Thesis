@@ -22,9 +22,9 @@ The libraries and tools developed in this thesis are published under an open-sou
 
 Sowohl interaktive Unterhaltungsformen wie Serious Games als auch Large Language Models bieten große Chancen, als effektive Mittel in der Lehre eingesetzt werden zu können.
 
-Aufbauend auf einem Projekt, welches mittels interaktiver Geschichten spielerisch über ernste Themen aufklären möchte, KITE II, werden in dieser Arbeit eine Reihe an Entwicklungs-Tools konzipiert und implementiert, die es auf einfache Art und Weise erlauben sollen, Visual Novels in Cross-Platform Anwendungen zu integrieren. Zusätzlich soll es Nutzer*innen über einen Feedback-Mechanismus ermöglicht werden, über ihre Spielerfahrung zu reflektieren und neue Erkenntnisse zu gewinnen.
+Aufbauend auf einem Projekt, welches mittels interaktiver Geschichten spielerisch über ernste Themen aufklären möchte, KITE II, werden in dieser Arbeit eine Reihe an Entwicklungs-Tools konzipiert und implementiert, die es auf einfache Art und Weise erlauben sollen, Visual Novels in Cross-Platform-Anwendungen zu integrieren. Zusätzlich soll es Nutzer*innen über einen Feedback-Mechanismus ermöglicht werden, über ihre Spielerfahrung zu reflektieren und neue Erkenntnisse zu gewinnen.
 
-Ziel der Arbeit ist die Umsetzung von Entwicklungs-Tools die die Potenziale dieser Lehrformen einem breiteren Publikum zur Verfügung stellen können, indem sie den Entwicklungsaufwand solcher Anwendungen erheblich verringern.
+Ziel der Arbeit ist die Umsetzung von Entwicklungs-Tools, die die Potenziale dieser Lehrformen einem breiteren Publikum zur Verfügung stellen können, indem sie den Entwicklungsaufwand solcher Anwendungen erheblich verringern.
 
 Dazu werden existierende Technologien analysiert und ein System konzipiert und implementiert, welches beispielhaft von einer prototypischen Anwendung genutzt wird, um die Anwendung und Eignung der erstellten Tools zu demonstrieren. Hierzu werden gezielt Module gestaltet und realisiert, die, auf den in KITE II gewonnenen Erkenntnissen und Arbeitsergebnissen aufbauend, ein System realisieren, um Serious Games mit Visual Novels zu implementieren.
 
