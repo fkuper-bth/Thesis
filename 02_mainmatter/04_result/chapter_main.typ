@@ -60,7 +60,7 @@ Die letzte Anforderung, die an die Bibliothek gestellt wurde, lautet:
 
 Die _VisualNovelEngine_ Bibliothek verwendet das #utils.gls-long("cmp") Framework, welches theoretisch iOS, Android, Web und die Desktop-Plattformen Windows, macOS und Linux unterstützen kann. Die konkrete Umsetzung der _VisualNovelEngine_ hat sich zunächst auf die Plattformen iOS, Android und Web beschränkt, kann in Zukunft jedoch auf die Desktop-Plattformen erweitert werden.
 
-Die im Rahmen dieser Arbeit erstellt Bibliothek _VisualNovelEngine_ erfüllt somit zum großen Teil alle gestellten Anforderungen jedoch mit Einschränkungen im Bezug auf die Implementierung verschiedener Animations-Formate. Im folgenden @evaluation-anforderungen-prototyp wird mit der Evaluation der Anforderungen an den Prototypen namens _VisualNovelExample_ fortgefahren.
+Die im Rahmen dieser Arbeit erstellte Bibliothek _VisualNovelEngine_ erfüllt somit zum großen Teil alle gestellten Anforderungen, jedoch mit Einschränkungen im Bezug auf die Implementierung verschiedener Animations-Formate. Im folgenden @evaluation-anforderungen-prototyp wird mit der Evaluation der Anforderungen an den Prototypen namens _VisualNovelExample_ fortgefahren.
 
 == Evaluation der Anforderungen an den Prototypen _VisualNovelExample_ <evaluation-anforderungen-prototyp>
 
@@ -105,13 +105,13 @@ Die nächste Anforderung an den Prototypen ist folgendermaßen formuliert:
 - _Wiederverwendung_ der für #utils.gls-short("kite2") geschriebenen Geschichten.
   - Die für #utils.gls-short("kite2") geschriebenen Geschichten sollen in diesem Prototypen wiederverwendet werden können, ohne dass diese angepasst werden müssen.
 
-Obwohl die Geschichten spielbar gemacht werden konnten, konnte dies nicht bei allen Geschichten ohne Anpassung dieser realisiert werden. Da die Spezifikation und das Story-Format welches diese implementiert erst im Rahmen dieser Arbeit entwickelt wurde (mehr hierzu in @story-spezifikation und @implementierung-story-format), waren noch nicht alle verfassten Geschichten mit diesem konform, weshalb diese in Zukunft entsprechend angepasst werden müssten.
+Obwohl die Geschichten spielbar gemacht werden konnten, konnte dies nicht bei allen Geschichten ohne Anpassung realisiert werden. Da die Spezifikation und das Story-Format welches diese implementiert, erst im Rahmen dieser Arbeit entwickelt wurde (mehr hierzu in @story-spezifikation und @implementierung-story-format), waren noch nicht alle verfassten Geschichten mit diesem konform, weshalb diese in Zukunft entsprechend angepasst werden müssten.
 
-Durch die Entwicklung der Spezifikation und des Formates wurde jedoch ein wichtiger Schritt für die Wiederverwendbarkeit der Geschichten gemacht, da es nun ein definiertes Format gibt, welche diese folgen können. Daher würde es in Zukunft auch einfacher sein, eine konforme Geschichte mit Hilfe des Twine Story-Formates zu entwickeln, die mit dem Prototypen und der Bibliothek verwendbar sind.
+Durch die Entwicklung der Spezifikation und des Formates wurde jedoch ein wichtiger Schritt für die Wiederverwendbarkeit der Geschichten gemacht, da es nun ein definiertes Format gibt, welchem diese folgen können. Daher würde es in Zukunft auch einfacher sein, eine konforme Geschichte mit Hilfe des Twine Story-Formates zu entwickeln, die mit dem Prototypen und der Bibliothek verwendbar ist.
 
 Es sind letztendlich die meisten der KITE II Geschichten ohne Anpassungen für den Prototypen verwendbar gewesen, aber eben nicht alle. Daher ist diese Anforderung nicht ohne Einschränkungen erfüllt.
 
-Als nächstes ist folgende Anforderungen zu evaluieren:
+Als nächstes ist folgende Anforderung zu evaluieren:
 
 - Möglichkeit der _Auswertung_ von Spieldurchgängen durch ein #utils.gls-short("llm").
   - Die Spieldurchgänge müssen von der #utils.gls-short("library") in einem Format exportiert werden, welches dem Prototypen ermöglicht, einen wie in @tabelle_kiteII_prompt_struktur strukturierten Prompt zu generieren, der an ein #utils.gls-short("llm") übergeben werden kann.
@@ -127,8 +127,8 @@ Zuletzt ist diese Anforderung an den Prototypen gestellt worden:
 
 Diese ist in der initialen Planung dieser Arbeit gestellt worden, jedoch konnte zeitlich bedingt nicht umgesetzt werden. Diese Funktionalität ist gerade für längere Geschichten wünschenswert, jedoch für die KITE II Geschichten weniger essentiell, da diese in wenigen Minuten durchgespielt werden können. In KITE II existierte eine solche Funktionalität zum Start-Zeitpunkt der Thesis auch nicht. Trotzdem ist diese Anforderung wichtig und sollte für zukünftige Entwicklungen berücksichtigt und geplant werden.
 
-Der Prototyp _VisualNovelExample_ konnte insgesamt nicht alle geplanten Anforderungen vollständig umsetzen. Nicht alle KITE II Geschichten sind spielbar. Durch das entwickelte Twine Story-Format sollte eine Anpassung und Prüfung der noch nicht kompatiblen Geschichten jedoch unter geringem Aufwand realisiert werden können. Die größte offene Anforderung bezogen auf den Prototypen ist wohl die Unterstützung des Speicherns der Spieldurchgänge. Die Planung und Umsetzung eines solchen Features wäre in einer zukünftigen Iteration der Applikation zu tätigen.
+Der Prototyp _VisualNovelExample_ konnte insgesamt nicht alle geplanten Anforderungen vollständig umsetzen. Nicht alle KITE II Geschichten sind spielbar. Durch das entwickelte Twine Story-Format sollte eine Anpassung und Prüfung der noch nicht kompatiblen Geschichten jedoch unter geringem Aufwand realisiert werden können. Die größte offene Anforderung bezogen des Prototypen ist wohl die Unterstützung des Speicherns der Spieldurchgänge. Die Planung und Umsetzung eines solchen Features wäre in einer zukünftigen Iteration der Applikation zu tätigen.
 
-Letztendlich demonstriert _VisualNovelExample_ jedoch, wie die im Rahmen dieser Thesis geschaffenen Entwicklungs-Tools genutzt werden können, um Visual Novels auf einer Reihe von Plattformen realisiert werden können und insbesondere, wie die für KITE II geschriebenen Geschichten mit Hilfe dieser realisiert werden können. Eine tiefere Evaluation und Diskussion der Arbeitsergebnisse findet sich in @diskussion.
+Letztendlich demonstriert _VisualNovelExample_ jedoch, wie die im Rahmen dieser Thesis geschaffenen Entwicklungs-Tools genutzt werden können, um Visual Novels auf einer Reihe von Plattformen realisiert zu können und insbesondere, wie die für KITE II geschriebenen Geschichten mit Hilfe dieser realisiert werden können. Eine tiefere Evaluation und Diskussion der Arbeitsergebnisse findet sich in @diskussion.
 
 #utils.todo("Falls Open-Source: Verweis auf die Repositories hier?")

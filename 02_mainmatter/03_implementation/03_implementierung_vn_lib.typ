@@ -14,13 +14,13 @@ Dies bedeutet konkret, dass Entwicklungszyklen möglichst kurz gehalten werden s
 
 Das implementierte System setzt sich aus einer Menge von verschiedenen Modulen zusammen, die jeweils als separate Projekte angelegt und entwickelt wurden.
 
-@thesis-container-diagram bietet eine Übersicht über die verschiedenen Module, aus denen das System zusammengesetzt ist, den Technologien, die diesen zugrunde liegen, externen Systemen, die mit dem Haupt-System interagieren und den verschiedenen Nutzer*innen, wie sie mit dem System in Berührung kommen. Eine Erklärung der verwendeten Symbolik findet sich in @thesis-container-diagram-legend.
+@thesis-container-diagram bietet eine Übersicht über die verschiedenen Module, aus denen das System zusammengesetzt ist, den Technologien, die diesen zugrunde liegen, externen Systemen, die mit dem Hauptsystem interagieren, und den verschiedenen Nutzer*innen, wie sie mit dem System in Berührung kommen. Eine Erklärung der verwendeten Symbolik findet sich in @thesis-container-diagram-legend.
 
 Bevor die Visual Novel Anwendung, sprich der Prototyp, erstellt werden kann, müssen die technischen Grundlagen hierfür gelegt werden.
 
-Zu diesem Zwecke wird zunächst auf Basis der ausgearbeiteten KITE II Story Spezifikation (mehr hierzu in @story-spezifikation) ein Twine _Story Format_ entwickelt, welches die interaktiven Geschichten in ein leicht maschinell verarbeitbares Format übersetzt. Eine detaillierte Ausführung zur Implementierung dieses Moduls ist in @implementierung-story-format zu finden.
+Zu diesem Zweck wird zunächst auf Basis der ausgearbeiteten KITE II Story Spezifikation (mehr hierzu in @story-spezifikation) ein Twine _Story Format_ entwickelt, welches die interaktiven Geschichten in ein leicht maschinell verarbeitbares Format übersetzt. Eine detaillierte Ausführung zur Implementierung dieses Moduls ist in @implementierung-story-format zu finden.
 
-Auf Basis der Ausgabe dieses Story Formates kann dann das sogenannte _Story Engine_ Modul implementiert werden. Dieses verarbeitet die Daten der jeweiligen Geschichte und stellt Schnittstellen zur Verfügung, um den Spielfluss dieser zu kontrollieren. Die Implementierung dieses Moduls ist in @implementierung-story-engine dokumentiert.
+Auf Basis der Ausgabe dieses Story Formats kann dann das sogenannte _Story Engine_ Modul implementiert werden. Dieses verarbeitet die Daten der jeweiligen Geschichte und stellt Schnittstellen zur Verfügung, um den Spielfluss dieser zu kontrollieren. Die Implementierung dieses Moduls ist in @implementierung-story-engine dokumentiert.
 
 Daraufhin kann eine Bibliothek zur audiovisuellen Aufbereitung dieser Geschichten implementiert werden, hier _Visual Novel Engine_ genannt. Diese stellt sämtliche Funktionalitäten, die mit der Darstellung zu tun haben. Die Implementierung dieser ist der Kerninhalt von @implementierung-story-engine, wobei hier jedoch die Implementierung der Module von unten nach oben erklärt wird, beginnend mit dem _Story Format_ in @implementierung-story-format.
 
@@ -38,7 +38,7 @@ Nachdem die _Visual Novel Engine_ implementiert ist, sind sämtliche Entwicklung
 
 === Implementierung des #utils.gls-short("kite2") Story Formates <implementierung-story-format>
 
-Bevor mit der Umsetzung der eigentlichen #utils.gls-short("library") in #utils.gls-short("cmp") begonnen werden konnte, musste zunächst, die in @story-spezifikation beschriebene Story-Spezifikation in Form eines _Story-Formates_ für _Twine_ implementiert werden. Eine genauere Beschreibung, was ein Story Format ist, ist ebenfalls in @story-spezifikation erfolgt.
+Bevor mit der Umsetzung der eigentlichen #utils.gls-short("library") in #utils.gls-short("cmp") begonnen werden konnte, musste zunächst die in @story-spezifikation beschriebene Story-Spezifikation in Form eines _Story-Formates_ für _Twine_ implementiert werden. Eine genauere Beschreibung, was ein Story Format ist, ist ebenfalls in @story-spezifikation erfolgt.
 
 Kurz gesagt ist die Aufgabe eines solchen Formates vergleichbar mit einem _Compiler_. Eine Repräsentation einer interaktiven Geschichte wird in eine andere übersetzt. Die Ausgabe kann dabei beispielsweise zum Zwecke der direkten Interaktion mit Nutzer*innen als HTML-Seite erzeugt werden oder aber auch als eine Zwischenrepräsentation erfolgen, die weiterverarbeitet werden kann.
 
@@ -62,9 +62,9 @@ window.storyFormat({
 
 Den Inhalt der `format.js` Datei des für diese Arbeit erstellten Story Formates ist in @story-format-content zu sehen. Hierbei ist zu beachten, dass unter `source` in Zeile 7 eigentlich der Inhalt der HTML-Datei gelistet ist, die intern von Twine beim Ausführen des Formates aufgerufen wird. Der Inhalt ist hier im Interesse der Lesbarkeit ausgeklammert.
 
-Der Inhalt des Feldes `source` in Zeile 7 bildet also die Schnittstelle, zwischen Twine und dem Story Format. Hier übergibt Twine die internen Story-Daten an das Format, welches dann diese zu einer entsprechenden Ausgabe weiterverarbeiten kann.
+Der Inhalt des Feldes `source` in Zeile 7 bildet also die Schnittstelle zwischen Twine und dem Story Format. Hier übergibt Twine die internen Story-Daten an das Format, welches dann diese zu einer entsprechenden Ausgabe weiterverarbeiten kann.
 
-Während die meisten etablierten Story Formate eine HTML-Ausgabe generieren, die direkt von Nutzer*innen konsumiert werden kann, soll das im Rahmen dieser Thesis geschaffene Format ein Ausgabe zur späteren Weiterverarbeitung in der #utils.gls-short("library") erstellen.
+Während die meisten etablierten Story Formate eine HTML-Ausgabe generieren, die direkt von Nutzer*innen konsumiert werden kann, soll das im Rahmen dieser Thesis geschaffene Format eine Ausgabe zur späteren Weiterverarbeitung in der #utils.gls-short("library") erstellen.
 
 Hierzu wird als Ausgabeformat das Datenformat #utils.gls("json") gewählt, da für dieses einerseits in den meisten Programmiersprachen in Form von Parsern unterstützt wird (so auch in Kotlin und #utils.gls("kmp") mit Hilfe offizieller Bibliotheken @noauthor_kotlinkotlinxserialization_2025) und andererseits bereits andere Story Formate existieren, die #utils.gls-short("json") als Ausgabe generieren, an denen sich orientiert werden kann.
 
@@ -72,11 +72,11 @@ Glücklicherweise kann die Entwicklung des Story Formates auf einem vorhandenen 
 
 Daher kann diese Arbeit als Grundlage in großen Teilen übernommen werden und muss lediglich an die KITE II Spezifikation angepasst werden. Dazu wurde zunächst ein _Fork_ vom ausgehenden _twine-to-json_ Story Format erstellt, auf welchem die nötigen Anpassungen durchgeführt werden können @fkuper_twine--json-kite-2_nodate.
 
-Dazu wurde zunächst die Implementierung des ursprünglichen Formates analysiert, um dann die nötigen Änderungen an den richtigen Stellen umsetzen zu können. Auf oberster Ebene ist der Programmablauf des twine-to-json Story Formates in @story-format-functionality-pseudo-code abgebildet. Hier wird die Funktion `generateJsonOutput` definiert, welche auf oberster Ebene die Story Daten verarbeitet.
+Dazu wurde zunächst die Implementierung des ursprünglichen Formats analysiert, um dann die nötigen Änderungen an den richtigen Stellen umsetzen zu können. Auf oberster Ebene ist der Programmablauf des twine-to-json Story Formats in @story-format-functionality-pseudo-code abgebildet. Hier wird die Funktion `generateJsonOutput` definiert, welche auf oberster Ebene die Story Daten verarbeitet.
 
-Im Ausführungskontext des Formates existieren die Twine internen Story Daten innerhalb einer HTML-Datei, welche an das Format zur Verarbeitung weitergegeben wird. Diese wird dann beispielsweise in Zeile 3 gelesen, um die Daten in den nächsten Schritten weiter zu verarbeiten. Es wird ein Objekt namens `result` erstellt, welches später die Ausgabe des Story Formates bildet.
+Im Ausführungskontext des Formats existieren die Twine internen Story Daten innerhalb einer HTML-Datei, welche an das Format zur Verarbeitung weitergegeben wird. Diese wird dann beispielsweise in Zeile 3 gelesen, um die Daten in den nächsten Schritten weiter zu verarbeiten. Es wird ein Objekt namens `result` erstellt, welches später die Ausgabe des Story Formates bildet.
 
-Neben Meta-Informationen zur Geschichte, wie der Name oder Name von Autor*in werden als nächstes die Passagen der Geschichte in @story-format-functionality-pseudo-code:18 analysiert und als Objekt gespeichert. Sämtliche Passagen-Objekte werden dann als Array an das `result` Objekt angehängt, welches wiederum von der `generateJsonOutput` Funktion zurückgegeben wird, um als Ausgabe des Formates genutzt werden zu können.
+Neben Meta-Informationen zur Geschichte, wie der Name oder Name von Autor*in, werden als nächstes die Passagen der Geschichte in @story-format-functionality-pseudo-code:18 analysiert und als Objekt gespeichert. Sämtliche Passagen-Objekte werden dann als Array an das `result` Objekt angehängt, welches wiederum von der `generateJsonOutput` Funktion zurückgegeben wird, um als Ausgabe des Formates genutzt werden zu können.
 
 #utils.codly(
   highlights: (
@@ -117,7 +117,7 @@ function generateJsonOutput() {
   caption: "Programm-Ablauf zum Generieren der JSON Ausgabe auf oberster Ebene als Pseudo-Code.",
 ) <story-format-functionality-pseudo-code>
 
-Da die Meta-Informationen einer Geschichte durch die KITE II Spezifikation unberührt bleiben und lediglich die Passagen um einige Funktionen erweitert werden, ist also die in @story-format-functionality-pseudo-code:18 aufgerufene Funktion der Punkt, an dem das KITE II Format _twine-to-json_ erweitern muss, um die Spezifikation zu implementieren. Diese Funktion konvertiert im wesentlichen die Passagen-Daten von HTML in ein JSON Objekt.
+Da die Meta-Informationen einer Geschichte durch die KITE II Spezifikation unberührt bleiben und lediglich die Passagen um einige Funktionen erweitert werden, ist also die in @story-format-functionality-pseudo-code:18 aufgerufene Funktion der Punkt, an dem das KITE II Format _twine-to-json_ erweitern muss, um die Spezifikation zu implementieren. Diese Funktion konvertiert im Wesentlichen die Passagen-Daten von HTML in ein JSON Objekt.
 
 In @parse-passage-element-pseudocode ist der Programmablauf dieser Funktion in Pseudo-Code dargestellt. Diese extrahiert zunächst wie auch schon zuvor auf Story-Ebene einige Meta-Daten über die jeweilige Passage und beginnt dann damit, den Inhalt der Passage zu analysieren, was im Funktionsaufruf in @parse-passage-element-pseudocode:13 geschieht.
 
@@ -174,13 +174,13 @@ function parsePassageContent(passageText) {
   caption: "Programmablauf zur Übersetzung einer Story Passage von HTML in JSON im twine-to-json Story Format.",
 ) <parse-passage-element-pseudocode>
 
-Die in @parse-passage-element-pseudocode:19 definierte Funktion `parsePassageContent` implementiert dabei die eigentlich Übersetzungslogik, indem durch den übergebenen Passagen-Text iteriert und diesen auf in der jeweiligen Story-Spezifikation definierten Elemente, wie beispielsweise Links zu anderen Passagen, untersucht und diese dann in ein jeweilige Feld des `result` JSON-Objektes übersetzt.
+Die in @parse-passage-element-pseudocode:19 definierte Funktion `parsePassageContent` implementiert dabei die eigentlich Übersetzungslogik, indem durch den übergebenen Passagen-Text iteriert und diesen auf in der jeweiligen Story-Spezifikation definierten Elementen, wie beispielsweise Links zu anderen Passagen, untersucht und diese dann in ein jeweilige Feld des `result` JSON-Objektes übersetzt.
 
-Dies geschieht beispielsweise im Funktionsaufruf in @parse-passage-element-pseudocode:27, welcher ein Objekt zurückgibt, falls an der zu untersuchenden Stelle, ein Link gefunden werden konnte. Diese Logik kann ebenso auf andere Elemente angewandt werden, die in einer Story spezifiziert werden. So kann ein Link, wie er im _Harlowe 3_ Format spezifiziert ist, beispiels an seiner Formatierung erkannt werden, da diese immer mit den Charakteren "`[[`" beginnen, wie man auch in @beispiel-story-passagen:15 zu sehen ist.
+Dies geschieht beispielsweise im Funktionsaufruf in @parse-passage-element-pseudocode:27, welcher ein Objekt zurückgibt, falls an der zu untersuchenden Stelle ein Link gefunden werden konnte. Diese Logik kann ebenso auf andere Elemente angewandt werden, die in einer Story spezifiziert werden. So kann ein Link, wie er im _Harlowe 3_ Format spezifiziert ist, beispielsweise an seiner Formatierung erkannt werden, da diese immer mit den Charakteren "`[[`" beginnen, wie man auch in @beispiel-story-passagen:15 zu sehen ist.
 
 Um die in der KITE II Story Spezifikation definierten Elemente also zusätzlich in der Ausgabe übersetzen zu können, kann die in @parse-passage-element-pseudocode:19 definierte Funktion um diese erweitert werden. Ähnlich wie Links anhand von "`[[`" erkannt werden können, können die für KITE II spezifizierten Elemente anhand der Charaktere "`<<`" erkannt werden.
 
-Dazu wird das Programm um eine Funktion erweitert, die solche Charaktere aus dem Inhalt erkennt und zu entsprechenden JSON Objekten übersetzt. In @new-parse-passage-content:7 sieht man wie in der erweiterten Funktion die neue Methode aufgerufen wird, welche die Inhalte nach KITE II Elementen untersucht und diese in JSON übersetzt.
+Dazu wird das Programm um eine Funktion erweitert, die solche Charaktere aus dem Inhalt erkennt und zu entsprechenden JSON Objekten übersetzt. In @new-parse-passage-content:7 sieht man, wie in der erweiterten Funktion die neue Methode aufgerufen wird, welche die Inhalte nach KITE II Elementen untersucht und diese in JSON übersetzt.
 
 #utils.codly(
   highlights: (
@@ -234,13 +234,13 @@ Zur Prüfung der Konformität mit der KIT II Spezifikation wurden Testfälle def
 
 Zur Definition und automatisierten Ausführung dieser Testfälle wurde das populäre JavaScript Testing Framework _Jest_ @noauthor_jest_nodate gewählt. Die Beschreibung eines solchen Testfalles und wie diese mit Jest definiert werden, ist in @jest-test-cases zu sehen.
 
-Dabei wird zunächst eine Sammlung von Testfällen mit ihren jeweiligen Parametern, wie Eingabe und Ausgabe-Daten, definiert (siehe @jest-test-cases:1), welche dann genutzt werden können, um die Implementierung des Story Formates auf Korrektheit zu überprüfen.
+Dabei wird zunächst eine Sammlung von Testfällen mit ihren jeweiligen Parametern, wie Ein- und Ausgabe-Daten, definiert (siehe @jest-test-cases:1), welche dann genutzt werden können, um die Implementierung des Story Formats auf Korrektheit zu überprüfen.
 
-Für jeden definierten Testfall werden diese Daten im Test geladen und die Einstiegsfunktion des Story Formates (namens `twineToJSON`) mit den jeweiligen Eingabedaten aufgerufen (siehe @jest-test-cases:20). Das Resultat wird mit dem erwarteten Ausgabe-Objekt auf Gleichheit verglichen (siehe @jest-test-cases:23).
+Für jeden definierten Testfall werden diese Daten im Test geladen und die Einstiegsfunktion des Story Formats (namens `twineToJSON`) mit den jeweiligen Eingabedaten aufgerufen (siehe @jest-test-cases:20). Das Resultat wird mit dem erwarteten Ausgabe-Objekt auf Gleichheit verglichen (siehe @jest-test-cases:23).
 
-Dies ermöglicht eine schnelle und automatisierte Validierung der Korrektheit der Implementierung und macht es einfacher im Laufe der Entwicklung Änderungen vorzunehmen, da das Programm schnell auf Korrektheit geprüft werden kann.
+Dies ermöglicht eine schnelle und automatisierte Validierung der Korrektheit der Implementierung und macht es einfacher, im Laufe der Entwicklung Änderungen vorzunehmen, da das Programm schnell auf Korrektheit geprüft werden kann.
 
-Dieser Ansatz hat sich während der Entwicklung mehrmals als wertvoll erwiesen, da sich sowohl die Spezifikation in einigen Details geändert hatten, aber auch durch diesen Implementierungsfehler im Story-Format selbst schnell auffallen konnten.
+Dieser Ansatz hat sich während der Entwicklung mehrmals als wertvoll erwiesen, da sich sowohl die Spezifikation in einigen Details geändert hatte, aber auch durch diesen Ansatz Implementierungsfehler im Story-Format selbst schnell auffallen konnten.
 
 #utils.codly(
   highlights: (
@@ -281,7 +281,7 @@ describe('twineToJSON with multiple input files', () => {
   caption: "Definition der Testfälle zum Prüfen der Korrektheit der Implementierung des Story-Formates.",
 ) <jest-test-cases>
 
-Zur Auslieferung des Story-Formates, sodass dieses in Twine verwendet werden kann, wird dieses durch ein einfaches JavaScript Programm in das in @story-format-content dargestellte Format in eine Datei namens `format.js` geschrieben, welche dann wiederum zur Einbindung in Twine zur Verfügung gestellt werden muss.
+Zur Auslieferung des Story-Formates, sodass dieses in Twine verwendet werden kann, wird dieses durch ein einfaches JavaScript-Programm in das in @story-format-content dargestellte Format in eine Datei namens `format.js` geschrieben, welche dann wiederum zur Einbindung in Twine zur Verfügung gestellt werden muss.
 
 Hierfür hatte bereits das _twine-to-json_ Format, auf dem das KITE II Format basiert, eine Lösung implementiert, die GitHub Actions nutzt, um die `format.js` Datei im Internet zu veröffentlichen. Das KITE II Story Format Projekt ist ebenfalls auf GitHub untergebracht und macht sich dieselbe Funktionalität zu nutze, um das Format zu veröffentlichen @fkuper_twine--json-kite-2_nodate.
 
@@ -296,13 +296,13 @@ In @twine-kite2-story-format-gui sieht man, wie das importierte Format den Nutze
 
 ==== Das Ausgabeformat des KITE II Story-Formates <ausgabeformat-kite2-story-format>
 
-Im Wesentlichen orientiert sich die Struktur des JSON-Objektes, welches als Ausgabe des KITE II Story Formates generiert wird am Ausgangsprojekt _twine-to-json_ und passt dieses den Anforderungen von KITE II an. Das Format eine Twine Geschichte ist bereits in @story-spezifikation näher erläutert, weshalb hier darauf nicht näher eingegangen wird.
+Im Wesentlichen orientiert sich die Struktur des JSON-Objektes, welches als Ausgabe des KITE II Story Formats generiert wird, am Ausgangsprojekt _twine-to-json_ und passt dieses den Anforderungen von KITE II an. Das Format einer Twine Geschichte ist bereits in @story-spezifikation näher erläutert, weshalb hier darauf nicht näher eingegangen wird.
 
-Während im zugrunde liegenden Format eine Passage eine Liste an Links zu anderen Passagen haben konnte, kann eine Passage im KITE II Story Format eine Liste an sogenannten _Novel Events_ haben. Dies bezeichnet Ereignisse, wie sie in der Reihenfolge in einer Passage ablaufen sollen.
+Während im zugrunde liegenden Format eine Passage eine Liste an Links zu anderen Passagen haben könnte, kann eine Passage im KITE II Story Format eine Liste an sogenannten _Novel Events_ haben. Dies bezeichnet Ereignisse, wie sie in der Reihenfolge in einer Passage ablaufen sollen.
 
-Diese können entweder einen der in der Spezifikation definierten Schlüsselwörter als Typen haben (siehe @kite-keyword-constant), ein Link zu einer anderen Passage sein oder aber auch ein von Nutzer*innen selbst definiertes Schlüsselwort sein, welches nicht Teil der KITE II Spezifikation ist. Dies dient der Anpassbarkeit und Erweiterbarkeit des Formates.
+Diese können entweder einen der in der Spezifikation definierten Schlüsselwörter als Typen haben (siehe @kite-keyword-constant), ein Link zu einer anderen Passage sein oder aber auch ein von Nutzer*innen selbst definiertes Schlüsselwort sein, welches nicht Teil der KITE II Spezifikation ist. Dies dient der Anpassbarkeit und Erweiterbarkeit des Formats.
 
-Im nächsten Schritt kann ein Modul entwickelt werden, welches die Ausgabe des erstellten KITE II Story Formates verarbeiten kann. Dieser Arbeitsschritt wird in @implementierung-story-engine näher erläutert.
+Im nächsten Schritt kann ein Modul entwickelt werden, welches die Ausgabe des erstellten KITE II Story Formats verarbeiten kann. Dieser Arbeitsschritt wird in @implementierung-story-engine näher erläutert.
 
 === Implementierung eines Moduls zur Verarbeitung der Story-Objekte <implementierung-story-engine>
 
@@ -312,17 +312,17 @@ Die Bibliothek zur Darstellung der interaktiven Geschichten muss diese natürlic
 - das Abspielen und Ausführen einer Geschichts-Passage
 - das Protokollieren eines Spieldurchgangs
 
-Um diese Funktionalitäten unabhängig von den Aufgaben der Darstellung Entwickeln und Bereitstellen zu können, wurden diese in Form einer #utils.gls-short("cross_platform") Bibliothek realisiert, die später nicht nur von der Visual Novel Bibliothek konsumiert werden kann, sondern theoretisch auch anderen Projekten zur Verfügung gestellt werden kann.
+Um diese Funktionalitäten unabhängig von den Aufgaben der Darstellung entwickeln und bereitstellen zu können, wurden diese in Form einer #utils.gls-short("cross_platform") Bibliothek realisiert, die später nicht nur von der Visual Novel Bibliothek konsumiert werden kann, sondern theoretisch auch anderen Projekten zur Verfügung gestellt werden kann.
 
-Hierfür wurde auf die Technologie #utils.gls-short("kmp") gesetzt, welche es ermöglicht, Kotlin Bibliotheken für eine Vielzahl an Plattformen zu erstellen. Diese ist zu unterscheiden zur #utils.gls-short("cmp") Technologie, welches ein #utils.gls-short("cross_platform") UI Framework basierend auf #utils.gls-short("kmp") ist. Mehr zu verschiedenen Technologien in diesem Bereich ist in @cross-platform-technologien ausgeführt.
+Hierfür wurde auf die Technologie #utils.gls-short("kmp") gesetzt, welche es ermöglicht, Kotlin Bibliotheken für eine Vielzahl an Plattformen zu erstellen. Diese ist zu unterscheiden von der #utils.gls-short("cmp") Technologie, welche ein #utils.gls-short("cross_platform") UI Framework basierend auf #utils.gls-short("kmp") ist. Mehr zu verschiedenen Technologien in diesem Bereich ist in @cross-platform-technologien ausgeführt.
 
-Im ersten Schritt der Implementierung dieses Modul galt es, die Geschichts-Daten, die das Story Format als JSON Objekt zur Verfügung stellt, zu serialisieren, damit diese im weiteren Programmablauf verwendet werden können.
+Im ersten Schritt der Implementierung dieses Moduls galt es, die Geschichtsdaten, die das Story Format als JSON-Objekt zur Verfügung stellt, zu serialisieren, damit diese im weiteren Programmablauf verwendet werden können.
 
-Zur Serialisierung der JSON Objekte wurde eine von Jetbrains entwickelte #utils.gls-short("kmp") Bibliothek verwendet @noauthor_kotlinkotlinxserialization_2025. Diese ermöglicht es durch Annotationen an den Modell-Definitionen JSON Objekte ohne großen Aufwand in Kotlin Objekte zu serialisieren.
+Zur Serialisierung der JSON-Objekte wurde eine von Jetbrains entwickelte #utils.gls-short("kmp") Bibliothek verwendet @noauthor_kotlinkotlinxserialization_2025. Diese ermöglicht es, durch Annotationen an den Modell-Definitionen JSON Objekte ohne großen Aufwand in Kotlin-Objekte zu serialisieren.
 
-Die Definitionen verschiedener Modell Klassen, die ausgehend von den JSON Objekten, die das Story Format ausgibt, erstellt werden können, sind in @model-definitions zu sehen.
+Die Definitionen verschiedener Modellklassen, die ausgehend von den JSON-Objekten, die das Story Format ausgibt, erstellt werden können, sind in @model-definitions zu sehen.
 
-Angefangen mit der Top-Level Klasse `Story`, die neben Meta-Informationen eine Menge an Passagen (@model-definitions:12) hat. Die Menge ist in diesem Fall als ```kotlin Map<String, StoryPassage>```, um später einen schnellen Zugriff auf entsprechende Passagen über deren Name zu gewährleisten.
+Angefangen mit der Top-Level-Klasse `Story`, die neben Meta-Informationen eine Menge an Passagen (@model-definitions:12) hat. Die Menge ist in diesem Fall als ```kotlin Map<String, StoryPassage>```, um später einen schnellen Zugriff auf entsprechende Passagen über deren Name zu gewährleisten.
 
 Die Passagen werden wiederum als `StoryPassage` definiert, welche ebenfalls verschiedene Meta-Informationen umfassen und eine Liste von `StoryPassageNovelEvent`. Diese werden später stets sequentiell verarbeitet, weshalb hier die Liste als Datenstruktur gewählt wurde.
 
@@ -348,7 +348,7 @@ In @model-definitions:27 ist der Name des Feldes definiert, welches den Typ angi
   caption: "Ein NovelEvent als JSON Objekt.",
 ) <novel-event-json-object>
 
-In @novel-event-json-object sieht man beispielhaft wie ein Event vom Typ Link in JSON definiert ist. In Zeile 2 ist das Feld, welches hier den Typen angibt anhand dessen später die konkrete Klassen bestimmt werden kann, die konstruiert werden soll.
+In @novel-event-json-object sieht man beispielhaft, wie ein Event vom Typ Link in JSON definiert ist. In Zeile 2 ist das Feld, welches hier den Typen angibt, anhand dessen später die konkrete Klasse bestimmt werden kann, die konstruiert werden soll.
 
 #utils.codly(
   skips: (
@@ -407,7 +407,7 @@ sealed class StoryPassageNovelEvent constructor(
   caption: "Definition der Modell Klassen, die von JSON serialisiert und deserialisiert werden können.",
 ) <model-definitions>
 
-Die Story Engine Bibliothek implementiert und stellt eine Schnittstelle bereit, um die Geschichten in JSON Repräsentation zu laden, um daraufhin mit diesen interagieren zu können. Dazu wird ein Interface namens `StoryImportService` definiert und eine Implementation dieses als #utils.gls("singleton") zur Verfügung gestellt.
+Die Story Engine Bibliothek implementiert und stellt eine Schnittstelle bereit, um die Geschichten in JSON-Repräsentation zu laden, um daraufhin mit diesen interagieren zu können. Dazu wird ein Interface namens `StoryImportService` definiert und eine Implementation dieses als #utils.gls("singleton") zur Verfügung gestellt.
 
 #utils.codly(
   skips: (
@@ -446,9 +446,9 @@ In @story-import-listing ist die Implementation des `StoryImportService` Interfa
 
 Die Fehlerbehandlung erfolgt hier sowie in den meisten Fällen in den #utils.gls-short("kmp") und #utils.gls-short("cmp") Modulen dieser Arbeit in Form von sogenannten Result-Types. Bei dieser Konvention werden nicht etwas wie beispielsweise in der Java-Welt üblich Exception-Objekte erstellt und geworfen, sondern ein spezieller Rückgabe-Typ definiert, der sämtliche Informationen über Erfolg der aufgerufenen Operation beinhaltet.
 
-@story-import-result-type-listing zeigt, wie der Result-Type in diesem Fall definiert ist. Hier gibt es zwei mögliche Resultate: Erfolg oder Fehlschlag. Im Falle eines Erfolges wird die importierte Geschichte als Feld in der Klasse `StoryImportResult.Success` mitgegeben während bei einem Misserfolg Informationen mitgegeben werden, die dem Aufrufenden bei der Diagnose helfen könnten.
+@story-import-result-type-listing zeigt, wie der Result-Type in diesem Fall definiert ist. Hier gibt es zwei mögliche Resultate: Erfolg oder Fehlschlag. Im Falle eines Erfolges wird die importierte Geschichte als Feld in der Klasse `StoryImportResult.Success` mitgegeben, während bei einem Misserfolg Informationen mitgegeben werden, die dem Aufrufenden bei der Diagnose helfen könnten.
 
-Die Implementationslogik des Imports ist dadurch sehr einfach gehalten. Zunächst wird versucht, ein Story Objekt aus dem übergebenen String zu konstruieren (@story-import-listing:6). Falls dies aus irgendeinem Grund fehlschlägt, wird ein entsprechender Result-Type konstruiert und zurückgegeben (@story-import-listing:9 und @story-import-listing:15). Bei Erfolg wird ebenfalls ein Result-Type mit dem konstruierten Story Objekt zurückgegeben (@story-import-listing:7).
+Die Implementationslogik des Imports ist dadurch sehr einfach gehalten. Zunächst wird versucht, ein Story-Objekt aus dem übergebenen String zu konstruieren (@story-import-listing:6). Falls dies aus irgendeinem Grund fehlschlägt, wird ein entsprechender Result-Type konstruiert und zurückgegeben (@story-import-listing:9 und @story-import-listing:15). Bei Erfolg wird ebenfalls ein Result-Type mit dem konstruierten Story-Objekt zurückgegeben (@story-import-listing:7).
 
 #let storyImportResultTypeListing = ```kotlin
 sealed interface StoryImportResult {
@@ -468,7 +468,7 @@ sealed interface StoryImportResult {
   caption: "Definition des Result-Type, welcher bei Import einer Geschichte zurückgegeben wird.",
 ) <story-import-result-type-listing>
 
-Neben einem einfachen gibt es ebenfalls eine Schnittstelle zum Importieren mehrerer Geschichten. Die Definition dieser Funktion ist in @import-multiple-stories-listing zu sehen.
+Neben einem einfachen Import gibt es ebenfalls eine Schnittstelle zum Importieren mehrerer Geschichten. Die Definition dieser Funktion ist in @import-multiple-stories-listing zu sehen.
 
 #utils.codly(number-format: none, display-icon: false, display-name: false)
 #let importMultipleStoryListing = ```kotlin
@@ -479,7 +479,7 @@ fun importStories(storyJsonContents: List<String>): StoryImportResults
   caption: "Definition der Funktion zum Importieren mehrerer Geschichten.",
 ) <import-multiple-stories-listing>
 
-Nachdem die Geschichten, die gespielt werden sollen, erfolgreich importiert sind, kann nun mit diesen interagiert werden. Die zentrale Schnittstelle des Story Engine Moduls, ist über ein Interface namens `StoryEngine` definiert, welches in @story-engine-interface-listing zu sehen ist.
+Nachdem die Geschichten, die gespielt werden sollen, erfolgreich importiert sind, kann nun mit diesen interagiert werden. Die zentrale Schnittstelle des Story Engine Moduls ist über ein Interface namens `StoryEngine` definiert, welches in @story-engine-interface-listing zu sehen ist.
 
 Im Wesentlichen bietet dieses einerseits Zugang zu dem zuvor besprochenen `StoryImportService` Objekt (siehe @story-import-listing) und einer Funktion, um die Interaktion mit einer Geschichte zu starten (`startPlaying`, siehe @story-engine-interface-listing:4).
 
@@ -519,11 +519,11 @@ interface StoryEngine {
   caption: [Definition des Interface `StoryEngine`, welches den Einstiegspunkt in die Bibliothek darstellt.],
 ) <story-engine-interface-listing>
 
-Durch Nutzung eines #utils.gls-short("di") Frameworks wie Koin ist es einfacher, #utils.gls-short("di") zu implementieren, da die Konstruktion der Objekte von diesem übernommen wird und im Quell-Code lediglich definiert werden muss, welche Abhängigkeiten die jeweilige Klasse hat und wie die einzelnen Objekte konstruiert werden können. Des Weiteren bietet es Komfort-Funktionen zur Erstellung von Beispielsweise Singleton Klassen oder #utils.glspl("factory") zum Konstruieren von Objekten.
+Durch Nutzung eines #utils.gls-short("di") Frameworks wie Koin ist es einfacher, #utils.gls-short("di") zu implementieren, da die Konstruktion der Objekte von diesem übernommen wird und im Quell-Code lediglich definiert werden muss, welche Abhängigkeiten die jeweilige Klasse hat und wie die einzelnen Objekte konstruiert werden können. Des Weiteren bietet es Komfort-Funktionen zur Erstellung von beispielsweise Singleton-Klassen oder #utils.glspl("factory") zum Konstruieren von Objekten.
 
-In @story-engine-module-listing ist die Definition der Funktion `sharedModule` zu sehen, welche definiert, wie sämtliche Komponenten der Bibliothek konstruiert werden können. Der Name `sharedModule` wurde gewählt, da alle hier niedergeschriebenen Definitionen für alle Zielplattformen der Bibliothek gelten sollen und es theoretisch in einem Cross-Platform Projekt, wie es diese Bibliothek ist, auch plattformspezifische Definitionen geben kann. In diesem Fall gibt es jedoch keine.
+In @story-engine-module-listing ist die Definition der Funktion `sharedModule` zu sehen, welche definiert, wie sämtliche Komponenten der Bibliothek konstruiert werden können. Der Name `sharedModule` wurde gewählt, da alle hier niedergeschriebenen Definitionen für alle Zielplattformen der Bibliothek gelten sollen und es theoretisch in einem Cross-Platform-Projekt, wie es diese Bibliothek ist, auch plattformspezifische Definitionen geben kann. In diesem Fall gibt es jedoch keine.
 
-Die Implementation der `sharedModule` Methode besteht aus verschiedenen Lambda-Ausdrücken (wie hier `single` in @story-engine-module-listing:2 oder `factory` in @story-engine-module-listing:8), die deklarieren, wie die jeweilige Komponente konstruiert werden kann. Hier geschieht dies steht durch Aufrufen eines Konstruktors, welcher teilweise wiederum andere Abhängigkeiten deklariert. Diese können automatisch von Koin aufgelöst werden, sodass diese Objekte zur Laufzeit konstruiert werden.
+Die Implementation der `sharedModule` Methode besteht aus verschiedenen Lambda-Ausdrücken (wie hier `single` in @story-engine-module-listing:2 oder `factory` in @story-engine-module-listing:8), die deklarieren, wie die jeweilige Komponente konstruiert werden kann. Hier geschieht dies durch Aufrufen eines Konstruktors, welcher wiederum andere Abhängigkeiten deklarieren kann. Diese können automatisch von Koin aufgelöst werden, sodass diese Objekte zur Laufzeit konstruiert werden.
 
 #let storyEngineModuleListing = ```kotlin
 internal fun sharedModule(): Module = module {
@@ -568,11 +568,11 @@ interface StoryPlayer {
 
 @story-player-interface-listing zeigt die Definition des `StoryPlayer` Interface. Dieses besteht aus zwei Funktionen, die zur Kontrolle des Spielflusses dienen (`playPassage`), die sich lediglich durch die Art der Parameter unterscheiden, und zwei Feldern.
 
-So kann beispielsweise eine interaktive Geschichte initial über die in @story-player-interface-listing:3 definierte Funktion mit dem Standard Parameter-Wert `null` über ihren in der Datenstruktur definierten Start-Passage gestartet werden. Darauf folgend können bestimmte Passagen über deren Name oder ein `Link` Objekt abgespielt werden. Mit Hilfe des Namens einer Passage können diese auch beliebig abgespielt werden, ohne dass ein `Link` Objekt erfordert wird (@story-player-interface-listing:4).
+So kann beispielsweise eine interaktive Geschichte initial über die in @story-player-interface-listing:3 definierte Funktion mit dem Standard Parameter-Wert `null` über ihren in der Datenstruktur definierten Start-Passage gestartet werden. Darauf folgend können bestimmte Passagen über deren Name oder ein `Link` Objekt abgespielt werden. Mit Hilfe des Namens einer Passage können diese auch beliebig abgespielt werden, ohne dass ein `Link` Objekt erfordert ist (@story-player-interface-listing:4).
 
-Das Feld `story` gibt das `Story` Objekt zurück, welches mit dem `StoryPlayer` assoziiert ist und `currentPlayResult` ist ein Objekt vom Typ `StateFlow`, welches den aktuellen Status der interaktiven Geschichte widerspiegelt.
+Das Feld `story` gibt das `Story` Objekt zurück, welches mit dem `StoryPlayer` assoziiert ist, und `currentPlayResult` ist ein Objekt vom Typ `StateFlow`, welches den aktuellen Status der interaktiven Geschichte widerspiegelt.
 
-`StateFlow` ist ein Typ, der Teil der `kotlinx.coroutines` Bibliothek ist. Diese wird von JetBrains selbst entwickelt und veröffentlicht wird und verschiedene Lösungen für asynchrone Operationen bereitstellt. `StateFlow` repräsentiert dabei einen Status, der von interessierten Parteien beobachtet werden kann und unabhängig von diesen existiert @jetbrains_stateflow_nodate.
+`StateFlow` ist ein Typ, der Teil der `kotlinx.coroutines` Bibliothek ist. Diese wird von JetBrains selbst entwickelt und veröffentlicht und stellt verschiedene Lösungen für asynchrone Operationen bereit. `StateFlow` repräsentiert dabei einen Status, der von interessierten Parteien beobachtet werden kann und unabhängig von diesen existiert @jetbrains_stateflow_nodate.
 
 Hier wird dieser Mechanismus dazu genutzt, den momentanen Stand der interaktiven Geschichte mit dem Typen `StoryPassagePlayResult?` zu repräsentieren. Der Wert `null` repräsentiert hierbei, dass noch keine Passage abgespielt wurde.
 
@@ -596,15 +596,15 @@ sealed interface StoryPassagePlayResult {
   caption: [Definition des Interface `StoryPassagePlayResult`],
 ) <story-passage-play-result-listing>
 
-Bei einem Abspielfehler, da beispielsweise keine Passage mit dem übergebenen Namen existiert, wird ein Fehler-Objekt konstruiert, welches zusätzlich Informationen zum Fehler enthält. Bei erfolgreicher Wiedergabe einer Passage wird das `DataReady` Objekt konstruiert, welches wiederum eine Liste der Events beinhaltet, welche in der Passage enthalten sind sowie ein Objekt vom Typ `StoryPlaythroughRecord`. Dieses repräsentiert den bisherigen Spielverlauf, sodass zu jedem Zeitpunkt der gesamte Geschichtsverlauf bekannt ist.
+Bei einem Abspielfehler, beispielsweise ausgelöst durch Übergabe eines Namens einer Passage, die nicht existiert, wird ein Fehler-Objekt konstruiert, welches zusätzliche Informationen zum Fehler enthält. Bei erfolgreicher Wiedergabe einer Passage wird das `DataReady` Objekt konstruiert, welches wiederum eine Liste der Events beinhaltet, welche in der Passage enthalten sind sowie ein Objekt vom Typ `StoryPlaythroughRecord`. Dieses repräsentiert den bisherigen Spielverlauf, sodass zu jedem Zeitpunkt der gesamte Geschichtsverlauf bekannt ist.
 
-Zum Verarbeiten einer einzelnen Passage ist mit dem `StoryPassagePlayer` eine weitere, Bibliotheks-interne, Schnittstelle vorhanden, welche lediglich Events innerhalb einer Passage verarbeiten kann.
+Zum Verarbeiten einer einzelnen Passage ist mit dem `StoryPassagePlayer` eine weitere, bibliotheksinterne, Schnittstelle vorhanden, welche lediglich Events innerhalb einer Passage verarbeiten kann.
 
 Außerdem kümmert sich die interne Schnittstelle `StoryRecordManager` darum, den aktuellen Geschichtsverlauf zu speichern und in einem bestimmten Datenformat ausgeben zu können.
 
-Zur automatisierten Validierung und Sicherstellung der hier beschriebenen Funktionalitäten der _StoryEngine_ wurden während der Entwicklung der einzelnen Komponenten jeweils Unit Tests mit verschiedenen Testfällen angelegt, die jeweils verschiedene Eingaben und Abläufe an die zu testenden Schnittstellen liefern und daraufhin die Ausgaben prüfen.
+Zur automatisierten Validierung und Sicherstellung der hier beschriebenen Funktionalitäten der _StoryEngine_ wurden während der Entwicklung der einzelnen Komponenten jeweils Unit-Tests mit verschiedenen Testfällen angelegt, die jeweils verschiedene Eingaben und Abläufe an die zu testenden Schnittstellen liefern und daraufhin die Ausgaben prüfen.
 
-@import-service-unit-test-listing zeigt beispielhaft einen Unit Test mit einer relativ komplexen Eingabe. Die Tests folgen stets dem etablierten Muster zur Strukturierung von Unit Tests:
+@import-service-unit-test-listing zeigt beispielhaft einen Unit-Test mit einer relativ komplexen Eingabe. Die Tests folgen stets dem etablierten Muster zur Strukturierung von Unit Tests:
 
 1. _Arrange_: Aufsetzen der Test-Bedingungen wie z.B. Anlegen der Eingabedaten.
 2. _Act_: Ausführen der zu testenden Methode.
@@ -633,23 +633,23 @@ fun `importStories with mixed valid and invalid json strings`() {
   caption: [Ein Unit Test zum Prüfen des `StoryImportService` Interface.],
 ) <import-service-unit-test-listing>
 
-Beim hier gezeigten wird die `importStories` Methode des `StoryImportService` mit Eingabe-Daten geprüft, die teilweise valide und teilweise invalide sind. Dazu werden neben validen Testdaten, die zur zur besseren Wiederverwendbarkeit separat angelegt sind, ein invalider Testdatensatz angelegt. Diese werden der Methode als Parameter übergeben und das Ergebnis wird mittels verschiedener `assert` Statements geprüft. Diesem beschriebenen Vorgehen folgen ebenso Tests anderer Schnittstellen.
+Beim hier gezeigten wird die `importStories` Methode des `StoryImportService` mit Eingabe-Daten geprüft, die teilweise valide und teilweise invalide sind. Dazu werden neben validen Testdaten, die zur besseren Wiederverwendbarkeit separat angelegt sind, ein invalider Testdatensatz angelegt. Diese werden der Methode als Parameter übergeben und das Ergebnis wird mittels verschiedener `assert` Statements geprüft. Diesem beschriebenen Vorgehen folgen ebenso Tests anderer Schnittstellen.
 
-Damit ist die Implementierung des _StoryEngine_ Moduls mit ihren wichtigsten Komponenten beschrieben und im nächsten Schritt kann zur Implementierung des _VisualNovelEngine_ Moduls übergegangen werden, welches dieses Modul um die audiovisuelle Darstellung der Geschichten erweitert.
+Damit ist die Implementierung des _StoryEngine_ Moduls mit seinen wichtigsten Komponenten beschrieben und im nächsten Schritt kann zur Implementierung des _VisualNovelEngine_ Moduls übergegangen werden, welches dieses Modul um die audiovisuelle Darstellung der Geschichten erweitert.
 
 === Implementierung des _VisualNovelEngine_ Moduls <implementierung-visual-novel-engine>
 
 In diesem Kapitel wird die Umsetzung des _VisualNovelEngine_ Moduls beschrieben, welches sich um die audiovisuelle Aufbereitung der Geschichten kümmert.
 
-Wie in @system-overview beschrieben und in @thesis-container-diagram zu sehen nutzt dieses Modul das zuvor entwickelte und in @implementierung-story-engine beschriebene _StoryEngine_ Modul, um mit die interaktiven Geschichten zu laden und diese zu manipulieren und kümmert sich darum, diese audiovisuell Aufzubereiten.
+Wie in @system-overview beschrieben und in @thesis-container-diagram zu sehen, nutzt dieses Modul das zuvor entwickelte und in @implementierung-story-engine beschriebene _StoryEngine_ Modul, um die interaktiven Geschichten zu laden und diese zu manipulieren und kümmert sich darum, diese audiovisuell aufzubereiten.
 
 Das Modul basiert auf der Cross-Platform UI Technologie #utils.gls-short("cmp") und kann die #utils.gls-short("kmp") Bibliothek _StoryEngine_ somit einfach als Abhängigkeit im Gradle Build Skript deklarieren.
 
 In diesem Kapitel werden die wichtigsten Komponenten beschrieben, die im Rahmen dieses Moduls implementiert wurden, wobei davon ausgegangen wird, dass Bibliotheken und Technologien, die in @implementierung-story-engine beschrieben sind, bekannt sind.
 
-Um zunächst einen Überblick über die Nutzungsweise der Bibliothek zu geben, kann am besten die minimale Beispielanwendung betrachtet werden, die im Rahmen des Moduls erstellt wurden, um die Verwendung dieser zu demonstrieren. Zur besseren Übersicht wurde diese auf zwei separate Listings aufgeteilt.
+Um zunächst einen Überblick über die Nutzungsweise der Bibliothek zu geben, kann am besten die minimale Beispielanwendung betrachtet werden, die im Rahmen des Moduls erstellt wurde, um die Verwendung dieser zu demonstrieren. Zur besseren Übersicht wurde diese auf zwei separate Listings aufgeteilt.
 
-@vn-engine-demo-app-listing-part-one zeigt den ersten Teil der Demo Applikation. Hier wird zunächst eine Funktion deklariert, die eine Instanz von `KoinApplication` erstellt, welches eine Funktion aus dem #utils.gls-short("di") Framework _Koin_ ist, um eine Anwendung mit entsprechenden Koin-Modulen zu starten.
+@vn-engine-demo-app-listing-part-one zeigt den ersten Teil der Demo-Applikation. Hier wird zunächst eine Funktion deklariert, die eine Instanz von `KoinApplication` erstellt, welche eine Funktion aus dem #utils.gls-short("di") Framework _Koin_ ist, um eine Anwendung mit entsprechenden Koin-Modulen zu starten.
 
 #utils.codly(
   highlights: (
@@ -692,14 +692,13 @@ private class ExampleScenePreviewViewModel(
   caption: [Minimale Demo Applikation, die das _VisualNovelEngine_ verwendet (Teil 1).],
 ) <vn-engine-demo-app-listing-part-one>
 
-// TODO: listing teil 1 erklären
 In @vn-engine-demo-app-listing-part-one:5 wird das Beispiel-Modul übergeben, welches in @vn-engine-demo-app-listing-part-one:11 definiert ist und demonstriert, wie das _VisualNovelEngine_ konstruiert wird (siehe @vn-engine-demo-app-listing-part-one:13).
 
 In @vn-engine-demo-app-listing-part-one:7 wird ein _Composable_ erzeugt. Dies ist die Bezeichnung für eine UI-Komponente innerhalb des #utils.gls-short("cmp") Frameworks.
 
 Außerdem wird hier beispielhaft eine _ViewModel_ Komponente deklariert, die als Abhängigkeit eine Instanz von `VisualNovelEngine` erwartet (siehe @vn-engine-demo-app-listing-part-one:24). Dieses wird auch im Modul definiert, damit _Koin_ dieses konstruieren kann (@vn-engine-demo-app-listing-part-one:20).
 
-Das Beispiel folgt dem #utils.gls("mvvm") Architekturmuster, welches ein weit verarbeitetes Pattern zur Strukturierung von Anwendungssoftware ist.
+Das Beispiel folgt dem #utils.gls("mvvm") Architekturmuster, welches ein weit verbreitetes Pattern zur Strukturierung von Anwendungssoftware ist.
 
 In @vn-engine-demo-app-listing-part-two wird die zuvor erwähnte _Composable_ Komponente deklariert, die letztendlich die Darstellung der Geschichte übernimmt. Für eine verbesserte Lesbarkeit wurden hier einige Teile ausgeklammert, welche jeweils  mit `/* ... */` kommentiert sind.
 
@@ -742,8 +741,8 @@ private fun ExampleSceneComposable(
 
 Hierzu werden zunächst drei Variablen angelegt:
 
-1. Die `StoryPlayer`-Instanz der _VisualNovelEngine_. Dieser kann zum Abspielen und Steuern der interaktiven Geschichten genutzt werden.
-2. Eine Liste von `Asset`-Objekten. Ein Asset ist hierbei alles, was zur audiovisuellen Aufbereitung der interaktiven Geschichten gehört (wie beispielsweise Bilder, Audio oder Animationen.).
+1. Die `StoryPlayer`-Instanz der _VisualNovelEngine_. Diese kann zum Abspielen und Steuern der interaktiven Geschichten genutzt werden.
+2. Eine Liste von `Asset`-Objekten. Ein Asset ist hierbei alles, was zur audiovisuellen Aufbereitung der interaktiven Geschichten gehört (wie beispielsweise Bilder, Audio oder Animationen).
 3. Die Geschichte, die hier beispielhaft abgespielt werden soll. Diese würde in einer echten Anwendung aus JSON-Objekten importiert werden (siehe @implementierung-story-engine).
 
 Dann wird in @vn-engine-demo-app-listing-part-two:11 mit der `LaunchedEffect()` Methode ein Block generiert, der einmalig asynchron zur Komposition ausgeführt wird. Hier werden Konfigurations-Schritte ausgeführt, wie das Laden der erstellten Assets, das Initialisieren des Status der Visual Novel sowie dem Start des Abspielens der Geschichte.
@@ -765,11 +764,11 @@ Das in @vn-engine-demo-app-listing-part-one:3 deklarierte _Composable_ kann nun 
 #let body = [
   @vn-engine-demo-app-figure zeigt einen Screenshot aus der interaktiven Vorschau der Demo-Anwendung.
 
-  Hier werden Assets gebraucht, um jeweils Vorder- und Hintergrund darzustellen, verschiedene Gegenstände zu Platzieren (wie die Pflanze im Hintergrund oder das Glas Wasser im Vordergrund), Charaktere darzustellen und diese zu Animieren.
+  Hier werden Assets gebraucht, um jeweils Vorder- und Hintergrund darzustellen, verschiedene Gegenstände zu platzieren (wie die Pflanze im Hintergrund oder das Glas Wasser im Vordergrund), Charaktere darzustellen und diese zu animieren.
 
   Der hier dargestellte Charakter ist transparent aufgrund einer Animation, die eine Änderung der Transparenz beschreibt und darstellt.
 
-  Die Demo-Anwendung soll somit übersichtlich und kurz demonstrieren, wie das _VisualNovelEngine_ Modul in eine andere Anwendung integriert werden kann, um eine Visual Novel zu erstellen. Außerdem kann durch die Interaktive Vorschau auch mit der Anwendung interagiert werden und beispielsweise verschiedene Pfade in der Geschichte ausgewählt werden.
+  Die Demo-Anwendung soll somit übersichtlich und kurz demonstrieren, wie das _VisualNovelEngine_ Modul in eine andere Anwendung integriert werden kann, um eine Visual Novel zu erstellen. Außerdem kann durch die interaktive Vorschau auch mit der Anwendung interagiert werden und beispielsweise verschiedene Pfade in der Geschichte ausgewählt werden.
 ]
 #utils.wrap-content(
   fig,
@@ -778,15 +777,15 @@ Das in @vn-engine-demo-app-listing-part-one:3 deklarierte _Composable_ kann nun 
   column-gutter: 2em,
 )
 
-Nun da die Benutzung und Integration des _VisualNovelEngine_ Moduls in eine Anwendung etwas klarer sein sollte, werden im weiteren Verlauf einige der wichtigsten Komponenten dieses Moduls beleuchtet.
+Nun, da die Benutzung und Integration des _VisualNovelEngine_ Moduls in eine Anwendung etwas klarer sein sollte, werden im weiteren Verlauf einige der wichtigsten Komponenten dieses Moduls beleuchtet.
 
 Ähnlich wie beim _StoryEngine_ Modul gibt es auch hier eine Schnittstelle, die als Einstiegspunkt zu den Funktionalitäten des Moduls dient. Diese heißt in diesem Fall `VisualNovelEngine`.
 
 @vn-engine-interface-listing zeigt die öffentlich definierten Schnittstellen dieses Interface.
 
-Neben statischen Methoden zum konstruieren und zerstören der Engine (siehe @vn-engine-interface-listing:10 und @vn-engine-interface-listing:33) wird hier Zugang zu einer Instanz von `VisualNovelStoryPlayer` gewährt, welche es erlaubt, das Abspielen von Geschichten zu Steuern und den Status der Darstellung der Geschichten abzufragen.
+Neben statischen Methoden zum Konstruieren und Zerstören der Engine (siehe @vn-engine-interface-listing:10 und @vn-engine-interface-listing:33) wird hier Zugang zu einer Instanz von `VisualNovelStoryPlayer` gewährt, welche es erlaubt, das Abspielen von Geschichten zu steuern und den Status der Darstellung der Geschichten abzufragen.
 
-Zuletzt ist die `loadAssets()` (siehe @vn-engine-interface-listing:2) Methode zu erwähnen, welche die Übergebenen Assets Modul-intern bereitstellt, damit diese zur audiovisuellen Aufbereitung der Geschichten genutzt werden können.
+Zuletzt ist die `loadAssets()` (siehe @vn-engine-interface-listing:2) Methode zu erwähnen, welche die Übergebenen Assets modul-intern bereitstellt, damit diese zur audiovisuellen Aufbereitung der Geschichten genutzt werden können.
 
 #utils.codly(
   skips: (
@@ -850,15 +849,15 @@ Diese beiden Felder werden in der _Composable_ Komponente `VisualNovelStory` daz
 
 @listing:vnStoryComposable zeigt einen Ausschnitt aus der Implementation dieser Komponente, anhand dessen die Rendering Logik deutlich wird.
 
-Zunächst werden einige Variablen angelegt, die, wenn geschrieben dazu führen, dass das Composable erneut gerendert wird (siehe @listing:vnStoryComposable:1 bis @listing:vnStoryComposable:3)
+Zunächst werden einige Variablen angelegt, die, wenn geschrieben, dazu führen, dass das Composable erneut gerendert wird (siehe @listing:vnStoryComposable:1 bis @listing:vnStoryComposable:3).
 
-Wenn sich beispielsweise der Wert hinter uiState ändert, wird das Composable mit den neuen Wert neu evaluiert. Innerhalb des `Box()`-Composable, welches als ein Container für mehrere Composables verstanden werden kann, wird `uiState` evaluiert und je nach Status entsprechende Werte gesetzt (siehe @listing:vnStoryComposable:6).
+Wenn sich beispielsweise der Wert hinter uiState ändert, wird das Composable mit dem neuen Wert neu evaluiert. Innerhalb des `Box()`-Composable, welches als ein Container für mehrere Composables verstanden werden kann, wird `uiState` evaluiert und je nach Status entsprechende Werte gesetzt (siehe @listing:vnStoryComposable:6).
 
-Im Status `Rendering` wird zum Beispiel, der Status `loading` auf falsch gesetzt und die Szene, die dargestellt werden soll, ausgelesen.
+Im Status `Rendering` wird zum Beispiel der Status `loading` auf falsch gesetzt und die Szene, die dargestellt werden soll, ausgelesen.
 
 Dadurch wird wiederum eine erneute Komposition des `VisualNovelStory` Composable ausgeführt und die entsprechende Szene kann angezeigt werden. Hierzu wird ein weiteres Composable namens `VisualNovelScene` verwendet.
 
-Bei anderen Status von `uiState` wie `Error` werden z.B. Fehlermeldungen angezeigt, um den Nutzer zu informieren, dass es einen Fehler gegeben hat. So können mit einfachen Mitteln komplexe Darstellungslogik umgesetzt werden und alle mögliche Status in der Benutzeroberfläche berücksichtigt sowie entsprechend behandelt werden.
+Bei anderen Status von `uiState` wie `Error` werden z.B. Fehlermeldungen angezeigt, um den Nutzer zu informieren, dass es einen Fehler gegeben hat. So können mit einfachen Mitteln komplexe Darstellungslogik umgesetzt werden und alle möglichen Status in der Benutzeroberfläche berücksichtigt sowie entsprechend behandelt werden.
 
 #let visualNovelStoryComposableListing = ```kotlin
 val uiState by storyPlayer.uiState.collectAsState()
@@ -963,7 +962,7 @@ data class SceneRenderState(
   caption: [Definition des Typs `SceneRenderState`, welcher alle Informationen zur Darstellung einer Szene enthält.],
 ) <listing:sceneRenderState>
 
-Während in den Hinter- und Vordergrund Ebenen lediglich verschiedene Darstellungselemente platziert werden können, sind in der Mittelgrund-Ebene neben den Charakteren der Geschichte auch die Text-Elemente angesiedelt, die einerseits die Geschichte erzählen und andererseits auch das Haupt-Element zur Interaktion mit der Geschichte darstellen.
+Während in den Hinter- und Vordergrundebenen lediglich verschiedene Darstellungselemente platziert werden können, sind in der Mittelgrund-Ebene neben den Charakteren der Geschichte auch die Text-Elemente angesiedelt, die einerseits die Geschichte erzählen und andererseits auch das Haupt-Element zur Interaktion mit der Geschichte darstellen.
 
 Im Wesentlichen wird hierfür im `VisualNovelSceneMainContent` Composable einerseits die aktuellen Text-Elemente dargestellt und animiert, sowie der aktiv sprechende Charakter, welcher ebenfalls animiert werden kann.
 
@@ -971,7 +970,7 @@ Da das Animations-System einen wesentlichen Anteil der Entwicklungszeit dieses M
 
 ==== Umsetzung des Animation-Systems <implementierung-animation-system>
 
-Um die Umsetzung des Animation-Systems der _VisualNovelEngine_ näher zu beleuchten ist es zunächst wichtig, die Klassenhierarchie der Assets zu verstehen. Diese ist in @figure:vnEngineModelClassDiagram dargestellt.
+Um die Umsetzung des Animation-Systems der _VisualNovelEngine_ näher zu beleuchten, ist es zunächst wichtig, die Klassenhierarchie der Assets zu verstehen. Diese ist in @figure:vnEngineModelClassDiagram dargestellt.
 
 #let vnEngineModelClassDiagram = image("/resources/images/diagrams/vn-engine-model-class-diagram.png")
 #figure(
@@ -979,15 +978,15 @@ Um die Umsetzung des Animation-Systems der _VisualNovelEngine_ näher zu beleuch
   caption: [Klassenhierarchie des Typs `Asset` im Modul _VisualNovelEngine_.],
 ) <figure:vnEngineModelClassDiagram>
 
-`Asset` selbst ist ein einfaches Interface, welches lediglich eine ID vorschreibt, welche unter allen existierenden Assets einzigartig sein muss. Davon ausgehend gibt wiederum andere Typen von Assets wie `Animation`, `Sprite`, `TextAsset` und `StoryAsset`. Die Namen `TextAsset` und `StoryAsset` wurden lediglich für dieses Diagramm so gewählt um eine Verwechselung zu vermeiden.
+`Asset` selbst ist ein einfaches Interface, welches lediglich eine ID vorschreibt, welche unter allen existierenden Assets einzigartig sein muss. Davon ausgehend gibt es wiederum andere Typen von Assets wie `Animation`, `Sprite`, `TextAsset` und `StoryAsset`. Die Namen `TextAsset` und `StoryAsset` wurden lediglich für dieses Diagramm so gewählt, um eine Verwechselung zu vermeiden.
 
-Interessant ist hier die das Interface `Animation`, welches eine Reihe von Eigenschaften vorschreibt, welche jede Art von Animation gemein hat. Die konkreten Animations-Typen die hier definiert sind, lauten:
+Interessant ist hier das Interface `Animation`, welches eine Reihe von Eigenschaften vorschreibt, welche jede Art von Animation gemein hat. Die konkreten Animations-Typen, die hier definiert sind, lauten:
 
 - `Text`: Beschreibt, wie ein Text-Element animiert werden soll.
 - `SpriteSheet`: Beschreibt eine Animation, die aus einer Reihe von Sprites besteht.
 - `SpriteTransition`: Beschreibt eine Animation, die einen Sprite durch einen anderen ersetzt.
 
-Sämtliche werden von einem Modul-internen Dienst gespeichert und verwaltet, der hier als eine Art In-Memory Datenbank agiert, die sämtliche Assets beinhaltet, die zur Darstellung der aktuellen Geschichte genutzt werden können und somit für die Engine die #utils.gls-short("ssot") für sämtliche Assets bildet.
+Sämtliche werden von einem modul-internen Dienst gespeichert und verwaltet, der hier als eine Art In-Memory-Datenbank agiert, die sämtliche Assets beinhaltet, die zur Darstellung der aktuellen Geschichte genutzt werden können und somit für die Engine die #utils.gls-short("ssot") für sämtliche Assets bildet.
 
 Die Definition dieses Dienstes `AssetStore` ist in @listing:assetStore abgebildet. Neben verschiedenen Methoden zum Hinzufügen, Ändern oder Löschen von Assets ist hier vor allem das `assets` Feld interessant (siehe @listing:assetStore:2).
 
@@ -1009,7 +1008,7 @@ internal interface AssetStore {
 ```
 #figure(assetStoreListing, caption: [Definition des `AssetStore` Interface.]) <listing:assetStore>
 
-Während also im `AssetStore` sämtliche Assets zu finden sind, wozu auch alle Animationen gehören, die abgespielt werden können, muss auch noch die Aufgabe übernommen werden, Animationen starten, stoppen und verwalten zu können. Zu diesem Zwecke existiert ein separater Dienst, der Schnittstellen für genau diese Funktionen zur Verfügung stellt.
+Während also im `AssetStore` sämtliche Assets zu finden sind, wozu auch alle Animationen gehören, die abgespielt werden können, muss auch noch die Aufgabe übernommen werden, Animationen starten, stoppen und verwalten zu können. Zu diesem Zweck existiert ein separater Dienst, der Schnittstellen für genau diese Funktionen zur Verfügung stellt.
 
 In @listing:animationService ist die Definition des Interface `AnimationService` zu sehen, welches die Schnittstellen des Dienstes beschreibt.
 
@@ -1046,11 +1045,11 @@ Die Animationen werden beim Verarbeiten der einzelnen Novel Events durch den `Vi
 
 In @listing:vnStoryPlayerEventProcessing ist ein Ausschnitt aus der Methode zu sehen, die in der Implementation von `VisualNovelStoryPlayer` die einzelnen Novel Events verarbeitet, die jeweils bei einer Passage einer Geschichte auftreten können.
 
-Hier ist lediglich ein Fall dargestellt: die Verarbeitung von Events des Typen `InformationalText`. Diese repräsentieren einen informativen Text, der beispielsweise genutzt werden kann, um mehr Kontext über eine Geschichte zu geben.
+Hier ist lediglich ein Fall dargestellt: die Verarbeitung von Events des Typs `InformationalText`. Diese repräsentieren einen informativen Text, der beispielsweise genutzt werden kann, um mehr Kontext über eine Geschichte zu geben.
 
 In @listing:vnStoryPlayerEventProcessing:9 ist zu sehen, wie ein Animation-Batch über den Dienst gestartet wird. Hierzu wird als Liste der abzuspielenden Animationen in diesem Fall lediglich das `animationProps` Feld vom `Text.Info` Objekt übergeben, welches die Animations-Parameter beinhaltet (siehe @listing:vnStoryPlayerEventProcessing:10).
 
-Nach Vervollständigung der Animationen wird eine Methode aufgerufen, die, falls nötig Status Updates nach beenden der Animationen ausführen kann (siehe @listing:vnStoryPlayerEventProcessing:11).
+Nach Vervollständigung der Animationen wird eine Methode aufgerufen, die, falls nötig Status Updates nach Beenden der Animationen ausführen kann (siehe @listing:vnStoryPlayerEventProcessing:11).
 
 Erst wenn alle Animationen fertig verarbeitet sind, kann das nächste Novel Event behandelt werden. Dies geschieht deshalb auch in der angesprochenen Methode, indem einfach der Index hochgezählt wird und `processNextEvent()` erneut aufgerufen wird.
 
@@ -1098,7 +1097,7 @@ So kann beispielsweise das in @figure:vnEngineModelClassDiagram beschriebene Kla
 
 Implementiert wurden in dieser Arbeit Text Animationen und Sprite-Transition Animationen, welche einen Übergang von einem Sprite zu einem anderen animieren können. In @listing:animatableTextComposable ist die Implementierung einer animierbaren Text Komponente zu sehen.
 
-Dieser werden als Parameter übergeben: das Text-Asset, die Instanz des Animations-Dienstes und ein Composable, mit welchem der Text dargestellt werden soll. Dies erhöht die Wiederverwendbarkeit, da verschiedene Arten von Text-Assets, wie z.B. Info oder Player Text, unterschiedlich dargestellt können werden sollen.
+Folgende Objekte werden als Parameter übergeben: das Text-Asset, die Instanz des Animations-Dienstes und ein Composable, mit welchem der Text dargestellt werden soll. Dies erhöht die Wiederverwendbarkeit, da verschiedene Arten von Text-Assets, wie z.B. Info oder Player Text, unterschiedlich dargestellt werden sollen.
 
 #let animatableTextComposableListing = ```kotlin
 @Composable

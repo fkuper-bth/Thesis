@@ -8,7 +8,7 @@ Dieser sollte wie auch KITE II für mehrere Plattformen verfügbar sein, wobei z
 
 Ebenso wie die Visual Novel Bibliothek soll der Prototyp als technologische Grundlage #utils.gls-long("cmp") verwenden.
 
-In diesem Kapitel wird die Implementation beschrieben, wie sie im Rahmen dieser Arbeit angefertigt wurde. Da für das Projekt, welches den Prototypen umsetzt, der Namen _VisualNovelExample_ gewählt wurde, wird folglich diese Bezeichnung verwendet und ist somit synonym mit dem Prototypen zu verstehen.
+In diesem Kapitel wird die Implementation beschrieben, wie sie im Rahmen dieser Arbeit angefertigt wurde. Da für das Projekt, welches den Prototypen umsetzt, der Name _VisualNovelExample_ gewählt wurde, wird folglich diese Bezeichnung verwendet und ist somit synonym mit dem Prototypen zu verstehen.
 
 === Übersicht über den Projekt-Aufbau <overview-prototype-project-structure>
 
@@ -16,9 +16,9 @@ Der zugrunde liegende Aufbau der _VisualNovelExample_ Applikation folgt im Groß
 
 Die Architektur folgt dem etablierten #utils.gls-short("mvvm") Muster und auch dieses Projekt macht von dem #utils.gls-short("di") Framework _Koin_ Gebrauch, um Abhängigkeiten aufzulösen.
 
-Die Ordnerstruktur des Projektes ist in @listing:prototypeFolderStructure abgebildet. Im Root-Ordner `commonMain` befindet sich sämtliche Quell-Dateien, die für alle Zielplattformen verwendet werden.
+Die Ordnerstruktur des Projektes ist in @listing:prototypeFolderStructure abgebildet. Im Root-Ordner `commonMain` befinden sich sämtliche Quell-Dateien, die für alle Zielplattformen verwendet werden.
 
-In `composeResources` befinden sich wiederum Ressourcen-Dateien, welche keinen Quell-Code beinhalten. Dazu gehören hauptsächlich Assets, die für die Visual Novels benötigt werden, wie Bilder, Sounds, die die Geschichten und eine `manifest.json`-Datei. Eine nähere Erläuterung dieser Datei erfolgt in @ausarbeitung-prototyp.
+In `composeResources` befinden sich wiederum Ressourcen-Dateien, welche keinen Quell-Code beinhalten. Dazu gehören hauptsächlich Assets, die für die Visual Novels benötigt werden, wie Bilder, Sounds, die Geschichten und eine `manifest.json`-Datei. Eine nähere Erläuterung dieser Datei erfolgt in @ausarbeitung-prototyp.
 
 #utils.codly-disable()
 #let prototypeFolderStructure = ```
@@ -45,13 +45,13 @@ commonMain/
 ) <listing:prototypeFolderStructure>
 #utils.codly-enable()
 
-Im `kotlin` Verzeichnis befinden sich sämtliche Quell-Code Dateien, welche in diesem Fall in Kotlin verfasst sind. `App.kt` fungiert hier als Einstiegspunkt in das Programm.
+Im `kotlin`-Verzeichnis befinden sich sämtliche Quell-Code-Dateien, welche in diesem Fall in Kotlin verfasst sind. `App.kt` fungiert hier als Einstiegspunkt in das Programm.
 
-In den Verzeichnissen `view` befinden sich die Composables während in `viewmodel` die dazu gehörigen ViewModels definiert sind. Das `domain` Verzeichnis beinhaltet die Modell-Definitionen und Service-Klassen Definitionen.
+In den Verzeichnissen `view` befinden sich die Composables, während in `viewmodel` die dazu gehörigen ViewModels definiert sind. Das `domain`-Verzeichnis beinhaltet die Modell-Definitionen und Service-Klassen-Definitionen.
 
-Im `di` Verzeichnis befindet sich die _Koin_ Modul-Definition und in `utils` werden beispielsweise Quell-Dateien abgelegt, die bei der Entwicklung helfen, wie Definitionen von Daten, die zur Live-Vorschau von UI-Komponenten verwendet werden können.
+Im `di`-Verzeichnis befindet sich die _Koin_-Modul-Definition und in `utils` werden beispielsweise Quell-Dateien abgelegt, die bei der Entwicklung helfen, wie Definitionen von Daten, die zur Live-Vorschau von UI-Komponenten verwendet werden können.
 
-Der Fokus bei der Ausgestaltung der Applikation lag dabei auf den Visual Novels selbst, da diese das Herz der Anwendung bilden. Andere Bildschirme, die in KITE II implementiert sind, aber sekundäre Funktionen erfüllen, wie Informations-Screens oder Settings-Screens wurden daher in der Implementation zunächst vernachlässigt.
+Der Fokus bei der Ausgestaltung der Applikation lag dabei auf den Visual Novels selbst, da diese das Herz der Anwendung bilden. Andere Bildschirme, die in KITE II implementiert sind, aber sekundäre Funktionen erfüllen, wie Informations-Screens oder Settings-Screens, wurden daher in der Implementation zunächst vernachlässigt.
 
 #let prototypeMainScreenImage = image("/resources/images/prototype_mainscreen.png")
 #let prototypeDialogueScreenImage = image("/resources/images/prototype_dialogscreen.png")
@@ -78,7 +78,7 @@ Der Fokus bei der Ausgestaltung der Applikation lag dabei auf den Visual Novels 
   caption: [Screenshots verschiedener Bildschirme jeweils aus der _VisualNovelExample_ Applikation und KITE II.],
 ) <figure:comparisonPrototypeAndKite2>
 
-In @figure:comparisonPrototypeAndKite2 sieht man den beispielhaften Vergleich zweier Bildschirme jeweils aus der Prototyp-Anwendung und von KITE II.
+In @figure:comparisonPrototypeAndKite2 sieht man den beispielhaften Vergleich zweier Bildschirme, jeweils aus der Prototyp-Anwendung und von KITE II.
 
 Hier ist zu sehen, dass insbesondere die Gestaltung von Benutzeroberflächen-Elementen im Prototypen auf Standard-Komponenten gesetzt wurde, die bereits durch das #utils.gls-short("cmp") Framework bereitgestellt wurden, während in KITE II diese ein eigenes Styling erhalten haben.
 
@@ -88,13 +88,13 @@ Außerdem ist hier sichtbar, dass viele der in KITE II existierenden Bildschirme
 
 === Ausarbeitung des Prototypen <ausarbeitung-prototyp>
 
-Um die letztendliche Darstellung der interaktiven Geschichten umzusetzen werden im Prototypen in Anlehnung an KITE II einige Mechanismen implementiert, die dort in ähnlicher Form auch existieren.
+Um die letztendliche Darstellung der interaktiven Geschichten umzusetzen, werden im Prototypen in Anlehnung an KITE II einige Mechanismen implementiert, die dort in ähnlicher Form auch existieren.
 
-So werden die Story-Dateien zusätzlich mit einer Datei mit Meta-Daten verknüpft, die zur jeweiligen Geschichte verschiedene Meta-Informationen enthalten kann, wie z.B. Datenpunkte, die in der Benutzeroberfläche verwendet werden wie eine Beschreibung der Geschichte, einen Titel oder eine Akzent-Farbe. Außerdem können hier Infos, wie eine Kontext-Beschreibung für einen Prompt hinterlegt werden, welche in KITE II zur Generierung des Feedbacks durch ein LLM verwendet wird.
+So werden die Story-Dateien zusätzlich mit einer Datei mit Meta-Daten verknüpft, die zur jeweiligen Geschichte verschiedene Meta-Informationen enthalten kann, wie z.B. Datenpunkte, die in der Benutzeroberfläche verwendet werden, wie eine Beschreibung der Geschichte, einen Titel oder eine Akzentfarbe. Außerdem können hier Infos, wie eine Kontext-Beschreibung für einen Prompt hinterlegt werden, welche in KITE II zur Generierung des Feedbacks durch ein LLM verwendet wird.
 
 Sämtliche Informationen zu einer Visual-Novel werden in einer `manifest.json` Datei zusammengefasst, welche zum Programm-Start gelesen und verarbeitet wird.
 
-In @listing:manifestFile ist ein Ausschnitt aus dieser Datei zu sehen. Jede Geschichte wird hier mit ihrer ID als Schlüssel gemeinsam mit den relevanten Daten abgespeichert, wie die dazugehörige Dateien, die die Geschichte selbst und die Meta Informationen enthalten sowie einen Schlüssel, um die passenden Assets zur Geschichte laden zu können.
+In @listing:manifestFile ist ein Ausschnitt aus dieser Datei zu sehen. Jede Geschichte wird hier mit ihrer ID als Schlüssel gemeinsam mit den relevanten Daten abgespeichert, wie die dazugehörige Dateien, die die Geschichte selbst und die Meta-Informationen enthalten, sowie einen Schlüssel, um die passenden Assets zur Geschichte laden zu können.
 
 #utils.codly(
   skips: (
@@ -141,7 +141,7 @@ interface ManifestManagerService {
   caption: [Definition des `ManifestManagerService` Interface.],
 ) <listing:manifestManagerService>
 
-Der Einstiegspunkt in die Applikation erfolgt über ein Composable, welches in der `App.kt` definiert ist und ist in @listing:prototypeEntryPoint zu sehen.
+Der Einstiegspunkt in die Applikation erfolgt über ein Composable, welches in der `App.kt` definiert ist und in @listing:prototypeEntryPoint zu sehen ist.
 
 #utils.codly(
   highlights: (
@@ -177,7 +177,7 @@ In @listing:prototypeEntryPoint:7 wird über eine Funktion die Initialisierung d
 
 Um Mechanismen, wie die Navigation zwischen den verschiedenen Bildschirmen zu implementieren, wird auf etablierte Techniken und Bibliotheken aus der Android und #utils.gls-long("cmp") Welt zurückgegriffen.
 
-Entwickler und Herausgeber von #utils.gls-short("cmp"), JetBains, hat hierzu eine Bibliothek veröffentlicht, die den selben Ansatz aus der Android Welt verfolgt. Gleiches gilt für bekannte Bibliotheken zur Umsetzung des #utils.gls-short("mvvm") Patterns in der Android Welt. Somit können diese unter geringem Aufwand für den Prototypen implementiert werden.
+Entwickler und Herausgeber von #utils.gls-short("cmp"), JetBrains, haben hierzu eine Bibliothek veröffentlicht, die denselben Ansatz aus der Android-Welt verfolgt. Gleiches gilt für bekannte Bibliotheken zur Umsetzung des #utils.gls-short("mvvm")-Patterns in der Android-Welt. Somit können diese unter geringem Aufwand für den Prototypen implementiert werden.
 
 Innerhalb des `MainScreen` Composables kann mit Hilfe des `NavHost` Composables aus der Navigations-Bibliothek ein Navigations-Graph definiert werden, welcher verschiedene mögliche Bildschirme definiert, die angesteuert werden können und wie zwischen diesen navigiert werden kann (siehe @listing:prototypeNavGraph).
 
@@ -219,9 +219,9 @@ NavHost(startDestination = StartDestination, /* ... */) {
   caption: [Ausschnitt aus der Definition des Navigations-Graphen des Prototypen.],
 ) <listing:prototypeNavGraph>
 
-In @listing:prototypeNavGraph:1 ist beispielsweise zu sehen, dass `StartDestination` als Start-Knoten des Navigations-Graphen definiert wird. In dessen Definition in @listing:prototypeNavGraph:2 wird dann wiederum ein `StartScreen` Composable konstruiert und über eine Callback Methode kann die Navigation zu einer ausgewählten Geschichte mit Hilfen der ID erfolgen (siehe @listing:prototypeNavGraph:4 und @listing:prototypeNavGraph:5).
+In @listing:prototypeNavGraph:1 ist beispielsweise zu sehen, dass `StartDestination` als Start-Knoten des Navigations-Graphen definiert wird. In dessen Definition in @listing:prototypeNavGraph:2 wird dann wiederum ein `StartScreen` Composable konstruiert und über eine Callback-Methode kann die Navigation zu einer ausgewählten Geschichte mit Hilfe der ID erfolgen (siehe @listing:prototypeNavGraph:4 und @listing:prototypeNavGraph:5).
 
-Der `StoryDestination` Knoten (@listing:prototypeNavGraph:8) wiederum kann daraufhin in seiner Definition die übergebene ID verwenden, um diese dem `StoryScreen` Composable zu übergeben, damit dieses die entsprechende Geschichte laden und anzeigen kann.
+Der `StoryDestination`-Knoten (@listing:prototypeNavGraph:8) wiederum kann daraufhin in seiner Definition die übergebene ID verwenden, um diese dem `StoryScreen` Composable zu übergeben, damit dieses die entsprechende Geschichte laden und anzeigen kann.
 
 === Darstellung der Visual Novels <implementierung-prototyp-darstellung-visual-novels>
 
@@ -274,7 +274,7 @@ fun StoryScreen(
 
 Das ViewModel gibt über das `uiState`-Feld einen beobachtbaren Status wieder, über den das Composable entsprechende Gestaltungsmittel wählen kann.
 
-Im Falle eines Fehlers oder beim Laden wird hier eine einfache Text-Komponente verwendet (siehe @listing:storyScreen:14 und @listing:storyScreen:25). Diese Lösungen sind rudimentär und könnten in Zukunft durch robustere und nutzerfreundlichere Alternativen ersetzt werden, wie einem animierte Lade-Indikator und einer robusteren Fehlerbehandlung.
+Im Falle eines Fehlers oder beim Laden wird hier eine einfache Text-Komponente verwendet (siehe @listing:storyScreen:14 und @listing:storyScreen:25). Diese Lösungen sind rudimentär und könnten in Zukunft durch robustere und nutzerfreundlichere Alternativen ersetzt werden, wie einem animierten Lade-Indikator und einer robusteren Fehlerbehandlung.
 
 Bei erfolgreichem Laden der Geschichte kann jedoch das `StoryPlayerView` Composable konstruiert werden, welches sich letztendlich um die Darstellung der Geschichte kümmert (siehe @listing:storyScreen:18).
 
