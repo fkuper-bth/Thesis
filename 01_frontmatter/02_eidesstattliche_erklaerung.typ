@@ -15,7 +15,7 @@ unerlaubte Hilfe angefertigt wurde, insbesondere, dass ich alle Stellen, die wö
     rows: 1,
     row-gutter: 4cm,
     [
-      #align(left + bottom)[Heilbronn, 30. September 2025]
+      #align(left + bottom)[Emsbüren, 30. September 2025]
       #align(left + bottom, line(length: signingLineLength))
       #align(left + bottom)[Ort, Datum]
     ],

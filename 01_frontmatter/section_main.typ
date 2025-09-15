@@ -14,6 +14,9 @@
 #include "03_abstract.typ"
 #pagebreak()
 
+#include "04_danksagung.typ"
+#pagebreak()
+
 = Inhaltsverzeichnis <inhaltsverzeichnis>
 #outline(title: none)
 #pagebreak()
