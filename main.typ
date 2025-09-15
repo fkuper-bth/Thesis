@@ -4,7 +4,7 @@
 // root level styling rules
 #set text(font: "Libertinus Serif", size: 12pt, lang: "de")
 #set page(paper: "a4", margin: auto, numbering: "1", number-align: right)
-#set par(justify: true, leading: 0.6em, first-line-indent: 12pt)
+#set par(justify: true, leading: 0.6em, first-line-indent: 0pt)
 #set heading(numbering: "1.")
 #set table(
   fill: (utils.colorScheme.hhnBlueLight.lighten(95%), none),
