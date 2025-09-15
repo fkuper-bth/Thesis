@@ -200,4 +200,10 @@
     long: "Model-View-ViewModel",
     description: "Ein Architekturmuster, welches eine Anwendung in drei Arten von Komponenten unterteilt: das Model (Daten und Geschäftslogik), die View (Benutzeroberfläche) und das ViewModel (Vermittler zwischen Model und View).",
   ),
+  (
+    key: "ecs",
+    short: "ECS",
+    long: "Entity Component System",
+    description: "Ein Architekturmuster, welches aus Entitäten besteht, die über bestimmten Komponenten von Daten verfügen. Die sogenannten Systeme manipulieren wiederum die Komponenten. Dieses wird häufig in der Videospiel-Entwicklung zur Repräsentation der Spielwelt-Objekte genutzt.",
+  ),
 )
