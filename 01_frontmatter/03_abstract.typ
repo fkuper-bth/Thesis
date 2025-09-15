@@ -28,4 +28,4 @@ Ziel der Arbeit ist die Umsetzung von Entwicklungs-Tools die die Potenziale dies
 
 Dazu werden existierende Technologien analysiert und ein System konzipiert und implementiert, welches beispielhaft von einer prototypischen Anwendung genutzt wird, um die Anwendung und Eignung der erstellten Tools zu demonstrieren. Hierzu werden gezielt Module gestaltet und realisiert, die, auf den in KITE II gewonnenen Erkenntnissen und Arbeitsergebnissen aufbauend, ein System realisieren, um Serious Games mit Visual Novels zu implementieren.
 
-Die in diesem Rahmen entstandenen Bibliotheken und Tools werden unter einer Open-Source Lizenz publiziert, um diese einem möglichst breiten Publikum verfügbar zu machen und ihre zukünftige Weiterentwicklung zu ermöglichen.
+Die in diesem Rahmen entstandenen Bibliotheken und Tools werden unter einer Open-Source-Lizenz publiziert, um diese einem möglichst breiten Publikum zugänglich zu machen und ihre zukünftige Weiterentwicklung zu ermöglichen.
