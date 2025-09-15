@@ -22,9 +22,9 @@ Wie der Projektname impliziert, baut dieses auf einem Pilotprojekt namens #utils
 
 Auf den Erkenntnissen des Pilotprojektes aufbauend erhebt #utils.gls-short("kite2") den Anspruch, Gründerinnen mit Hilfe einer spielerischen Anwendung aufzuklären und in ihren Ambitionen zu unterstützen. Dabei soll insbesondere auf #utils.gls-plural("bias") und Ausgrenzungsmuster hingewiesen werden, die Gründerinnen erfahren können, damit Nutzer*innen hiervon Lernen und neue Herangehensweisen entwickeln können (@bundesweite_grunderinnenagentur_bga_was_2024, Minute 2:23).
 
-Untersuchungen der Anwendung haben bereits gezeigt, dass die gezielte Analyse durch ein #utils.gls-short("llm"), effektiv darin sein kann, Nutzer*innen klares, relevantes und angemessen ausgedrücktes Feedback zu geben @reichert_empowering_2024.
+Untersuchungen der Anwendung haben bereits gezeigt, dass die gezielte Analyse durch ein #utils.gls-short("llm") effektiv darin sein kann, Nutzer*innen klares, relevantes und angemessen ausgedrücktes Feedback zu geben @reichert_empowering_2024.
 
-Der Kern von #utils.gls-short("kite2") besteht also darin, verschiedene #utils.gls-plural("visual_novel") anzubieten, welche von Nutzer*innen gespielt werden können und hierzu jeweils Feedback zu geben. Diese bereiten jeweils unterschiedliche Situation aus dem Alltag und der Arbeit auf, die Gründerinnen im Prozess der Gründung eines Unternehmens erleben könnten, um Nutzer*innen somit mit verschiedenen Herausforderungen zu konfrontieren, die in diesem Kontext existieren können.
+Der Kern von #utils.gls-short("kite2") besteht also darin, verschiedene #utils.gls-plural("visual_novel") anzubieten, welche von Nutzer*innen gespielt werden können und hierzu jeweils Feedback zu geben. Diese bereiten jeweils unterschiedliche Situationen aus dem Alltag und der Arbeit auf, die Gründerinnen im Prozess der Gründung eines Unternehmens erleben könnten, um Nutzer*innen somit mit verschiedenen Herausforderungen zu konfrontieren, die in diesem Kontext existieren können.
 
 #figure(
   grid(
@@ -45,7 +45,7 @@ In @kite-ii-screenshots sind einige Screenshots aus der #utils.gls-short("kite2"
 - Der Bildschirm, der vor dem Start einer #utils.gls-short("visual_novel") erscheint und den Nutzer*innen Informationen zur jeweiligen Geschichte bietet.
 - Der Bildschirm, der während des Spielens einer #utils.gls-short("visual_novel") erscheint und die Interaktion mit der Geschichte ermöglicht.
 
-Zusätzlich wird nach einem Spieldurchgang einer #utils.gls-short("visual_novel") den Nutzer*innen ein Feedback zum Verlauf der Geschichte gegeben. Dieses wird mit Hilfe eines #utils.gls-short("llm") erstellt, welches durch gezieltes konstruieren einer Anfrage an das Modell (#utils.gls("prompt_engineering")), konstruktiv und zielführend sein soll. Dazu folgt der Prompt einer zuvor definierten Datenstruktur mit dem Ziel, die Qualität der Ausgabe des #utils.gls-short("llm")s zu optimieren.
+Zusätzlich wird nach einem Spieldurchgang einer #utils.gls-short("visual_novel") den Nutzer*innen ein Feedback zum Verlauf der Geschichte gegeben. Dieses wird mit Hilfe eines #utils.gls-short("llm") erstellt, welches durch gezieltes Konstruieren einer Anfrage an das Modell (#utils.gls("prompt_engineering")), konstruktiv und zielführend sein soll. Dazu folgt der Prompt einer zuvor definierten Datenstruktur mit dem Ziel, die Qualität der Ausgabe des #utils.gls-short("llm")s zu optimieren.
 
 Das Paper _Navigating Bias: Using LLMs to Analyze Discrimination in Entrepreneurial Game Dialogues_ @marsden_navigating_2025 beschreibt, wie #utils.gls-long("llm")s in #utils.gls-short("kite2") konkret genutzt werden, um das Feedback zu konstruieren. Eine Tabelle auf Seite 209 der Veröffentlichung stellt die hierbei verwendete Datenstruktur dar und ist hier zur Veranschaulichung dieser in @tabelle_kiteII_prompt_struktur übernommen und übersetzt worden.
 

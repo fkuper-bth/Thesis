@@ -8,7 +8,7 @@ Aus der in @zielsetzung definierten Zielsetzung dieser Thesis ergeben sich versc
 
 Der ursprüngliche Durchführungszeitraum der geplanten Arbeitspakete ist vom 30. April 2025 bis zum 30. August 2025 angesetzt. Aufgrund von unerwarteten Verzögerungen bei Umsetzung einiger Arbeitspakete wurde der Zeitraum auf den 30. September 2025 verlängert. Die nachfolgende Zeitplanung bezieht sich auf den ursprünglichen Durchführungszeitraum.
 
-Ausgehend von der in @zielsetzung definierten Zielsetzung wurden für diesen Zeitraum Arbeitspakete definiert, die in @tabelle-terminplanung sequentiell aufgelistet sind und auch in dieser Reihenfolge umgesetzt werden sollen. Diese sind so geplant, dass sie aufeinander aufbauen wobei die zwei größten Arbeitspakete (Entwurf und Umsetzung der #utils.gls-short("library") sowie Entwurf und Umsetzung des Prototypen) in iterativer Art und Weise erarbeitet werden.
+Ausgehend von der in @zielsetzung definierten Zielsetzung wurden für diesen Zeitraum Arbeitspakete definiert, die in @tabelle-terminplanung sequentiell aufgelistet sind und auch in dieser Reihenfolge umgesetzt werden sollen. Diese sind so geplant, dass sie aufeinander aufbauen, wobei die zwei größten Arbeitspakete (Entwurf und Umsetzung der #utils.gls-short("library") sowie Entwurf und Umsetzung des Prototypen) in iterativer Art und Weise erarbeitet werden.
 
 #let tableWorkItems = table(
   columns: 2,
@@ -63,7 +63,7 @@ Ausgehend von der in @zielsetzung definierten Zielsetzung wurden für diesen Zei
 
 === Abgrenzung der Arbeitsinhalte <abgrenzung-arbeitsinhalte>
 
-Die für diese Thesis umzusetzenden Arbeitspakete sind in der @tabelle-terminplanung in @terminplanung aufgeführt. Um diese weiter zu konkretisieren wird hier aufgeführt, welche Inhalte explizit nicht dazu gehören.
+Die für diese Thesis umzusetzenden Arbeitspakete sind in der @tabelle-terminplanung in @terminplanung aufgeführt. Um diese weiter zu konkretisieren, wird hier aufgeführt, welche Inhalte explizit nicht dazu gehören.
 
 In @tabelle-abgrenzung-arbeitsinhalte wird eine Übersicht der Inhalte gegeben, die als _nicht essentiell_ für die in @zielsetzung definierte Zielsetzung dieser Thesis anzusehen sind und daher _nicht_ im Rahmen dieser umzusetzen sind.
 
@@ -105,6 +105,6 @@ Zur Veranschaulichung der Unterscheidung zwischen darstellerischen Elementen, di
   caption: [Vergleich einer Szene aus einer Geschichte in #utils.gls-short("kite2").],
 ) <kite2-screenshot-dialogue-comparison>
 
-Auf der linken Abbildung sieht man einen unbearbeiteten Screenshot eine Szene aus #utils.gls-short("kite2"). Die rechte Abbildung dagegen stellt Elemente, die visuell abweichen können, rot markiert dar. Grob gesagt werden sämtliche Bedienelemente der #utils.gls-short("gui") als nicht essentiell klassifiziert und können daher visuell von der Vorlage abweichen. Die Elemente, die die eigentliche Darstellung der #utils.gls-short("visual_novel") ausmachen sollen dagegen mit der umzusetzenden #utils.gls-short("library") arrangiert werden können.
+Auf der linken Abbildung sieht man einen unbearbeiteten Screenshot einer Szene aus #utils.gls-short("kite2"). Die rechte Abbildung dagegen stellt Elemente, die visuell abweichen können, rot markiert dar. Grob gesagt werden sämtliche Bedienelemente der #utils.gls-short("gui") als nicht essentiell klassifiziert und können daher visuell von der Vorlage abweichen. Die Elemente, die die eigentliche Darstellung der #utils.gls-short("visual_novel") ausmachen, sollen dagegen mit der umzusetzenden #utils.gls-short("library") arrangiert werden können.
 
 Nach Klärung der Anforderungen kann die Umsetzung der #utils.gls-short("library") und des Prototypen gezielt angegangen werden. Die Vorgehensweise bei Umsetzung der einzelnen Arbeitspakete wird in @implementierung ausgeführt.
