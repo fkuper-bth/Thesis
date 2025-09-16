@@ -18,7 +18,7 @@ Dieses Kapitel wird sich auf die ersten beiden Punkte konzentrieren, da die Anal
 
 Um eine Lösung zu entwickeln, die den Anforderungen ihrer Nutzer*innen entspricht, müssen verschiedene Aspekte berücksichtigt werden. Dazu werden zunächst verschiedene Stakeholder identifiziert, die ein Interesse an der #utils.gls-short("library") haben könnten.
 
-Zu diesem Zweck wurden folgende Stakeholder-Gruppen durch Gespräche mit Betreuenden der Thesis und dem Projektteam von #utils.gls-short("kite2") identifiziert, welche in @tabelle-stakeholder-gruppen zusammengefasst sind:
+Zu diesem Zweck wurden folgende Stakeholder-Gruppen durch Gespräche mit Betreuenden der Thesis und dem Projektteam von #utils.gls-short("kite2") identifiziert, welche in @tabelle-stakeholder-gruppen zusammengefasst sind.
 
 #let stakeHolderTable = table(
   columns: 3,
@@ -74,7 +74,7 @@ Die dadurch gewonnenen Erkenntnisse sind in die Formulierung der Anforderungen a
 
 Abgesehen von den Gesprächen mit Stakeholdern, wie in @stakeholder-gespraeche beschrieben, wurden auch bestehende Arbeitsergebnisse von #utils.gls-short("kite2") analysiert, um die Anforderungen an die #utils.gls-short("library") und den Prototypen zu konkretisieren.
 
-Dank der Kooperation des #utils.gls-short("kite2") Projektteams wurde mir Zugang zu projektinternen Dokumenten und Code-Repositories gewährt. Dadurch konnten wertvolle Einblicke in die bestehende Architektur und Lösungsansätze gewonnen werden, die wiederum die Anforderungsanalyse und Konzeption der #utils.gls-short("library") und des Prototypen informiert haben. Außerdem standen Entwickler*innen des #utils.gls-short("kite2") Projektteams für Rückfragen zur Verfügung, was die Analyse weiter erleichtert hat und ein besseres Verständnis der bestehenden Lösungen ermöglicht hat.
+Dank der Kooperation des #utils.gls-short("kite2") Projektteams wurde Zugang zu projektinternen Dokumenten und Code-Repositories gewährt. Dadurch konnten wertvolle Einblicke in die bestehende Architektur und Lösungsansätze gewonnen werden, die wiederum die Anforderungsanalyse und Konzeption der #utils.gls-short("library") und des Prototypen informiert haben. Außerdem standen Entwickler*innen des #utils.gls-short("kite2") Projektteams für Rückfragen zur Verfügung, was die Analyse weiter erleichtert hat und ein besseres Verständnis der bestehenden Lösungen ermöglicht hat.
 
 ==== Systemarchitektur von #utils.gls-short("kite2") <kite2-systemarchitektur>
 
@@ -99,12 +99,12 @@ In @kite2-container-diagram lassen sich verschiedene Interaktions-Punkte mit der
 
 Bei der Analyse ist gerade im Falle der Autor*innen aufgefallen, dass es hier zu Problemen kommen kann. Dadurch, dass Autor*innen ihre Geschichten direkt in dem externen System Twine erstellen und zum Gebrauch in der #utils.gls-short("kite2") Anwendung exportieren, besteht hier die Gefahr, dass die Geschichten nicht in dem Format vorliegen, das die Entwickler*innen erwarten, da die Anwendung selbst die Story Spezifikation implementiert und diese nicht in Twine erzwungen wird.
 
-Bei Abweichung von der Story Spezifikation fallen solche Fehler dann erst auf, wenn die Geschichten in der Anwendung getestet werden. Dies kann zu stark verlängerten Feedback-Zyklen führen verglichen mit einem System, bei dem die Konformität der Geschichten zur Story Spezifikation bereits beim Erstellen der Geschichten, beispielsweise durch eine Art Compiler überprüft wird. Dieser identifizierte Schwachpunkt soll mit der #utils.gls-short("library") adressiert werden.
+Bei Abweichung von der Story Spezifikation fallen solche Fehler dann erst auf, wenn die Geschichten in der Anwendung getestet werden. Dies kann zu stark verlängerten Feedback-Zyklen führen verglichen mit einem System, bei dem die Konformität der Geschichten zur Story Spezifikation bereits beim Erstellen der Geschichten, beispielsweise durch eine Art Compiler überprüft wird. Dieser identifizierte Schwachpunkt soll im Zuge dieser Arbeit adressiert werden.
 
 Neben der fehlenden Validierung der Spezifikation im Author*innen Tool Twine wurde auch festgestellt, dass es zum Zeitpunkt der Analyse noch keine niedergeschriebene Spezifikation des Story-Formates gab. Die Spezifikation existierte lediglich in Form von mündlichen Absprachen zwischen den Entwickler*innen und Autor*innen und in Form von Code zum Übersetzen des Formates in ein internes Format, das von der Anwendung verwendet wird. Dieser Code definiert hier somit die eigentliche Spezifikation. Dies kann aus verschiedenen Gründen problematisch sein:
 
 - _Mangelnde Transparenz_: Die Spezifikation ist nicht für alle Stakeholder*innen zugänglich oder in verständlicher Form vorliegend, da sie nur in Form von Code existiert.
-- _Fehlende Dokumentation_: Dadurch, dass die Spezifikation direkt in der Anwendung selbst als Code existiert, ist diese nicht für externe Akteure sichtbar dokumentiert. Dies macht es schwierig bis unmöglich, die Spezifikation zu anzuwenden, ohne im direkten Kontakt mit den Entwickler*innen zu stehen.
+- _Fehlende Dokumentation_: Dadurch, dass die Spezifikation direkt in der Anwendung selbst als Code existiert, ist diese nicht für externe Akteure sichtbar dokumentiert. Dies macht es schwierig bis unmöglich, die Spezifikation anzuwenden, ohne im direkten Kontakt mit den Entwickler*innen zu stehen.
 - _Schwierige Wartbarkeit_: Änderungen an der Spezifikation müssen direkt im Code vorgenommen werden und sind nicht in einem separaten Dokument festgehalten. Dies kann zu Inkonsistenzen führen, wenn Änderungen nicht korrekt dokumentiert werden.
 - _Fehlende Validierung_: Da die Spezifikation nicht in einem separaten Dokument vorliegt, ist es schwierig, die Konformität der Geschichten zu überprüfen. Dies kann zu Fehlern führen, die erst spät im Entwicklungsprozess auffallen.
 
@@ -138,8 +138,9 @@ Zusätzlich wird ein Knoten speziell als _Start-Passage_ markiert, der den Einst
 
 Neben der eben beschriebenen Struktur der Geschichten erweitert die #utils.gls-short("kite2") Story-Spezifikation die Möglichkeiten der Geschichten um zusätzliche Funktionalitäten, die für die Anwendung in #utils.gls-plural("visual_novel") gedacht sind. Diese werden in der Spezifikation als Schlüsselwörter festgelegt, die in den Passagen-Definitionen verwendet werden können, um bestimmte Funktionen zu erfüllen. Ein paar dieser Schlüsselwörter sind beispielhaft in @tabelle-story-spezifikation dargestellt.
 
-Neben den gelisteten soll es außerdem möglich sein, eigene Schlüsselwörter zu definieren, um diese dann später auswerten zu können. Dadurch soll eine große Bandbreite an Anwendungsmöglichkeiten für die Geschichten ermöglicht werden, die über die Standard-Funktionalitäten hinausgehen.
+Neben den gelisteten Wörtern soll es außerdem möglich sein, eigene Schlüsselwörter zu definieren, um diese dann später auswerten zu können. Dadurch soll eine große Bandbreite an Anwendungsmöglichkeiten für die Geschichten ermöglicht werden, die über die Standard-Funktionalitäten hinausgehen.
 
+#utils.codly-disable()
 #let specTable = table(
   columns: (15%, 35%, 50%),
   table.header([*Keyword*], [*Beschreibung*], [*Beispiel*]),
@@ -199,6 +200,7 @@ Neben den gelisteten soll es außerdem möglich sein, eigene Schlüsselwörter z
   specTable,
   caption: "Einige Schlüsselwörter, die Teil der KITE II Story-Spezifikation sind.",
 ) <tabelle-story-spezifikation>
+#utils.codly-enable()
 
 Wie eine Passage in einer Geschichte definiert werden kann, ist in @beispiel-story-passagen dargestellt. Diese Passage enthält verschiedene Schlüsselwörter, die in der Story-Spezifikation festgelegt sind. Einerseits beschreiben diese die Interaktion zwischen den Charakteren und dem / der Spieler*in und andererseits bieten sie die Möglichkeit, Biases zu definieren, die in der Geschichte vorkommen. Diese Information wird in der Auswertung eines Spieldurchlaufs verwendet, um Spieler*innen Feedback zu geben und ihre Entscheidungen zu reflektieren.
 
@@ -229,7 +231,7 @@ Nach der Definition des Bias in @beispiel-story-passagen finden sich drei Verbin
 ]
 #figure(
   storyPassageContent,
-  caption: "Beispielhafte Definition einer Passage in einer Geschichte, die der Story-Spezifikation folgt.",
+  caption: "Beispielhafte Definition einer Passage in einer Geschichte, die der KITE II Story-Spezifikation folgt.",
 ) <beispiel-story-passagen>
 
 An dieser Stelle ist es wichtig zu verstehen, dass die in Twine geschriebenen Geschichten mit verschiedenen _Story-Formaten_ gebaut werden können, wobei _Harlowe_ in der aktuellen Version von Twine, _Twine 2_, das Standard-Format ist. Diese können als eine Art Compiler betrachtet werden, der aus den Daten der Geschichte eine Ausgabe in einem bestimmten Format generiert.
@@ -238,7 +240,7 @@ Unterschiedliche Story-Formate bieten unterschiedliche Features, wie zum Beispie
 
 Auf technischer Ebene übersetzen die Story-Formate die Story-Daten in eine HTML-Datei @noauthor_twine_nodate. Der Aufbau eines Story-Formates ist durch Twine spezifiziert. Dadurch wird es Drittparteien ermöglicht, eigene Story-Formate zu entwickeln, welche dann wiederum in Twine verwendet werden können.
 
-Dadurch ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in @implementierung-story-format beschrieben.
+Folglich ist es also auch möglich, die für #utils.gls-short("kite2") entwickelte Story Spezifikation in Form eines Twine Story-Formates zu implementieren, sodass bereits zum Zeitpunkt der Erstellung der Geschichten die Konformität zur Spezifikation validiert wird und die Ausgabe in einem Format erfolgen kann, welches direkt von einer entsprechenden Anwendung verwendet werden kann, ohne dass eine zusätzliche Übersetzung notwendig ist. Mehr zur Umsetzung dieses Formates ist in @implementierung-story-format beschrieben.
 
 ==== Audiovisuelle Darstellung <audiovisuelle-darstellung>
 
@@ -292,9 +294,9 @@ Unity bietet ein robustes System zum Erstellen und Kontrollieren von Animationen
   caption: [Übersicht über die Komponenten des Mecanim Animations-Systems in Unity und wie diese miteinander in Beziehung stehen @technologies_unity_nodate.],
 ) <unity-mecanim-overview>
 
-In @unity-mecanim-overview anhand eines Beispiels zu sehen, wie die verschiedenen Komponenten des Animations-Systems in Unity miteinander in Beziehung stehen:
+In @unity-mecanim-overview ist anhand eines Beispiels zu sehen, wie die verschiedenen Komponenten des Animations-Systems in Unity miteinander in Beziehung stehen:
 
-1. Zeigt verschiedene _Animation Clips_, die die Animation eines Charakters beschreiben
+1. Zeigt verschiedene _Animation Clips_, die die Animation eines Charakters beschreiben.
 2. Zeigt einen _Animation Controller_, der die verschiedenen Animation Clips als Zustände beinhaltet und Übergänge zwischen diesen definiert.
 3. Zeigt ein fertiges _Charakter-Modell_, welches animiert werden soll.
 4. Zeigt, wie der _Animation Controller_ auf das _Charakter-Modell_ angewendet wird, um die Animationen zu steuern.

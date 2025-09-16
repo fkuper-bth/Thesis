@@ -23,7 +23,7 @@ Insgesamt scheinen #utils.gls-plural("serious_game") einen nachweislich positive
 
 Abgesehen von der Modalität der Lernmittel besteht die Frage, welche Art von Spiel besonders effektiv im Lernprozess sein kann. In der Gestaltung eines #utils.gls-plural("serious_game") sind viele verschiedene Faktoren zu berücksichtigen, wie die Lernziele, die Zielgruppe, der Nutzungskontext, die Bewertungskriterien der Lernerfahrung oder das Budget.
 
-Eine besonders kosteneffektive Art von Videospiel bezogen auf Produktionskosten können dabei #utils.glspl("visual_novel") sein. Bei dieser Art von Spiel können Spielende eine #utils.gls("interaktive_erzählung") mit audiovisuellen Elementen erleben, die je nach ihren Entscheidungen einen anderen Verlauf nehmen kann.
+Eine besonders kosteneffektive Art von Videospiel (bezogen auf Produktionskosten) können dabei #utils.glspl("visual_novel") sein. Bei dieser Art von Spiel können Spielende eine #utils.gls("interaktive_erzählung") mit audiovisuellen Elementen erleben, die je nach ihren Entscheidungen einen anderen Verlauf nehmen kann.
 
 Außerdem können #utils.gls-plural("visual_novel") großes Potenzial bergen, den Spieler*innen Lerninhalte effektiv zu präsentieren. Hierbei sei es sehr wichtig, dass die Charaktere und die Geschichte gut entwickelt seien und den Spieler*innen eine Projektionsfläche bieten, sich hiermit zu identifizieren. Abgesehen von der Gestaltung der Geschichte und des Lernprozesses sei es außerdem wichtig, dass es eine klare Strategie zur Bewertung der Lernerfahrung gebe @oygardslia_educational_2020.
 

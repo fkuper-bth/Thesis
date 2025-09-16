@@ -8,7 +8,7 @@ Building on a project that aims to educate people about serious topics in a play
 
 The aim of this thesis is to implement development tools that can make the potential of these teaching methods available to a wider audience by significantly reducing the development effort required for such applications.
 
-To this end, existing technologies will be analyzed and a system designed and implemented that will be used as an example by a prototype application to demonstrate the application and suitability of the tools created. For this purpose, modules will be specifically designed and implemented which, based on the insights and work results gained in KITE II, will realize a system for implementing serious games with visual novels.
+To this end, existing technologies are analyzed and a system designed and implemented that is used as an example by a prototype application to demonstrate the application and suitability of the tools created. For this purpose, modules are specifically designed and implemented which, based on the insights and work results gained in KITE II, realize a system for implementing serious games with visual novels.
 
 The libraries and tools developed in this thesis are published under an open-source license in order to make them available to as wide an audience as possible and enable their future development.
 

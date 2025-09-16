@@ -15,6 +15,7 @@ Doch haben sich durch die Wahl von Unity im frühen Stadium des Projektes späte
 Der folgende Abschnitt beschreibt einige der größten Schmerzpunkte, die sich im Laufe der Entwicklung von #utils.gls-short("kite2") ergeben haben, welche durch diese Arbeit adressiert werden sollen. Diese wurden in Zusammenarbeit mit dem Projektteam von #utils.gls-short("kite2") erarbeitet und sind nicht abschließend.
 
 Die Unity Engine bringt viel Funktionalität und Komplexität mit sich, die für den Anwendungsfall von #utils.gls-short("kite2") nicht benötigt wird. Im Vergleich zu anderen Technologien können hierunter folgende Aspekte leiden:
+
 - _Performance_ der Anwendung im Bezug auf Speicherbedarf und CPU-Auslastung.
 - _Größe_ der ausgelieferten Anwendung.
 - _Komplexität_ der Entwicklung durch die Vielzahl an Features, die Unity bietet.
@@ -50,7 +51,7 @@ Kollaborative Arbeitspraktiken wie beispielsweise _Specification By Example_ ver
 
 Andere Ansätze zum kollaborativen Definieren und Erarbeiten von Anforderungen und anderer Projektdokumentation wie _Pair Documentation_ können ebenfalls helfen, die Qualität der Dokumentation und das Verständnis der Anforderungen innerhalb des Teams zu verbessern @qamar_evaluating_2023. Hierbei wird die Dokumentation in Paaren erstellt, die sich aus Team-Mitgliedern mit unterschiedlichen Rollen zusammensetzen. Dadurch wird eine größere Vielfalt an Perspektiven und Erfahrungen in den Dokumentationsprozess einbezogen, was zu einer höheren Qualität der Dokumentation führen kann.
 
-Andererseits muss bei Wahl der Arbeitsprozesse zur Erstellung von Dokumentation von Spezifikationen und Anforderungen darauf geachtet werden, dass der Grad der Formalität den Bedürfnissen des Projektes angepasst werden sollte. Ein iterativer Ansatz, welcher vom Projekt-Team akzeptiert wird, kann ein wichtiger Faktor für eine nachhaltige Praxis sein @christoph_johann_stettina_documentation_2012. So könne Dokumentationsarbeit innerhalb eines Entwicklungsteams als aufdringlich wahrgenommen werden und Kollaboration innerhalb des Teams mindern, weshalb es sehr wichtig sei, eine Form der Dokumentation zu wählen, deren Wert vom Team anerkannt wird und als richtiges Produkt empfunden wird.
+Andererseits muss bei Wahl der Arbeitsprozesse zur Erstellung von Dokumentation von Spezifikationen und Anforderungen darauf geachtet werden, dass der Grad der Formalität den Bedürfnissen des Projektes angepasst werden sollte. Ein iterativer Ansatz, welcher vom Projekt-Team akzeptiert wird, kann ein wichtiger Faktor für eine nachhaltige Praxis sein @christoph_johann_stettina_documentation_2012. So könne Dokumentationsarbeit innerhalb eines Entwicklungsteams als aufdringlich wahrgenommen werden und Kollaboration innerhalb des Teams mindern, weshalb es sehr wichtig sei, eine Form der Dokumentation zu wählen, deren Wert vom Team anerkannt wird und als eigenständiges Produkt empfunden wird.
 
 === Domänenspezifische und Mehrzweck Werkzeuge <dsl-gpl>
 

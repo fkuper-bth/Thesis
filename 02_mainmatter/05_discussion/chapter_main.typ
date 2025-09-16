@@ -10,15 +10,17 @@ Außerdem werden offene Punkte detailliert, die für eine Weiterentwicklung der 
 
 Im gegebenen Zeitrahmen wurden eine Reihe von Projekten geschaffen, die eine jeweils unabhängige Funktion erfüllen und zur Gesamtlösung beitragen. Diese lauten wie folgt:
 
-- eine _Spezifikation_, die das für KITE II geschaffene Format von Twine-Geschichten dokumentiert.
-- eine _Implementierung der Spezifikation_ in Form eines Twine _Story-Formates_, welches von Autor*innen genutzt werden kann, um die geschriebenen Geschichten in einem leicht maschinen-verarbeitbarem Format zu exportieren.
-- eine #utils.gls-long("kmp") _Bibliothek_ zur logischen Verarbeitung der Geschichten, die in diesem Format geschrieben wurden (_StoryEngine_).
-- eine #utils.gls-long("cmp") _Bibliothek_ zur Darstellung der Geschichten (_VisualNovelEngine_).
-- eine #utils.gls-long("cmp") _Anwendung_, die KITE II Geschichten spielbar macht und darstellt (_VisualNovelExample_).
+- Eine _Spezifikation_, die das für KITE II geschaffene Format von Twine-Geschichten dokumentiert.
+- Eine _Implementierung der Spezifikation_ in Form eines Twine _Story-Formates_, welches von Autor*innen genutzt werden kann, um die geschriebenen Geschichten in einem leicht maschinen-verarbeitbarem Format zu exportieren.
+- Eine #utils.gls-long("kmp") _Bibliothek_ zur logischen Verarbeitung der Geschichten, die in diesem Format geschrieben wurden (_StoryEngine_).
+- Eine #utils.gls-long("cmp") _Bibliothek_ zur Darstellung der Geschichten (_VisualNovelEngine_).
+- Eine #utils.gls-long("cmp") _Anwendung_, die KITE II Geschichten spielbar macht und darstellt (_VisualNovelExample_).
 
 #utils.todo("Repositories hier jeweils referenzieren?")
 
 Somit wurde in dem gegebenen Zeitrahmen eine Reihe von Tools geschaffen, mit deren Hilfe Visual Novels umgesetzt werden können, die neben spielerischen Aspekten es auch erlauben, Spieler*innen Feedback zum Spielverlauf zu geben und somit einen Lerneffekt ausüben können. Hierfür sind die nötigen Schnittstellen geschaffen, sodass in Zukunft Projekte wie KITE II mit Hilfe der geschaffenen Tools umgesetzt werden können. Dies demonstriert außerdem der _VisualNovelExample_ Prototyp.
+
+Zusätzlich soll durch die Publikation der Projekte als quelloffene Repositories auf GitHub mitsamt Dokumentation in Form von `README.md`-Dateien und Beispielen (_Specification by Example_) ermöglicht werden, dass beliebige Nutzer*innen die geschaffenen Tools in Zukunft nutzen und erweitern können. Diese Maßnahme hat sich unter anderem auch aus der Recherche (siehe @interactive-fiction-technologien) ergeben, die z.B. ergeben hat, dass Open-Source-Tool wie _Ren'Py_ in der Visual-Novel-Community besonders beliebt sind und für ihre Quelloffenheit geschätzt werden.
 
 == Herausforderungen und Lernerfahrungen <challenges-and-learnings>
 
@@ -55,7 +57,7 @@ Insgesamt haben diese Herausforderungen dazu geführt, dass gerade die Entwicklu
 
 == Zukünftige Entwicklungen <future-developments>
 
-Die Quellcode-Repositories der im Rahmen dieser Arbeit erstellten Projekte sind auf der Entwickler-Plattform _GitHub_ unter der MIT Open Source Lizenz veröffentlicht, sodass diese frei verwendet und weiterentwickelt werden können.
+Die Quellcode-Repositories der im Rahmen dieser Arbeit erstellten Projekte sind auf der Entwickler-Plattform _GitHub_ unter der MIT Open Source Lizenz veröffentlicht, sodass diese frei verwendet und weiterentwickelt werden können. Dieser Ansatz hat sich schon bei anderen beliebten Projekten in diesem Bereich wie _Ren'Py_ als erfolgreich erwiesen.
 
 #utils.todo("GitHub Projekte verlinken.")
 

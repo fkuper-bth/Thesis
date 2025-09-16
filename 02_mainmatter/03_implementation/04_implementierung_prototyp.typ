@@ -274,9 +274,9 @@ fun StoryScreen(
 
 Das ViewModel gibt über das `uiState`-Feld einen beobachtbaren Status wieder, über den das Composable entsprechende Gestaltungsmittel wählen kann.
 
-Im Falle eines Fehlers oder beim Laden wird hier eine einfache Text-Komponente verwendet (siehe @listing:storyScreen:14 und @listing:storyScreen:25). Diese Lösungen sind rudimentär und könnten in Zukunft durch robustere und nutzerfreundlichere Alternativen ersetzt werden, wie einem animierten Lade-Indikator und einer robusteren Fehlerbehandlung.
+Im Falle eines Fehlers oder beim Laden wird hier eine einfache Text-Komponente verwendet (siehe @listing:storyScreen:14 und @listing:storyScreen:25). Diese Lösungen sind rudimentär und könnten in Zukunft durch nutzerfreundlichere Alternativen ersetzt werden, wie einem animierten Lade-Indikator und einer robusteren Fehlerbehandlung.
 
-Bei erfolgreichem Laden der Geschichte kann jedoch das `StoryPlayerView` Composable konstruiert werden, welches sich letztendlich um die Darstellung der Geschichte kümmert (siehe @listing:storyScreen:18).
+Bei erfolgreichem Laden der Geschichte kann das `StoryPlayerView` Composable konstruiert werden, welches sich letztendlich um die Darstellung der Geschichte kümmert (siehe @listing:storyScreen:18).
 
 Ein Ausschnitt der Definition dieses ist in @listing:storyPlayerViewPartOne zu sehen. Hier wird auf Basis des `uiState`-Feldes des ViewModels der interne Status des Composables aktualisiert und nötige Operationen ausgeführt.
 
@@ -362,7 +362,7 @@ fun onAssetsLoaded(storyAssets: StoryAssets?) {
 
 Daraufhin kann im `StoryPlayerView` Composable die Visual Novel angezeigt werden. In @listing:storyPlayerViewPartTwo ist die zweite Hälfte der Definition dieses Composables zu sehen (die erste Hälfte ist in @listing:storyPlayerViewPartOne abgebildet). Hier ist zu sehen, welche UI-Komponenten letztendlich konstruiert werden, basierend auf dem internen Status von `StoryPlayerView`.
 
-Falls gerade noch Daten geladen werden, wird ein Fortschritt-Indikator erstellt (@listing:storyPlayerViewPartTwo:6). Wenn die Geschichte gerade abgespielt wird, wird das Composable `VisualNovelStory` aus der _VisualNovelEngine_ Bibliothek verwendet, um die Visual Novel anzuzeigen (@listing:storyPlayerViewPartTwo:9). Sobald die Geschichte endet, wird eine UI-Komponente generiert, die Nutzer*innen hierüber informiert (@listing:storyPlayerViewPartTwo:16).
+Falls Daten geladen werden, wird ein Fortschritt-Indikator erstellt (@listing:storyPlayerViewPartTwo:6). Wenn die Geschichte gerade abgespielt wird, wird das Composable `VisualNovelStory` aus der _VisualNovelEngine_ Bibliothek verwendet, um die Visual Novel anzuzeigen (@listing:storyPlayerViewPartTwo:9). Sobald die Geschichte endet, wird eine UI-Komponente generiert, die Nutzer*innen hierüber informiert (@listing:storyPlayerViewPartTwo:16).
 
 #utils.codly(
   highlights: (
@@ -398,4 +398,4 @@ fun StoryPlayerView(/* ... */) {
   caption: [Ausschnitt aus Definition des `StoryPlayerView` Composable (Teil 2).],
 ) <listing:storyPlayerViewPartTwo>
 
-So konnte letztendlich mit wenigen Zeilen Code eine Applikation geschaffen werden, die in der Lage ist, Visual Novels darzustellen und spielbar zu machen.
+So konnte unter Verwendung der _VisualNovelEngine_-Bibliothek mit wenigen Zeilen Code eine Applikation geschaffen werden, die in der Lage ist, Visual Novels darzustellen und spielbar zu machen.

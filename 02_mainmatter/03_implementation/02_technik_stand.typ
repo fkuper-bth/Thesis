@@ -239,7 +239,7 @@ Die Gründe hierfür sind vielfältig. Einige der meist genannten Gründe aus ei
 - Verfügbarkeit von _Templates_ zum schnellen Einstieg in der Entwicklung eines neuen Projektes
 - Python als Skript-Sprache ist _einfach zu erlernen_ und _weit verbreitet_
 
-Für die Konzeption der #utils.gls-short("library") in dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in @implementierung-visual-novel-library.
+Für die Konzeption einer #utils.gls-short("library") dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in @implementierung-visual-novel-library.
 
 Neben Ren'Py ist auch _Twine_ ein weit verbreitetes Tool zur Erstellung von #utils.gls-plural("if") und wird auch in der #utils.gls-short("kite2") verwendet. Im Anbetracht der Stärken und Schwächen von Twine, die in @if-tools-pros-cons diskutiert wurden, wie beispielsweise der besonderen Eignung von Twine für Autor*innen ohne Programmierkenntnisse und der Erweiterbarkeit durch Story-Formate ist es sinnvoll, Twine als Grundlage für die #utils.gls-short("library") zu wählen. Somit können nicht nur die für #utils.gls-short("kite2") bereits geschriebenen Geschichten wiederverwendet werden, sondern auch die Stärken von Twine in Bezug auf die Erstellung von #utils.gls-plural("if") genutzt werden. Mehr zu diesem Thema findet sich ebenfalls in @implementierung-visual-novel-library.
 
@@ -249,7 +249,7 @@ Neben den zuvor diskutierten Technologien, die speziell für die Erstellung von 
 
 Entscheidend ist hierbei, dass diese einerseits alle angestrebten Zielplattformen unterstützen, also Android, iOS, Web und Desktop, und andererseits dafür geeignet sind, die in @zielsetzung beschriebenen Anforderungen zu erfüllen.
 
-In @cp-frameworks-overview wird ein Überblick über einige der #utils.gls-short("cross_platform") Frameworks gegeben, die für die Entwicklung der #utils.gls-short("library") in Frage kommen könnten. Dabei werden wichtige Eckdaten zu den Frameworks zusammengefasst, wie die unterstützten Plattformen, die verwendete Programmiersprache und die Lizenzierung.
+In @cp-frameworks-overview wird ein Überblick über einige der #utils.gls-short("cross_platform") Frameworks gegeben, die für die Entwicklung der #utils.gls-short("library") in Frage kommen. Dabei werden wichtige Eckdaten zu den Frameworks zusammengefasst, wie die unterstützten Plattformen, die verwendete Programmiersprache und die Lizenzierung.
 
 #let frameWorkTitleCell(title, imagePath, imageSourceReference) = {
   align(center)[

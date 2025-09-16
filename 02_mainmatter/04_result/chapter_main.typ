@@ -33,7 +33,7 @@ Die nächste formulierte Anforderung an die Bibliothek lautet:
 
 Die _VisualNovelEngine_ unterstützt eine solche Funktionalität, indem der Spielverlauf einer Geschichte stetig protokolliert wird und jederzeit abrufbar ist. So kann zum Beispiel der Spielverlauf über eine Hilfsmethode zu einem Dialog-Text konvertiert werden, der dann wiederum für einen Prompt an ein #utils.gls-long("llm") verwendet werden kann.
 
-Im Prototypen wird hiervon beispielsweise Gebrauch gemacht, um nach Beenden einer Geschichte in einem separaten Bildschirm den Spielverlauf in Form des Dialoges nochmal anzuzeigen. In @listing:playthroughDialogUsage:3 ist die Stelle zu sehen, an der die Hilfsmethode `toPlaythroughDialog()` zu diesem Zwecke verwendet wird.
+Im Prototypen wird hiervon beispielsweise Gebrauch gemacht, um nach Beenden einer Geschichte in einem separaten Bildschirm den Spielverlauf in Form des Dialoges anzuzeigen. In @listing:playthroughDialogUsage:3 ist die Stelle zu sehen, an der die Hilfsmethode `toPlaythroughDialog()` zu diesem Zwecke verwendet wird.
 
 #utils.codly(
   highlights: (
@@ -51,7 +51,7 @@ StoryEndScreenContent(
   caption: [Mit Hilfe von `toPlaythroughDialog()` wird aus dem Spielverlauf ein Dialog-Text erstellt, um diesen Nutzer*innen zu präsentieren.],
 ) <listing:playthroughDialogUsage>
 
-In diesem Sinne wird diese Anforderung als vollständig erfüllt gewertet.
+Damit wird diese Anforderung als vollständig erfüllt gewertet.
 
 Die letzte Anforderung, die an die Bibliothek gestellt wurde, lautet:
 
@@ -107,7 +107,7 @@ Die nächste Anforderung an den Prototypen ist folgendermaßen formuliert:
 
 Obwohl die Geschichten spielbar gemacht werden konnten, konnte dies nicht bei allen Geschichten ohne Anpassung realisiert werden. Da die Spezifikation und das Story-Format welches diese implementiert, erst im Rahmen dieser Arbeit entwickelt wurde (mehr hierzu in @story-spezifikation und @implementierung-story-format), waren noch nicht alle verfassten Geschichten mit diesem konform, weshalb diese in Zukunft entsprechend angepasst werden müssten.
 
-Durch die Entwicklung der Spezifikation und des Formates wurde jedoch ein wichtiger Schritt für die Wiederverwendbarkeit der Geschichten gemacht, da es nun ein definiertes Format gibt, welchem diese folgen können. Daher würde es in Zukunft auch einfacher sein, eine konforme Geschichte mit Hilfe des Twine Story-Formates zu entwickeln, die mit dem Prototypen und der Bibliothek verwendbar ist.
+Durch die Entwicklung der Spezifikation und des Formates wurde jedoch ein wichtiger Schritt für die Wiederverwendbarkeit der Geschichten gemacht, da es nun ein definiertes Format gibt, welchem diese folgen können. Daher würde es in Zukunft auch einfacher sein, eine konforme Geschichte mit Hilfe des Twine Story-Formates zu entwickeln, die mit dem Prototypen und der Bibliothek verwendbar ist. Außerdem wurde hier im Sinne von _Specification by Example_ Dokumentation geschaffen, die anhand von Beispiel die Nutzung des Formates erklärt.
 
 Es sind letztendlich die meisten der KITE II Geschichten ohne Anpassungen für den Prototypen verwendbar gewesen, aber eben nicht alle. Daher ist diese Anforderung nicht ohne Einschränkungen erfüllt.
 

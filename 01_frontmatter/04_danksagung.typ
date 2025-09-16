@@ -1,6 +1,6 @@
 = Danksagung <danksagung>
 
-An dieser Stelle möchte ich mich bei all denjenigen bedanken, die mich während der Arbeit unterstützt haben.
+An dieser Stelle möchte ich mich bei all denjenigen bedanken, die mich während dieser Arbeit unterstützt haben.
 
 Zuerst gebührt mein Dank den Betreuer*innen meiner Thesis, Herrn Prof. Dr. Jörg Winckler und Frau Prof. Dr. Nicola Marsden, die mir während der Erstellung dieser Thesis immer wieder mit hilfreichen Anregungen und konstruktiver Kritik eine große Hilfe waren.
 

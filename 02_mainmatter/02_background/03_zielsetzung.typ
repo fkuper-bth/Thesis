@@ -71,7 +71,7 @@ Diese Anwendung soll als _Proof of Concept_ fungieren und somit die Funktionalit
     _Wiederverwendung_ der für #utils.gls-short("kite2") geschriebenen Geschichten.
   ],
   [
-    - Die für #utils.gls-short("kite2") geschriebenen Geschichten sollen in diesem Prototypen wiederverwendet werden können, ohne dass diese angepasst werden müssen.
+    - Die für #utils.gls-short("kite2") geschriebenen Geschichten sollen in diesem Prototypen wiederverwendet werden können, ohne, dass diese angepasst werden müssen.
   ],
 
   [
