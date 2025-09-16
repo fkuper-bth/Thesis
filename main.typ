@@ -27,9 +27,6 @@
 #show: utils.codly-init.with()
 #utils.configureCodlyStyle()
 
-// TODOs outline, remove this when finished
-#utils.todo_outline
-
 // register glossary entries
 #include "/etc/glossary_entries.typ"
 #utils.register-glossary(glossary_entries.list)

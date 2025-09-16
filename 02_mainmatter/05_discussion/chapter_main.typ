@@ -11,12 +11,10 @@ Außerdem werden offene Punkte detailliert, die für eine Weiterentwicklung der 
 Im gegebenen Zeitrahmen wurden eine Reihe von Projekten geschaffen, die eine jeweils unabhängige Funktion erfüllen und zur Gesamtlösung beitragen. Diese lauten wie folgt:
 
 - Eine _Spezifikation_, die das für KITE II geschaffene Format von Twine-Geschichten dokumentiert.
-- Eine _Implementierung der Spezifikation_ in Form eines Twine _Story-Formates_, welches von Autor*innen genutzt werden kann, um die geschriebenen Geschichten in einem leicht maschinen-verarbeitbarem Format zu exportieren.
-- Eine #utils.gls-long("kmp") _Bibliothek_ zur logischen Verarbeitung der Geschichten, die in diesem Format geschrieben wurden (_StoryEngine_).
-- Eine #utils.gls-long("cmp") _Bibliothek_ zur Darstellung der Geschichten (_VisualNovelEngine_).
-- Eine #utils.gls-long("cmp") _Anwendung_, die KITE II Geschichten spielbar macht und darstellt (_VisualNovelExample_).
-
-#utils.todo("Repositories hier jeweils referenzieren?")
+- Eine _Implementierung der Spezifikation_ in Form eines Twine _Story-Formates_, welches von Autor*innen genutzt werden kann, um die geschriebenen Geschichten in einem leicht maschinen-verarbeitbarem Format zu exportieren @frederik_kuper_fkuper-bthtwine--json-kite-2_2025.
+- Eine #utils.gls-long("kmp") _Bibliothek_ zur logischen Verarbeitung der Geschichten, die in diesem Format geschrieben wurden (_StoryEngine_) @frederik_kuper_fkuper-bthstoryengine_nodate.
+- Eine #utils.gls-long("cmp") _Bibliothek_ zur Darstellung der Geschichten (_VisualNovelEngine_) @frederik_kuper_fkuper-bthvisualnovelengine_nodate.
+- Eine #utils.gls-long("cmp") _Anwendung_, die KITE II Geschichten spielbar macht und darstellt (_VisualNovelExample_) @frederik_kuper_fkuper-bthvisualnovelexample_nodate.
 
 Somit wurde in dem gegebenen Zeitrahmen eine Reihe von Tools geschaffen, mit deren Hilfe Visual Novels umgesetzt werden können, die neben spielerischen Aspekten es auch erlauben, Spieler*innen Feedback zum Spielverlauf zu geben und somit einen Lerneffekt ausüben können. Hierfür sind die nötigen Schnittstellen geschaffen, sodass in Zukunft Projekte wie KITE II mit Hilfe der geschaffenen Tools umgesetzt werden können. Dies demonstriert außerdem der _VisualNovelExample_ Prototyp.
 
@@ -59,7 +57,7 @@ Insgesamt haben diese Herausforderungen dazu geführt, dass gerade die Entwicklu
 
 Die Quellcode-Repositories der im Rahmen dieser Arbeit erstellten Projekte sind auf der Entwickler-Plattform _GitHub_ unter der MIT Open Source Lizenz veröffentlicht, sodass diese frei verwendet und weiterentwickelt werden können. Dieser Ansatz hat sich schon bei anderen beliebten Projekten in diesem Bereich wie _Ren'Py_ als erfolgreich erwiesen.
 
-#utils.todo("GitHub Projekte verlinken.")
+Sämtliche Repositories, die im Rahmen dieser Thesis erstellt wurden, sind einer GitHub-Organisation namens _fkuper-bth_ zugeordnet und können auf der entsprechenden Seite abgerufen werden @frederik_kuper_fkuper-bth_nodate.
 
 Künftige Entwicklungsarbeiten können sich darauf konzentrieren, offene Arbeitspakete zu implementieren, die nicht im zeitlichen Rahmen dieser Thesis umgesetzt werden konnten. In @table:openIssues sind offene Punkte notiert.
 

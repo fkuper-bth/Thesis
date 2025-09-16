@@ -130,5 +130,3 @@ Diese ist in der initialen Planung dieser Arbeit gestellt worden, jedoch konnte 
 Der Prototyp _VisualNovelExample_ konnte insgesamt nicht alle geplanten Anforderungen vollständig umsetzen. Nicht alle KITE II Geschichten sind spielbar. Durch das entwickelte Twine Story-Format sollte eine Anpassung und Prüfung der noch nicht kompatiblen Geschichten jedoch unter geringem Aufwand realisiert werden können. Die größte offene Anforderung bezogen des Prototypen ist wohl die Unterstützung des Speicherns der Spieldurchgänge. Die Planung und Umsetzung eines solchen Features wäre in einer zukünftigen Iteration der Applikation zu tätigen.
 
 Letztendlich demonstriert _VisualNovelExample_ jedoch, wie die im Rahmen dieser Thesis geschaffenen Entwicklungs-Tools genutzt werden können, um Visual Novels auf einer Reihe von Plattformen realisiert zu können und insbesondere, wie die für KITE II geschriebenen Geschichten mit Hilfe dieser realisiert werden können. Eine tiefere Evaluation und Diskussion der Arbeitsergebnisse findet sich in @diskussion.
-
-#utils.todo("Falls Open-Source: Verweis auf die Repositories hier?")

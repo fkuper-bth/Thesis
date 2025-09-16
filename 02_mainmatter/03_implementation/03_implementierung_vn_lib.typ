@@ -70,7 +70,7 @@ Hierzu wird als Ausgabeformat das Datenformat #utils.gls("json") gewählt, da f�
 
 Glücklicherweise kann die Entwicklung des Story Formates auf einem vorhandenen Format namens _twine-to-json_ aufgebaut werden, welches quell-offen zur freien Bearbeitung und Verwendung zur Verfügung steht @jtschoonhoven_twine--json_nodate. Dieses erstellt aus in Twine 2 erstellten Geschichten JSON Objekte und unterstützt ebenfalls Geschichten, die auf dem _Harlowe 3_ Format basieren @noauthor_harlowe_nodate, auf welchem ebenfalls die KITE II Story Spezifikation basiert.
 
-Daher kann diese Arbeit als Grundlage in großen Teilen übernommen werden und muss lediglich an die KITE II Spezifikation angepasst werden. Dazu wurde zunächst ein _Fork_ vom ausgehenden _twine-to-json_ Story Format erstellt, auf welchem die nötigen Anpassungen durchgeführt werden können @fkuper_twine--json-kite-2_nodate.
+Daher kann diese Arbeit als Grundlage in großen Teilen übernommen werden und muss lediglich an die KITE II Spezifikation angepasst werden. Dazu wurde zunächst ein _Fork_ vom ausgehenden _twine-to-json_ Story Format erstellt, auf welchem die nötigen Anpassungen durchgeführt werden können @frederik_kuper_fkuper-bthtwine--json-kite-2_2025.
 
 Dazu wurde zunächst die Implementierung des ursprünglichen Formats analysiert, um dann die nötigen Änderungen an den richtigen Stellen umsetzen zu können. Auf oberster Ebene ist der Programmablauf des twine-to-json Story Formats in @story-format-functionality-pseudo-code abgebildet. Hier wird die Funktion `generateJsonOutput` definiert, welche auf oberster Ebene die Story Daten verarbeitet.
 
@@ -283,7 +283,7 @@ describe('twineToJSON with multiple input files', () => {
 
 Zur Auslieferung des Story-Formates, sodass dieses in Twine verwendet werden kann, wird dieses durch ein einfaches JavaScript-Programm in das in @story-format-content dargestellte Format in eine Datei namens `format.js` geschrieben, welche dann wiederum zur Einbindung in Twine zur Verfügung gestellt werden muss.
 
-Hierfür hatte bereits das _twine-to-json_ Format, auf dem das KITE II Format basiert, eine Lösung implementiert, die GitHub Actions nutzt, um die `format.js` Datei im Internet zu veröffentlichen. Das KITE II Story Format Projekt ist ebenfalls auf GitHub publiziert und macht sich dieselbe Funktionalität zu nutze, um das Format zu veröffentlichen @fkuper_twine--json-kite-2_nodate.
+Hierfür hatte bereits das _twine-to-json_ Format, auf dem das KITE II Format basiert, eine Lösung implementiert, die GitHub Actions nutzt, um die `format.js` Datei im Internet zu veröffentlichen. Das KITE II Story Format Projekt ist ebenfalls auf GitHub publiziert und macht sich dieselbe Funktionalität zu nutze, um das Format zu veröffentlichen @frederik_kuper_fkuper-bthtwine--json-kite-2_2025.
 
 Dadurch ist es allen Twine Nutzer*innen möglich, dieses Format zu nutzen und Geschichten zu schreiben, die dem KITE II Format folgen sowie diese so zu exportieren, dass sie in der im Rahmen dieser Arbeit erstellten Bibliothek verwendet werden können.
 
