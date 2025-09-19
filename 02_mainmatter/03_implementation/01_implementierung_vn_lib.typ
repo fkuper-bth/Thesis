@@ -1172,4 +1172,25 @@ Sobald alle Buchstaben angezeigt sind, wird der `AnimationService` benachrichtig
 
 Das Composable, welches die Sprite-Transition Animation implementiert, `AnimatableVisualNovelSprite`, verfolgt strukturell einen sehr ähnlichen Ansatz, welcher ebenfalls in Zukunft angewandt werden kann, um andere animierbare Komponenten zu implementieren und somit eine größere Bandbreite an Animationen zu unterstützen.
 
+In @figure:vnEngineAnimationServiceSequenceDiagram ist ein Sequenz-Diagramm abgebildet, welches den den Ablauf der Verarbeitung eines _NovelEvent_ im VisualNovelPlayer darstellt.
+
+#let vnEngineAnimationServiceSequenceDiagram = image(
+  "/resources/images/diagrams/vn-engine-animation-service-sequence-diagram.png",
+)
+#figure(
+  vnEngineAnimationServiceSequenceDiagram,
+  caption: [Sequenz-Diagramm, welches den den Ablauf der Verarbeitung eines _NovelEvent_ im VisualNovelPlayer darstellt.],
+) <figure:vnEngineAnimationServiceSequenceDiagram>
+
+Hier ist beispielhaft verbildlicht, wie der logische Ablauf zwischen den einzelnen Komponenten zum Verarbeiten eines _NovelEvent_ und dem Verarbeiten von dazugehörigen Animationen abläuft.
+
+Zunächst wird mit der Verarbeitung einer Passage begonnen, die aus einer Liste von _NovelEvents_ besteht. Ein Event kann eine oder mehrere Animationen auslösen, die abgespielt werden sollen.
+
+Der `VisualNovelPlayer` verarbeitet in diesem Beispiel ein Event, bei dem ein Charakter spricht und dazu ein bestimmter Gesichtsausdruck animiert werden soll. Dazu benachrichtigt er die `NovelAnimationService`-Instanz hierüber. Diese wiederum fügt die neuen Animationen zu den aktiven Animationen hinzu.
+
+
+Im `VisualNovelStory`-Composable spielen den relevanten UI-Komponenten die Animationen ab, da sie den Status der aktiven Animationen über das `StateFlow`-Feld des `NovelAnimationService` beobachten.
+
+Sobald sie ihre Animation fertig abgespielt haben, benachrichtigen sie den Animations-Service wieder und falls keine weiteren Animationen mehr aktiv sind, kann mit dem verarbeiten des nächsten _NovelEvents_ fortgefahren werden.
+
 Mit dem implementierten Animations-System ist das _VisualNovelEngine_ Modul bereit, für den Prototypen verwendet zu werden, um die für KITE II geschriebenen interaktiven Geschichten spielbar zu machen und darzustellen. Die Implementierung des Prototypen ist in @implementierung-prototyp beschrieben.
