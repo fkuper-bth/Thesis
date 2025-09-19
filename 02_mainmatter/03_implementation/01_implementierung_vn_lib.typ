@@ -972,13 +972,13 @@ Da das Animations-System einen wesentlichen Anteil der Entwicklungszeit dieses M
 
 Um die Umsetzung des Animation-Systems der _VisualNovelEngine_ näher zu beleuchten, ist es zunächst wichtig, die Klassenhierarchie der Assets zu verstehen. Diese ist in @figure:vnEngineModelClassDiagram dargestellt.
 
-#let vnEngineModelClassDiagram = image("/resources/images/diagrams/vn-engine-model-class-diagram.png")
+`Asset` selbst ist ein einfaches Interface, welches lediglich eine ID vorschreibt, welche unter allen existierenden Assets einzigartig sein muss. Davon ausgehend gibt es wiederum andere Typen von Assets wie `Animation`, `Sprite`, `TextAsset` und `StoryAsset`. Die Namen `TextAsset` und `StoryAsset` wurden lediglich für dieses Diagramm so gewählt, um eine Verwechselung zu vermeiden.
+
+#let vnEngineModelClassDiagram = image("/resources/images/diagrams/vn-engine-model-class-diagram-rotated.png")
 #figure(
   vnEngineModelClassDiagram,
   caption: [Klassenhierarchie des Typs `Asset` im Modul _VisualNovelEngine_.],
 ) <figure:vnEngineModelClassDiagram>
-
-`Asset` selbst ist ein einfaches Interface, welches lediglich eine ID vorschreibt, welche unter allen existierenden Assets einzigartig sein muss. Davon ausgehend gibt es wiederum andere Typen von Assets wie `Animation`, `Sprite`, `TextAsset` und `StoryAsset`. Die Namen `TextAsset` und `StoryAsset` wurden lediglich für dieses Diagramm so gewählt, um eine Verwechselung zu vermeiden.
 
 Interessant ist hier das Interface `Animation`, welches eine Reihe von Eigenschaften vorschreibt, welche jede Art von Animation gemein hat. Die konkreten Animations-Typen, die hier definiert sind, lauten:
 
