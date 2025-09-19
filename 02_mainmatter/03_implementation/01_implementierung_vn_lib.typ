@@ -647,7 +647,32 @@ Das Modul basiert auf der Cross-Platform UI Technologie #utils.gls-long("cmp") u
 
 In diesem Kapitel werden die wichtigsten Komponenten beschrieben, die im Rahmen dieses Moduls implementiert wurden, wobei davon ausgegangen wird, dass Bibliotheken und Technologien, die in @implementierung-story-engine beschrieben sind, bekannt sind.
 
-Um zunächst einen Überblick über die Nutzungsweise der Bibliothek zu geben, kann am besten die minimale Beispielanwendung betrachtet werden, die im Rahmen des Moduls erstellt wurde, um die Verwendung dieser zu demonstrieren. Zur besseren Übersicht wurde diese auf zwei separate Listings aufgeteilt.
+In @figure:vnEngineComponentDiagram ist ein Komponenten-Diagramm abgebildet, welches des wichtigsten Komponenten, des _VisualNovelEngine_ Moduls darstellt. Die zugehörige Legende ist in @figure:vnEngineComponentDiagramLegend abgebildet.
+
+#let vnEngineComponentDiagram = image("/resources/images/diagrams/vn-engine-component-diagram.png")
+#let vnEngineComponentDiagramLegend = image("/resources/images/diagrams/vn-engine-component-diagram-legend.png")
+#figure(
+  vnEngineComponentDiagram,
+  caption: [Komponenten-Diagramm, welches die wichtigsten Komponenten des _VisualNovelEngine_ Moduls darstellt.],
+) <figure:vnEngineComponentDiagram>
+#figure(
+  vnEngineComponentDiagramLegend,
+  caption: [Legende zu @figure:vnEngineComponentDiagram.],
+) <figure:vnEngineComponentDiagramLegend>
+
+Von links nach rechts betrachtet ist hier zunächst die _VisualNovelStory_-Komponente zu sehen. Diese ist ein _Composable_ und für die audiovisuelle Darstellung der Geschichten zuständig und bildet somit auch eine essentielle Schnittstelle des Moduls.
+
+Ein _Composable_ ist die Bezeichnung für eine UI-Komponente innerhalb des #utils.gls-short("cmp") Frameworks.
+
+Die _VisualNovelStory_-Komponente hat eine Abhängigkeit zur _VisualNovelStoryPlayer_-Komponente, welche für das Steuern der Wiedergabe und der Darstellungslogik einer Geschichte zuständig ist. Für die einzelnen Aufgaben, die hiermit zusammenhängen sind wiederum verschiedene Komponenten zuständig, von denen ein _VisualNovelStoryPlayer_ jeweils Gebrauch macht.
+
+So wird hier die _StoryEngine_ verwendet, die die Logik zur Verwaltung des Story-Flusses und Logik einer Geschichte implementiert. Diese ist als separates Modul angelegt, dessen Implementierung in @implementierung-story-engine beschrieben ist.
+
+Die _StoryRenderController_-Komponente verwaltet Daten, die den audiovisuellen Status einer Visual Novel repräsentieren. Dieser ist separat vom logischen Status der Geschichte zu behandeln und wird daher von dieser Komponente behandelt.
+
+Der _NovelAnimationService_ erlaubt es, Animationen zu steuern und der _AssetStore_ agiert als Datenbank für sämtliche Assets, die in der _VisualNovelEngine_ verwendet werden können.
+
+Um einen Überblick über die Nutzungsweise der Bibliothek zu geben, kann am besten die minimale Beispielanwendung betrachtet werden, die im Rahmen des Moduls erstellt wurde, um die Verwendung dieser zu demonstrieren. Zur besseren Übersicht wurde diese auf zwei separate Listings aufgeteilt.
 
 @vn-engine-demo-app-listing-part-one zeigt den ersten Teil der Demo-Applikation. Hier wird zunächst eine Funktion deklariert, die eine Instanz von `KoinApplication` erstellt, welche eine Funktion aus dem #utils.gls-short("di") Framework _Koin_ ist, um eine Anwendung mit entsprechenden Koin-Modulen zu starten.
 
@@ -694,9 +719,7 @@ private class ExampleScenePreviewViewModel(
 
 In @vn-engine-demo-app-listing-part-one:5 wird das Beispiel-Modul übergeben, welches in @vn-engine-demo-app-listing-part-one:11 definiert ist und demonstriert, wie das _VisualNovelEngine_ konstruiert wird (siehe @vn-engine-demo-app-listing-part-one:13).
 
-In @vn-engine-demo-app-listing-part-one:7 wird ein _Composable_ erzeugt. Dies ist die Bezeichnung für eine UI-Komponente innerhalb des #utils.gls-short("cmp") Frameworks.
-
-Außerdem wird hier beispielhaft eine _ViewModel_ Komponente deklariert, die als Abhängigkeit eine Instanz von `VisualNovelEngine` erwartet (siehe @vn-engine-demo-app-listing-part-one:24). Dieses wird auch im Modul definiert, damit _Koin_ dieses konstruieren kann (@vn-engine-demo-app-listing-part-one:20).
+In @vn-engine-demo-app-listing-part-one:7 wird ein _Composable_ erzeugt. Außerdem wird hier beispielhaft eine _ViewModel_ Komponente deklariert, die als Abhängigkeit eine Instanz von `VisualNovelEngine` erwartet (siehe @vn-engine-demo-app-listing-part-one:24). Dieses wird auch im Modul definiert, damit _Koin_ dieses konstruieren kann (@vn-engine-demo-app-listing-part-one:20).
 
 Das Beispiel folgt dem #utils.gls("mvvm") Architekturmuster, welches ein weit verbreitetes Pattern zur Strukturierung von Anwendungssoftware ist.
 
