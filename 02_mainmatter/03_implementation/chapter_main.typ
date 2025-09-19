@@ -2,23 +2,13 @@
 
 = Implementierung <implementierung>
 
-Um die in @zielsetzung gesteckte Zielsetzung umzusetzen, wurden in @planung verschiedene Arbeitspakete definiert, deren Umsetzung in diesem Kapitel ausgeführt wird.
-
-In @anforderungsanalyse geht es zunächst um den Prozess der Anforderungsanalyse und beschreibt, wie diese Zustande gekommen sind.
-
-In @technik_stand werden verschiedene für diese Arbeit relevante Technologien analysiert und gegenübergestellt, um eine geeignete Technologie für diese Arbeit zu wählen.
+Nachdem in @hintergrund Anforderungen sowie technische Hintergründe zu dieser Arbeit erläutert worden sind, kann mit der technischen Umsetzung begonnen werden.
 
 In @implementierung-visual-novel-library wird die Implementierung der Visual Novel Bibliothek mit all ihren Modulen beschrieben, mit deren Hilfe später der Prototyp erstellt werden soll.
 
 @implementierung-prototyp beschreibt die Implementierung des Prototypen, der die für KITE II verfassten interaktiven Geschichten unter Nutzung der Visual Novel Bibliothek spielbar macht und visuell aufbereitet.
 
-#include "01_anforderungsanalyse.typ"
+#include "01_implementierung_vn_lib.typ"
 #pagebreak()
 
-#include "02_technik_stand.typ"
-#pagebreak()
-
-#include "03_implementierung_vn_lib.typ"
-#pagebreak()
-
-#include "04_implementierung_prototyp.typ"
+#include "02_implementierung_prototyp.typ"

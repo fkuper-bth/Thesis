@@ -6,6 +6,10 @@ Im folgenden Abschnitt wird zun채chst das _#utils.gls-short("kite2") Projekt_ n�
 
 Basierend auf den identifizierten Problemen wird in @zielsetzung die _Zielsetzung_ formuliert und in @planung folgt eine kurze Diskussion der _Planung_ der durchzuf체hrenden Arbeiten.
 
+In @anforderungsanalyse geht es zun채chst um den Prozess der _Anforderungsanalyse_ und beschreibt, wie diese Zustande gekommen sind.
+
+In @technik_stand werden verschiedene f체r diese Thesis relevante _Technologien analysiert_ und gegen체bergestellt, um eine geeignete Technologie f체r diese Arbeit zu w채hlen.
+
 #include "01_ausgangslage.typ"
 #pagebreak()
 
@@ -16,3 +20,9 @@ Basierend auf den identifizierten Problemen wird in @zielsetzung die _Zielsetzun
 #pagebreak()
 
 #include "04_planung.typ"
+#pagebreak()
+
+#include "05_anforderungsanalyse.typ"
+#pagebreak()
+
+#include "06_technik_stand.typ"
