@@ -92,7 +92,7 @@ Um die letztendliche Darstellung der interaktiven Geschichten umzusetzen, werden
 
 So werden die Story-Dateien zusätzlich mit einer Datei mit Meta-Daten verknüpft, die zur jeweiligen Geschichte verschiedene Meta-Informationen enthalten kann, wie z.B. Datenpunkte, die in der Benutzeroberfläche verwendet werden, wie eine Beschreibung der Geschichte, einen Titel oder eine Akzentfarbe. Außerdem können hier Infos, wie eine Kontext-Beschreibung für einen Prompt hinterlegt werden, welche in KITE II zur Generierung des Feedbacks durch ein LLM verwendet wird.
 
-Sämtliche Informationen zu einer Visual-Novel werden in einer `manifest.json` Datei zusammengefasst, welche zum Programm-Start gelesen und verarbeitet wird.
+Sämtliche Informationen zu einer Visual-Novel werden in einer `manifest.json`-Datei zusammengefasst, welche zum Programm-Start gelesen und verarbeitet wird.
 
 In @listing:manifestFile ist ein Ausschnitt aus dieser Datei zu sehen. Jede Geschichte wird hier mit ihrer ID als Schlüssel gemeinsam mit den relevanten Daten abgespeichert, wie die dazugehörige Dateien, die die Geschichte selbst und die Meta-Informationen enthalten, sowie einen Schlüssel, um die passenden Assets zur Geschichte laden zu können.
 
@@ -119,11 +119,11 @@ In @listing:manifestFile ist ein Ausschnitt aus dieser Datei zu sehen. Jede Gesc
 
 Zum Verarbeiten dieser Informationen wurde ein Dienst namens `ManifestManagerService` definiert, dessen Aufgabe es ist, die `manifest.json` zu lesen und alle nötigen Informationen zu den definierten Geschichten zur Laufzeit bereitzustellen.
 
-In @listing:manifestManagerService ist die Definition dieses Dienstes zu sehen. Durch Aufruf der `init()` Methode werden sämtliche Daten aus der `manifest.json`-Datei geladen und verarbeitet, woraufhin das `state`-Feld aktualisiert wird, um dies zu reflektieren. Dieser Aufruf geschieht im Falle des Prototypen beim Start der Applikation.
+In @listing:manifestManagerService ist die Definition dieses Dienstes zu sehen. Durch Aufruf der `init()`-Methode werden sämtliche Daten aus der `manifest.json`-Datei geladen und verarbeitet, woraufhin das `state`-Feld aktualisiert wird, um dies zu reflektieren. Dieser Aufruf geschieht im Falle des Prototypen beim Start der Applikation.
 
 Die Methode `updateStoryContentInfo()` kann genutzt werden, um den Status einer Geschichte zu aktualisieren, nachdem diese beispielsweise von Nutzer*innen durchgespielt wurde.
 
-Das Feld `stories` erlaubt lediglich einen einfachen Zugriff auf alle geladenen Geschichten und gibt `null` zurück, falls keine Geschichten geladen sind. Dies wäre ebenso über das `state` Feld möglich, würde aber erfordern, den Status zu prüfen.
+Das Feld `stories` erlaubt lediglich einen einfachen Zugriff auf alle geladenen Geschichten und gibt `null` zurück, falls keine Geschichten geladen sind. Dies wäre ebenso über das `state`-Feld möglich, würde aber erfordern, den Status zu prüfen.
 
 #let manifestManagerServiceListing = ```kotlin
 interface ManifestManagerService {
@@ -179,7 +179,7 @@ Um Mechanismen, wie die Navigation zwischen den verschiedenen Bildschirmen zu im
 
 Entwickler und Herausgeber von #utils.gls-short("cmp"), JetBrains, haben hierzu eine Bibliothek veröffentlicht, die denselben Ansatz aus der Android-Welt verfolgt. Gleiches gilt für bekannte Bibliotheken zur Umsetzung des #utils.gls-short("mvvm")-Patterns in der Android-Welt. Somit können diese unter geringem Aufwand für den Prototypen implementiert werden.
 
-Innerhalb des `MainScreen` Composables kann mit Hilfe des `NavHost` Composables aus der Navigations-Bibliothek ein Navigations-Graph definiert werden, welcher verschiedene mögliche Bildschirme definiert, die angesteuert werden können und wie zwischen diesen navigiert werden kann (siehe @listing:prototypeNavGraph).
+Innerhalb des `MainScreen`-Composables kann mit Hilfe des `NavHost`-Composables aus der Navigations-Bibliothek ein Navigations-Graph definiert werden, welcher verschiedene mögliche Bildschirme definiert, die angesteuert werden können und wie zwischen diesen navigiert werden kann (siehe @listing:prototypeNavGraph).
 
 #utils.codly(
   highlights: (
@@ -219,15 +219,15 @@ NavHost(startDestination = StartDestination, /* ... */) {
   caption: [Ausschnitt aus der Definition des Navigations-Graphen des Prototypen.],
 ) <listing:prototypeNavGraph>
 
-In @listing:prototypeNavGraph:1 ist beispielsweise zu sehen, dass `StartDestination` als Start-Knoten des Navigations-Graphen definiert wird. In dessen Definition in @listing:prototypeNavGraph:2 wird dann wiederum ein `StartScreen` Composable konstruiert und über eine Callback-Methode kann die Navigation zu einer ausgewählten Geschichte mit Hilfe der ID erfolgen (siehe @listing:prototypeNavGraph:4 und @listing:prototypeNavGraph:5).
+In @listing:prototypeNavGraph:1 ist beispielsweise zu sehen, dass `StartDestination` als Start-Knoten des Navigations-Graphen definiert wird. In dessen Definition in @listing:prototypeNavGraph:2 wird dann wiederum ein `StartScreen`-Composable konstruiert und über eine Callback-Methode kann die Navigation zu einer ausgewählten Geschichte mit Hilfe der ID erfolgen (siehe @listing:prototypeNavGraph:4 und @listing:prototypeNavGraph:5).
 
-Der `StoryDestination`-Knoten (@listing:prototypeNavGraph:8) wiederum kann daraufhin in seiner Definition die übergebene ID verwenden, um diese dem `StoryScreen` Composable zu übergeben, damit dieses die entsprechende Geschichte laden und anzeigen kann.
+Der `StoryDestination`-Knoten (@listing:prototypeNavGraph:8) wiederum kann daraufhin in seiner Definition die übergebene ID verwenden, um diese dem `StoryScreen`-Composable zu übergeben, damit dieses die entsprechende Geschichte laden und anzeigen kann.
 
 === Darstellung der Visual Novels <implementierung-prototyp-darstellung-visual-novels>
 
 Da das Herz dieser Anwendung die Darstellung von Visual Novels ist, soll diese Komponente des Prototypen im Folgenden näher beleuchtet werden.
 
-Das `StoryScreen` Composable bildet hier den Einstiegspunkt und ist in @listing:storyScreen zu sehen. Wenn dieses konstruiert wird, wird über eine Methode im ViewModel das Laden der entsprechenden Geschichte über ihre ID geladen (siehe @listing:storyScreen:9).
+Das `StoryScreen`-Composable bildet hier den Einstiegspunkt und ist in @listing:storyScreen zu sehen. Wenn dieses konstruiert wird, wird über eine Methode im ViewModel das Laden der entsprechenden Geschichte über ihre ID geladen (siehe @listing:storyScreen:9).
 
 #utils.codly(
   highlights: (
@@ -276,7 +276,7 @@ Das ViewModel gibt über das `uiState`-Feld einen beobachtbaren Status wieder, �
 
 Im Falle eines Fehlers oder beim Laden wird hier eine einfache Text-Komponente verwendet (siehe @listing:storyScreen:14 und @listing:storyScreen:25). Diese Lösungen sind rudimentär und könnten in Zukunft durch nutzerfreundlichere Alternativen ersetzt werden, wie einem animierten Lade-Indikator und einer robusteren Fehlerbehandlung.
 
-Bei erfolgreichem Laden der Geschichte kann das `StoryPlayerView` Composable konstruiert werden, welches sich letztendlich um die Darstellung der Geschichte kümmert (siehe @listing:storyScreen:18).
+Bei erfolgreichem Laden der Geschichte kann das `StoryPlayerView`-Composable konstruiert werden, welches sich letztendlich um die Darstellung der Geschichte kümmert (siehe @listing:storyScreen:18).
 
 Ein Ausschnitt der Definition dieses ist in @listing:storyPlayerViewPartOne zu sehen. Hier wird auf Basis des `uiState`-Feldes des ViewModels der interne Status des Composables aktualisiert und nötige Operationen ausgeführt.
 
@@ -360,7 +360,7 @@ fun onAssetsLoaded(storyAssets: StoryAssets?) {
   caption: [Implementation der `onAssetsLoaded()`-Methode in `StoryPlayerViewModel`.],
 ) <listing:onAssetsLoaded>
 
-Daraufhin kann im `StoryPlayerView` Composable die Visual Novel angezeigt werden. In @listing:storyPlayerViewPartTwo ist die zweite Hälfte der Definition dieses Composables zu sehen (die erste Hälfte ist in @listing:storyPlayerViewPartOne abgebildet). Hier ist zu sehen, welche UI-Komponenten letztendlich konstruiert werden, basierend auf dem internen Status von `StoryPlayerView`.
+Daraufhin kann im `StoryPlayerView`-Composable die Visual Novel angezeigt werden. In @listing:storyPlayerViewPartTwo ist die zweite Hälfte der Definition dieses Composables zu sehen (die erste Hälfte ist in @listing:storyPlayerViewPartOne abgebildet). Hier ist zu sehen, welche UI-Komponenten letztendlich konstruiert werden, basierend auf dem internen Status von `StoryPlayerView`.
 
 Falls Daten geladen werden, wird ein Fortschritt-Indikator erstellt (@listing:storyPlayerViewPartTwo:6). Wenn die Geschichte gerade abgespielt wird, wird das Composable `VisualNovelStory` aus der _VisualNovelEngine_ Bibliothek verwendet, um die Visual Novel anzuzeigen (@listing:storyPlayerViewPartTwo:9). Sobald die Geschichte endet, wird eine UI-Komponente generiert, die Nutzer*innen hierüber informiert (@listing:storyPlayerViewPartTwo:16).
 

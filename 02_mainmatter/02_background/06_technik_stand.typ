@@ -121,7 +121,7 @@ Eine Schwäche der #utils.gls-plural("if") Tools ist die limitierte Unterstützu
 
 Andererseits existieren auch Tools, die es ermöglichen, neben der interaktiven Geschichte auch die audiovisuelle Darstellung zu realisieren und somit eine vollständige Lösung zur Erstellung einer #utils.gls-short("visual_novel") bieten. Diese Tools sind in der Regel komplexer und haben eine steilere Lernkurve, erlauben ihren Nutzer*innen dafür aber, eine ganze #utils.gls-short("visual_novel") mit einem einzigen Tool zu erstellen und eignen sich daher beispielsweise auch besonders für Projekte, die von einer Person umgesetzt werden.
 
-Die @vn-tools-overview gibt einen groben Überblick über einige der populärsten Tools zur Erstellung von #utils.gls-plural("visual_novel").
+Die @vn-tools-overview bietet einen Überblick über einige der populärsten Tools zur Erstellung von #utils.gls-plural("visual_novel").
 
 #let vnToolsOverview = table(
   columns: (15%, 40%, 20%, 25%),
@@ -239,7 +239,7 @@ Die Gründe hierfür sind vielfältig. Einige der meist genannten Gründe aus ei
 - Verfügbarkeit von _Templates_ zum schnellen Einstieg in der Entwicklung eines neuen Projektes
 - Python als Skript-Sprache ist _einfach zu erlernen_ und _weit verbreitet_
 
-Für die Konzeption einer #utils.gls-short("library") dieser Arbeit ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in @implementierung-visual-novel-library.
+Für die Konzeption einer #utils.gls-short("library") dieser Art ist es wichtig, diese Stärken zu berücksichtigen und zu versuchen, diese in die #utils.gls-short("library") zu integrieren, wenn möglich. Die wirkt sich konkret darauf aus, wie die #utils.gls-short("library") gestaltet wird, um somit den Nutzer*innen eine möglichst gute Nutzererfahrung bieten zu können. Mehr hierzu findet sich in @implementierung-visual-novel-library.
 
 Neben Ren'Py ist auch _Twine_ ein weit verbreitetes Tool zur Erstellung von #utils.gls-plural("if") und wird auch in der #utils.gls-short("kite2") verwendet. Im Anbetracht der Stärken und Schwächen von Twine, die in @if-tools-pros-cons diskutiert wurden, wie beispielsweise der besonderen Eignung von Twine für Autor*innen ohne Programmierkenntnisse und der Erweiterbarkeit durch Story-Formate ist es sinnvoll, Twine als Grundlage für die #utils.gls-short("library") zu wählen. Somit können nicht nur die für #utils.gls-short("kite2") bereits geschriebenen Geschichten wiederverwendet werden, sondern auch die Stärken von Twine in Bezug auf die Erstellung von #utils.gls-plural("if") genutzt werden. Mehr zu diesem Thema findet sich ebenfalls in @implementierung-visual-novel-library.
 

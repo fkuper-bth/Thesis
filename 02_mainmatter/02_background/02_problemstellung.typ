@@ -4,7 +4,7 @@
 
 Neben der Effektivität von #utils.gls-short("kite2") als Lernmittel durch gezieltes und konstruktives Feedback durch ein #utils.gls-short("llm") wurden zur Zeit der Konzeption auch Aspekte der Spielgestaltung betrachtet. So sollte es eine größere Bandbreite von spielerischen Elementen, wie zum Beispiel eine navigierbare Spielwelt, geben. Diese kann für eine erhöhte #utils.gls("immersion") sorgen und somit Spieler*innen eine intensivere Spielerfahrung bieten.
 
-Für solch eine Art von Anwendung wurde die populäre Game Engine Unity @unity_technologies_unity_2019 gewählt. Unity wird von fast 40% von Spielentwickler*innen, die eine Game Engine nutzen, als primäre Engine verwendet  @slashdata_team_did_2022.
+Für solch eine Art von Anwendung wurde die populäre Game Engine Unity @unity_technologies_unity_2019 gewählt. Unity wird von fast 40% der Spielentwickler*innen, die eine Game Engine nutzen, als primäre Engine verwendet  @slashdata_team_did_2022.
 
 Im Laufe der Entwicklung haben sich jedoch die Anforderungen an #utils.gls-short("kite2") geändert, sodass die ursprünglich konzeptionierte navigierbare Spielwelt nicht mehr umgesetzt werden sollte. Dadurch, dass sich durch die initialen Annahmen für Unity entschieden wurde und die Entwicklung bereits weit fortgeschritten war, war ein Wechsel auf eine andere eventuell besser an die aktuellen Anforderungen geeignete Technologie nicht mehr wirtschaftlich.
 
