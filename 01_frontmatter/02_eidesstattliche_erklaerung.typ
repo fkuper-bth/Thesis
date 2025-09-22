@@ -14,7 +14,7 @@ Hiermit erkläre ich eidesstattlich, dass die vorliegende Arbeit von mir selbsts
     rows: 1,
     row-gutter: 4cm,
     [
-      #align(left + bottom)[Emsbüren, 30. September 2025]
+      #align(left + bottom)[Emsbüren, 22. September 2025]
       #align(left + bottom, line(length: signingLineLength))
       #align(left + bottom)[Ort, Datum]
     ],

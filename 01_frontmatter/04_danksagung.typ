@@ -13,5 +13,5 @@ Abschließend möchte ich mich bei meinen Eltern bedanken, deren Unterstützung 
 #pad(top: 1cm)[
   Frederik Kuper
 
-  Emsbüren, 30. September 2025
+  Emsbüren, 22. September 2025
 ]
