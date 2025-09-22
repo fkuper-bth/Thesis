@@ -4,7 +4,7 @@
 
 Neben der Effektivität von #utils.gls-short("kite2") als Lernmittel durch gezieltes und konstruktives Feedback durch ein #utils.gls-short("llm") wurden zur Zeit der Konzeption auch Aspekte der Spielgestaltung betrachtet. So sollte es eine größere Bandbreite von spielerischen Elementen, wie zum Beispiel eine navigierbare Spielwelt, geben. Diese kann für eine erhöhte #utils.gls("immersion") sorgen und somit Spieler*innen eine intensivere Spielerfahrung bieten.
 
-Für solch eine Art von Anwendung wurde die populäre Game Engine Unity @unity_technologies_unity_2019 gewählt, welche unter Spielentwickler*innen, die eine Game Engine verwenden, sehr beliebt ist, wobei fast 40% dieser Gruppe Unity als primäre Engine verwenden @slashdata_team_did_2022.
+Für solch eine Art von Anwendung wurde die populäre Game Engine Unity @unity_technologies_unity_2019 gewählt. Unity wird von fast 40% von Spielentwickler*innen, die eine Game Engine nutzen, als primäre Engine verwendet  @slashdata_team_did_2022.
 
 Im Laufe der Entwicklung haben sich jedoch die Anforderungen an #utils.gls-short("kite2") geändert, sodass die ursprünglich konzeptionierte navigierbare Spielwelt nicht mehr umgesetzt werden sollte. Dadurch, dass sich durch die initialen Annahmen für Unity entschieden wurde und die Entwicklung bereits weit fortgeschritten war, war ein Wechsel auf eine andere eventuell besser an die aktuellen Anforderungen geeignete Technologie nicht mehr wirtschaftlich.
 
@@ -14,22 +14,22 @@ Doch haben sich durch die Wahl von Unity im frühen Stadium des Projektes späte
 
 Der folgende Abschnitt beschreibt einige der größten Schmerzpunkte, die sich im Laufe der Entwicklung von #utils.gls-short("kite2") ergeben haben, welche durch diese Arbeit adressiert werden sollen. Diese wurden in Zusammenarbeit mit dem Projektteam von #utils.gls-short("kite2") erarbeitet und sind nicht abschließend.
 
-Die Unity Engine bringt viel Funktionalität und Komplexität mit sich, die für den Anwendungsfall von #utils.gls-short("kite2") nicht benötigt wird. Im Vergleich zu anderen Technologien können hierunter folgende Aspekte leiden:
+Aufgrund der Tatsache, dass die Unity Engine primär eine 3D Game Engine ist, bringt diese viel Funktionalität und Komplexität mit sich, die für den Anwendungsfall von #utils.gls-short("kite2") nicht benötigt wird. Im Vergleich zu anderen Technologien können hierunter folgende Aspekte leiden:
 
 - _Performance_ der Anwendung im Bezug auf Speicherbedarf und CPU-Auslastung.
 - _Größe_ der ausgelieferten Anwendung.
 - _Komplexität_ der Entwicklung durch die Vielzahl an Features, die Unity bietet.
 
 Der Produktionsprozess der Visual Novels ist aufgrund einiger Tatsachen eng mit dem Entwicklungsprozess gekoppelt.
-So gibt es zum Startzeitpunkt dieser Arbeit keine Spezifikation des Formats der Geschichten, die für #utils.gls-short("kite2") geschrieben wurden. Dadurch ist es einerseits schwierig, diese Geschichten in anderen Anwendungen zu verwenden, andererseits ist es mit großem Aufwand verbunden, das Geschichten-Format zu erweitern oder zu ändern.
+So gibt es zum Startzeitpunkt dieser Arbeit keine Spezifikation des Daten-Formats der Geschichten, die für #utils.gls-short("kite2") geschrieben wurden. Dadurch ist es einerseits schwierig, diese Geschichten in anderen Anwendungen zu verwenden, andererseits ist es mit großem Aufwand verbunden, das Geschichten-Format zu erweitern oder zu ändern.
 
 Die Geschichten werden außerdem nicht in einem Format exportiert, welches eine einfache Weiterverarbeitung in einer Anwendung erlaubt. Daraus resultierend wurde für #utils.gls-short("kite2") ein Parser direkt in der Anwendung selbst implementiert, welcher das Ausgabeformat der Geschichten in ein für die Anwendung verwendbares Format umwandelt. Mangels Modularität ist dieser Parser jedoch nicht für andere Anwendungen verwendbar und nicht einfach zu testen.
 
 So herrscht hier insgesamt eine hohe Abhängigkeit zwischen dem Entwicklungsteam und den Autor*innen der Geschichten. Bei jeder Änderung des Formats der Geschichten ist eine enge Abstimmung zwischen Autor*innen und Entwickler*innen notwendig, um die Geschichten weiterhin in der Anwendung verwenden zu können.
 
-Durch das Schaffen _wohl definierter Schnittstellen_ zwischen den Beteiligten an der Entwicklung einer Anwendung, die Visual Novels verwendet, kann der Abstimmungsbedarf zwischen den einzelnen Parteien deutlich verringert werden und die Testbarkeit und Stabilität der Anwendung verbessert werden. Des Weiteren kann durch Schaffen einer geeigneten #utils.gls-short("library") zum Darstellen von interaktiven Geschichten in einer den Anforderungen entsprechenden Technologie die Performance, Größe und Komplexität der Anwendung verringert werden. Eine detaillierte Auseinandersetzung mit der Thematik der Schnittstellen in interdisziplinären Software-Projekten erfolgt in @analyse-team-schnittstellen.
+Durch das Schaffen _wohl definierter Schnittstellen_ zwischen den Beteiligten an der Entwicklung einer Anwendung, die Visual Novels verwendet, kann der Abstimmungsbedarf zwischen den einzelnen Parteien deutlich verringert werden und die Testbarkeit und Stabilität der Anwendung verbessert werden. Des Weiteren kann durch Schaffen einer geeigneten #utils.gls-short("library") zum Darstellen von interaktiven Geschichten in einer den aktuellen Anforderungen entsprechenden Technologie die Performance, Größe und Komplexität der Anwendung verringert werden. Eine detaillierte Auseinandersetzung mit der Thematik der Schnittstellen in interdisziplinären Software-Projekten erfolgt in @analyse-team-schnittstellen.
 
-Da sich die Darstellung der Geschichten in #utils.gls-short("kite2") auf 2-dimensionale Grafiken mit einfachen Animationen beschränkt (wobei die dargestellten Umgebungen hier aus verschiedenen Inhalten komponiert werden können; siehe @kite-ii-screenshots rechts), lassen diese sich in einem alternativen #utils.gls("framework") für #utils.glspl("gui") wie beispielsweise Android Compose @google_jetpack_2025 oder SwiftUI @apple_xcode_2025 umsetzen.
+Da sich die Darstellung der Geschichten in #utils.gls-short("kite2") auf zweidimensionale Grafiken mit einfachen Animationen beschränkt (wobei die dargestellten Umgebungen hier aus verschiedenen Inhalten komponiert werden können; siehe @kite-ii-screenshots rechts), lassen diese sich in einem alternativen #utils.gls("framework") für #utils.glspl("gui") wie beispielsweise Android Compose @google_jetpack_2025 oder SwiftUI @apple_xcode_2025 umsetzen.
 
 Im Zuge dieser Umsetzung soll ein Rahmenwerk geschaffen werden, mit dem der durch #utils.gls-short("kite2") verfolgte Ansatz zur interaktiven Aufklärung und Schulung von Nutzer*innen auch mit wenig Aufwand auf andere Themengebiete angewandt werden kann.
 
@@ -59,6 +59,6 @@ Die in @schmerzpunkte beschriebenen Schmerzpunkte in der Entwicklung von #utils.
 
 So gibt es in der Software-Entwicklung zwei Arten von Programmiersprachen, die sich in ihrer Eignung für verschiedene Anwendungsfälle unterscheiden: #utils.glspl("dsl") und #utils.glspl("gpl"). #utils.gls-plural("dsl") sind Programmiersprachen, die speziell für eine bestimmte Anwendungsdomäne entwickelt wurden, während #utils.gls-plural("gpl") für eine breite Palette von Anwendungen geeignet sind.
 
-#utils.gls-plural("dsl") können verglichen mit #utils.gls-plural("gpl") zu erhöhter Produktivität führen, sogar wenn Nutzer weniger vertraut mit einer #utils.gls-short("dsl") sind @kosar_comparing_2010. Dies liegt daran, dass #utils.gls-plural("dsl") speziell für eine bestimmte Anwendungsdomäne entwickelt wurden und daher eine höhere Abstraktionsebene bieten, die es ermöglicht, komplexe Probleme einfacher zu lösen.
+#utils.gls-plural("dsl") können verglichen mit #utils.gls-plural("gpl") zu erhöhter Produktivität führen, sogar wenn Nutzer weniger vertraut mit einer #utils.gls-short("dsl") sind @kosar_comparing_2010. Dies liegt daran, dass dass die auf eine Anwendungsdomäne zugeschnittenen #utils.gls-plural("dsl") eine höhere Abstraktionsebene bieten, die es ermöglicht, komplexe Probleme einfacher zu lösen.
 
 Durch das Schaffen von Werkzeugen, die auf eine bestimmte Anwendungsdomäne zugeschnitten sind, können also Produktivität gesteigert werden. Bei stabilen und präzisen Anforderungen an Lösungen kann durch Entwicklung von domänenspezifischen Werkzeugen also durchaus sowohl höhere Produktivität der Entwicklung, als auch höhere Qualität und Modularität der Software erreicht werden, indem domänenspezifische Lösungen abstrahiert und wiederverwendbar beispielsweise in Form einer #utils.gls-short("library") bereitgestellt werden.

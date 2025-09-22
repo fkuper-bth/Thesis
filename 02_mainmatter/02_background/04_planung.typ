@@ -72,7 +72,7 @@ In @tabelle-abgrenzung-arbeitsinhalte wird eine Übersicht der Inhalte gegeben, 
   table.header([*Kurzbeschreibung*], [*Anmerkungen*]),
 
   [
-    Eine mit #utils.gls-short("kite2") feature-paritätische Implementierung einer Anwendung.
+    Eine mit #utils.gls-short("kite2") funktionsgleiche Implementierung einer Anwendung.
   ],
   [
     - Dies meint, dass sich lediglich auf die _Kernfunktionalitäten_ von #utils.gls-short("kite2") konzentriert werden soll und andere Funktionalitäten zunächst außer Acht gelassen werden.

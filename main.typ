@@ -13,7 +13,8 @@
   inset: 8pt,
 )
 #show raw: value => box(
-  outset: 2pt,
+  inset: (x: 3pt, y: 0pt),
+  outset: (y: 3pt),
   radius: 2pt,
   fill: utils.colorScheme.background,
   text(fill: utils.colorScheme.hhnBlue, value),

@@ -175,7 +175,7 @@ private suspend fun performLaunchInitialization() {
 
 In @listing:prototypeEntryPoint:7 wird über eine Funktion die Initialisierung des `ManifestManagerService` ausgeübt während in @listing:prototypeEntryPoint:10 mit `MainScreen()` das Composable konstruiert wird, welches die Wurzel der Benutzeroberfläche bildet.
 
-Um Mechanismen, wie die Navigation zwischen den verschiedenen Bildschirmen zu implementieren, wird auf etablierte Techniken und Bibliotheken aus der Android und #utils.gls-long("cmp") Welt zurückgegriffen.
+Um Mechanismen, wie die Navigation zwischen den verschiedenen Bildschirmen zu implementieren, wird auf etablierte Techniken und Bibliotheken aus der Android- und Compose-Multiplatform-Welt zurückgegriffen.
 
 Entwickler und Herausgeber von #utils.gls-short("cmp"), JetBrains, haben hierzu eine Bibliothek veröffentlicht, die denselben Ansatz aus der Android-Welt verfolgt. Gleiches gilt für bekannte Bibliotheken zur Umsetzung des #utils.gls-short("mvvm")-Patterns in der Android-Welt. Somit können diese unter geringem Aufwand für den Prototypen implementiert werden.
 
@@ -326,7 +326,7 @@ Da die API zum Laden von Bild-Ressourcen nur in einem `@Composable` Kontext verf
 
 Das ViewModel erlaubt Zugriff auf diese über den UI-Status `Loading` (@listing:storyPlayerViewPartOne:16), sodass das entsprechende Composable den Aufruf tätigen kann (@listing:storyPlayerViewPartOne:17).
 
-Über die `onAssetsLoaded()`-Methode des ViewModels wird dann der Ladeprozess vervollständigt indem die angegebenen Assets in der _VisualNovelEngine_ geladen werden und das Abspielen der Geschichte gestartet wird. Die Definition dieser ist in @listing:onAssetsLoaded zu sehen.
+Über die `onAssetsLoaded()`-Methode des ViewModels wird dann der Ladeprozess vervollständigt, indem die angegebenen Assets in der _VisualNovelEngine_ geladen werden und das Abspielen der Geschichte gestartet wird. Die Definition dieser ist in @listing:onAssetsLoaded zu sehen.
 
 Falls Assets vorhanden sind, werden diese über die _VisualNovelEngine_ Instanz geladen und der Status der Darstellung wird aktualisiert (siehe @listing:onAssetsLoaded:8 und @listing:onAssetsLoaded:9).
 

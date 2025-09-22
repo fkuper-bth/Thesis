@@ -24,7 +24,7 @@ Zusätzlich soll durch die Publikation der Projekte als quelloffene Repositories
 
 Während der Umsetzung dieser Arbeit sind einige Herausforderungen aufgetreten, mit denen in dieser Form vor Beginn nicht gerechnet wurde.
 
-Zu Beginn der Arbeit an dieser Thesis ergaben sich vor allem Herausforderungen daraus, dass diese Arbeit an einem anderen laufenden Projekt anknüpft. Dadurch war es zunächst notwendig, im Rahmen der technischen Analyse von KITE II und der Anforderungserhebung für diese Thesis eine Reihe an Gesprächen und Abstimmungen mit dem Projekt-Team von KITE II zu führen. Dies kann wiederum zu Zeitverzögerungen führen, da die passende Person nicht immer zeitnah verfügbar ist.
+Zu Beginn der Arbeit an dieser Thesis ergaben sich vor allem Herausforderungen daraus, dass diese Arbeit an einem anderen laufenden Projekt anknüpft. Dadurch war es zunächst notwendig, im Rahmen der technischen Analyse von KITE II und der Anforderungserhebung für diese Thesis eine Reihe an Gesprächen und Abstimmungen mit dem Projekt-Team von KITE II zu führen. Dies hat wiederum zu Zeitverzögerungen geführt, da die passende Person nicht immer zeitnah verfügbar war.
 
 Bei Abhängigkeiten zu anderen Projekten und Personen ist es daher wichtig, so früh wie möglich Termin-Abstimmungen bezüglich der nötigen Besprechungen zu tätigen, damit es hier nicht zu längeren Verzögerungen kommt.
 
@@ -61,7 +61,7 @@ Sämtliche Repositories, die im Rahmen dieser Thesis erstellt wurden, sind einer
 
 Künftige Entwicklungsarbeiten können sich darauf konzentrieren, offene Arbeitspakete zu implementieren, die nicht im zeitlichen Rahmen dieser Thesis umgesetzt werden konnten. In @table:openIssues sind offene Punkte notiert.
 
-Neben den in der Tabelle erwähnten Punkten könnten auch größere Themen, wie die Umstrukturierung der _VisualNovelEngine_ hin zu einem #utils.gls-long("ecs") Ansatz, angegangen werden, um zukünftige Entwicklungen und Erweiterungen zu begünstigen.
+Neben den in der Tabelle erwähnten Punkten könnten auch größere Themen, wie die Umstrukturierung der _VisualNovelEngine_ hin zu einem #utils.gls-long("ecs")-Ansatz, angegangen werden, um zukünftige Entwicklungen und Erweiterungen zu begünstigen.
 
 Abgesehen davon wäre es interessant, Rückmeldungen von Entwickler*innen zu den verschiedenen Tools zu bekommen, die geschaffen wurden, damit Schnittstellen optimiert und eventuelle Fehler gelöst werden können.
 

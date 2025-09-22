@@ -203,7 +203,7 @@
   (
     key: "ecs",
     short: "ECS",
-    long: "Entity Component System",
+    long: "Entity-Component-System",
     description: "Ein Architekturmuster, welches aus Entitäten besteht, die über bestimmten Komponenten von Daten verfügen. Die sogenannten Systeme manipulieren wiederum die Komponenten. Dieses wird häufig in der Videospiel-Entwicklung zur Repräsentation der Spielwelt-Objekte genutzt.",
   ),
 )

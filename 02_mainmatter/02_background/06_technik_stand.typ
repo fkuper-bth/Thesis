@@ -269,6 +269,7 @@ In @cp-frameworks-overview wird ein Überblick über einige der #utils.gls-short
 
 #let cpFrameworksOverviewTable = table(
   columns: 4,
+  stroke: utils.colorScheme.hhnBlueLight,
   table.header([*Framework*], [*Sprache*], [*Plattformen*], [*Lizenz*]),
 
   [
@@ -421,6 +422,7 @@ Die Frameworks sind mitsamt ihrer Bewertung bezüglich der Kriterien in @cp-fram
 
 #let cpFrameworkComparisonTable = table(
   columns: (18%, 22%, 22%, 38%),
+  stroke: utils.colorScheme.hhnBlueLight,
   table.header([*Framework*], [*Grafik*], [*Animation*], [*Einordnung*]),
 
   [
